@@ -1,0 +1,268 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import { getCollection } from 'astro:content';
+
+const { hero, marquee, featured, scrollReveal, about, services, contact } = site;
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
+);
+
+const catLabels = {
+  animation: 'Product Animation',
+  stills: 'Product Stills',
+  motion: 'Motion Graphics',
+  packaging: 'Packaging · 360°',
+  branding: 'Logo / Branding',
+  artwork: 'Artwork',
+};
+
+// Group services by their "group" field
+const serviceGroups = services.reduce((acc, s) => {
+  (acc[s.group] ??= []).push(s);
+  return acc;
+}, {});
+
+const processSteps = [
+  { num: '01 — Discovery', label: '01 / 04 · Discovery', swatch: 'cream',
+    body: "We start with a short, focused call — your product, your audience, and what the work needs to do (paid social, retail, PDP, launch film). Within a few days you get a fixed-scope proposal, a single price, and a timeline." },
+  { num: '02 — Art direction', label: '02 / 04 · Art direction', swatch: 'violet',
+    body: "Before any rendering, we lock the look. I deliver a moodboard and a single hero keyframe that defines the lighting, material, and camera language. Every downstream asset inherits this frame, so the system stays cohesive without endless revision rounds." },
+  { num: '03 — Render & iterate', label: '03 / 04 · Render & iterate', swatch: 'ember',
+    body: "I build, light, and animate against the locked direction, sharing progress checkpoints at each major beat. Two structured feedback rounds are built in. Tools: Cinema 4D, Redshift, X-Particles for sims, After Effects for finishing." },
+  { num: '04 — Final delivery', label: '04 / 04 · Final delivery', swatch: 'lime',
+    body: "You get the hero film, the stills system, every platform cutdown, and the source files. No subscriptions, no retainers, no surprise invoices — a clean handoff with everything you need to run the campaign." },
+];
+---
+<Base>
+  <!-- HERO -->
+  <section class="hero" aria-label="Intro">
+    <div class="hero-meta">
+      <span class="eyebrow">{hero.eyebrow}</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="line"><span class="reveal">{hero.line1}</span></span>
+      <span class="line"><span class="reveal">{hero.line2}</span></span>
+      <span class="line italic"><span class="reveal">{hero.line3}</span></span>
+      <span class="line italic"><span class="reveal">{hero.line4}</span></span>
+    </h1>
+    <div class="hero-foot">
+      <p class="hero-sub" set:html={hero.subtext}></p>
+      <a href="#work" class="scroll-cue" aria-label="Scroll to work">
+        <span>Selected work</span>
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M12 4v15m0 0l-6-6m6 6l6-6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+    <div class="hero-reel">
+      <div class="reel-frame">
+        <video class="reel-video" autoplay muted loop playsinline poster={hero.reelPoster}>
+          <source src={hero.reelVideo} type="video/mp4" />
+        </video>
+        <div class="reel-overlay">
+          <span class="reel-label">Reel · 2026 — now playing</span>
+          <button class="reel-sound" type="button" aria-label="Toggle reel sound">
+            <span class="sound-dot" aria-hidden="true"></span>
+            <span class="sound-text">Muted</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <section class="marquee-wrap" aria-label="Sectors">
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>Working across</span><span class="dot">●</span>
+        {marquee.map((m) => (<><span>{m}</span><span class="dot">●</span></>))}
+        <span>Working across</span><span class="dot">●</span>
+        {marquee.map((m) => (<><span>{m}</span><span class="dot">●</span></>))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SCROLL-DRIVEN PRODUCT REVEAL -->
+  <section class="scroll-reveal" aria-label="Product spotlight"
+           data-spin-folder={scrollReveal.spinFolder} data-spin-prefix={scrollReveal.spinPrefix} data-spin-count={scrollReveal.spinCount}>
+    <div class="scroll-reveal-pin">
+      <canvas class="scroll-reveal-canvas" aria-hidden="true"></canvas>
+      <div class="scroll-reveal-meta">
+        <span class="featured-eyebrow">{scrollReveal.eyebrow}</span>
+        <h2 class="scroll-reveal-title">{scrollReveal.title}</h2>
+        <p class="scroll-reveal-cat">{scrollReveal.category}</p>
+      </div>
+      <div class="scroll-reveal-hint" aria-hidden="true">Keep scrolling ↓</div>
+    </div>
+  </section>
+
+  <!-- FEATURED FILM -->
+  <section class="featured-film" aria-label="Featured film">
+    <div class="featured-frame">
+      <video class="featured-video" autoplay muted loop playsinline poster={featured.poster}>
+        <source src={featured.video} type="video/mp4" />
+      </video>
+      <div class="featured-overlay">
+        <span class="featured-eyebrow">{featured.eyebrow}</span>
+        <h2 class="featured-title">{featured.title}</h2>
+        <p class="featured-cat">{featured.category}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK GRID -->
+  <section class="section work" id="work" aria-label="Selected work">
+    <header class="section-head">
+      <span class="section-num">01 — Work</span>
+      <h2 class="section-title">Selected projects, <span class="italic">recently shipped</span>.</h2>
+    </header>
+    <div class="filters" role="tablist" aria-label="Filter work">
+      <button class="filter is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+      <button class="filter" data-filter="animation" role="tab">Product Animation</button>
+      <button class="filter" data-filter="stills" role="tab">Product Stills</button>
+      <button class="filter" data-filter="motion" role="tab">Motion Graphics</button>
+      <button class="filter" data-filter="packaging" role="tab">Packaging Design</button>
+      <button class="filter" data-filter="branding" role="tab">Logo / Branding</button>
+      <button class="filter" data-filter="artwork" role="tab">Artwork</button>
+    </div>
+    <div class="work-grid">
+      {projects.map((p) => {
+        const d = p.data;
+        const spinAttrs = d.spinPrefix
+          ? { 'data-spin-folder': d.spinFolder, 'data-spin-prefix': d.spinPrefix, 'data-spin-count': d.spinCount }
+          : {};
+        const videoAttr = d.video ? { 'data-video': d.video } : {};
+        return (
+          <a class="work-card" href="#" data-cat={d.category} data-aspect="square" {...videoAttr} {...spinAttrs}>
+            <div class="work-thumb" data-swatch={d.swatch}>
+              <img src={d.image} alt={d.title} loading="lazy" />
+              {d.video && <video class="work-video" muted loop playsinline preload="none"></video>}
+              <div class="work-meta">
+                <h3>{d.title}</h3>
+                <span class="work-cat">{catLabels[d.category]}</span>
+              </div>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section case" id="process" aria-label="Process">
+    <header class="section-head">
+      <span class="section-num">02 — Process</span>
+      <h2 class="section-title">How I work, <span class="italic">end to end.</span></h2>
+    </header>
+    <div class="case-grid" id="process-grid">
+      <div class="case-sticky">
+        <div class="case-visual" data-swatch="cream">
+          <span class="case-frame-label">01 / 04 · Discovery</span>
+        </div>
+      </div>
+      <div class="case-content">
+        {processSteps.map((s) => (
+          <article class="case-block" data-step-label={s.label} data-step-swatch={s.swatch}>
+            <h3>{s.num}</h3>
+            <p>{s.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section about" id="about" aria-label="About">
+    <header class="section-head">
+      <span class="section-num">{about.eyebrow}</span>
+      <h2 class="section-title">Strong creative direction, <span class="italic">rendered honestly.</span></h2>
+    </header>
+    <div class="about-grid">
+      <div class="about-copy">
+        <p class="lead">{about.lead}</p>
+        <p>{about.body1}</p>
+        <p>{about.body2}</p>
+        <a href="#contact" class="btn">Start a project →</a>
+      </div>
+      <aside class="about-side">
+        <div class="side-block">
+          <h4>Tools</h4>
+          <ul>{about.tools.map((t) => <li>{t}</li>)}</ul>
+        </div>
+        <div class="side-block">
+          <h4>Sectors</h4>
+          <ul>{about.sectors.map((t) => <li>{t}</li>)}</ul>
+        </div>
+        <div class="side-block">
+          <h4>How I work</h4>
+          <ul>{about.howIWork.map((t) => <li>{t}</li>)}</ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section services" id="services" aria-label="Services">
+    <header class="section-head">
+      <span class="section-num">04 — Services</span>
+      <h2 class="section-title">What I make.</h2>
+    </header>
+    {Object.entries(serviceGroups).map(([group, items]) => (
+      <div class="services-group">
+        <h3 class="group-title">{group}</h3>
+        <ul class="services-list">
+          {items.map((s) => (
+            <li class="service">
+              <span class="svc-num">{s.num}</span>
+              <div>
+                <h3>{s.title}</h3>
+                <p>{s.desc}</p>
+              </div>
+              <span class="svc-tag">{s.tag}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact" aria-label="Contact">
+    <header class="section-head">
+      <span class="section-num">{contact.eyebrow}</span>
+      <h2 class="section-title">Have a launch on the calendar? <span class="italic">Let's talk.</span></h2>
+    </header>
+    <div class="contact-grid">
+      <div class="contact-copy">
+        <p class="lead">{contact.lead}</p>
+        <ul class="contact-expect">
+          {contact.expect.map((e, i) => (<li><span>{i + 1}.</span> {e}</li>))}
+        </ul>
+        <div class="contact-direct">
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>
+          <div class="socials">
+            <a href={contact.instagram} target="_blank" rel="noopener">Instagram</a>
+            <a href={contact.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('.form-success').hidden = false;">
+        <label><span>Your name</span><input type="text" name="name" required /></label>
+        <label><span>Email</span><input type="email" name="email" required /></label>
+        <label><span>Brand / company</span><input type="text" name="brand" /></label>
+        <label><span>Project type</span>
+          <select name="type">
+            <option>Product animation</option>
+            <option>Product stills</option>
+            <option>Brand &amp; packaging design</option>
+            <option>Creative direction &amp; consulting</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
+        <label class="full"><span>Tell me about the project</span><textarea name="message" rows="4" required></textarea></label>
+        <button type="submit" class="btn btn-primary">Send →</button>
+        <p class="form-success" hidden>Thanks — I'll be in touch shortly.</p>
+      </form>
+    </div>
+  </section>
+</Base>

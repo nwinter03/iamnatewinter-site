@@ -1,0 +1,128 @@
+# Sveltia CMS config — the editing dashboard for iamnatewinter.com
+#
+# LOCAL TESTING: with `npm run dev` running, also run the proxy:
+#   npx @sveltia/cms-proxy-server
+# then open http://localhost:4400/admin/ — edits save straight to your files.
+#
+# PRODUCTION: set the `backend` repo to your GitHub repo and edits commit there.
+
+backend:
+  name: github
+  repo: natewinter/iamnatewinter-site   # ← update to your real repo when deploying
+  branch: main
+
+# Enables editing local files during `npm run dev` (no GitHub needed to test)
+local_backend: true
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  # ---------- SITE COPY (single file, all the page text) ----------
+  - name: "site"
+    label: "Site Copy"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "copy"
+        label: "All Page Copy"
+        file: "src/data/site.json"
+        fields:
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title — line 1", name: "line1", widget: "string" }
+              - { label: "Title — line 2", name: "line2", widget: "string" }
+              - { label: "Title — line 3 (italic)", name: "line3", widget: "string" }
+              - { label: "Title — line 4 (italic)", name: "line4", widget: "string" }
+              - { label: "Subtext", name: "subtext", widget: "text" }
+              - { label: "Reel video URL", name: "reelVideo", widget: "string" }
+              - { label: "Reel poster URL", name: "reelPoster", widget: "string" }
+          - label: "Marquee terms"
+            name: "marquee"
+            widget: "list"
+            field: { label: "Term", name: "term", widget: "string" }
+          - label: "Featured Film"
+            name: "featured"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Category line", name: "category", widget: "string" }
+              - { label: "Video URL", name: "video", widget: "string" }
+              - { label: "Poster URL", name: "poster", widget: "string" }
+          - label: "Scroll Reveal (360° spotlight)"
+            name: "scrollReveal"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Category line", name: "category", widget: "string" }
+              - { label: "Spin folder", name: "spinFolder", widget: "string" }
+              - { label: "Spin prefix", name: "spinPrefix", widget: "string" }
+              - { label: "Spin frame count", name: "spinCount", widget: "number" }
+          - label: "About"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Lead paragraph", name: "lead", widget: "text" }
+              - { label: "Body paragraph 1", name: "body1", widget: "text" }
+              - { label: "Body paragraph 2", name: "body2", widget: "text" }
+              - { label: "Tools", name: "tools", widget: "list", field: { label: "Tool", name: "tool", widget: "string" } }
+              - { label: "Sectors", name: "sectors", widget: "list", field: { label: "Sector", name: "sector", widget: "string" } }
+              - { label: "How I work", name: "howIWork", widget: "list", field: { label: "Item", name: "item", widget: "string" } }
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            fields:
+              - { label: "Group", name: "group", widget: "select", options: ["Product Visualization", "Brand & Direction"] }
+              - { label: "Number", name: "num", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "desc", widget: "text" }
+              - { label: "Tag", name: "tag", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Lead paragraph", name: "lead", widget: "text" }
+              - { label: "What to expect", name: "expect", widget: "list", field: { label: "Step", name: "step", widget: "string" } }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Instagram URL", name: "instagram", widget: "string" }
+              - { label: "LinkedIn URL", name: "linkedin", widget: "string" }
+
+  # ---------- PROJECTS (one entry per work-grid item) ----------
+  - name: "projects"
+    label: "Projects"
+    label_singular: "Project"
+    folder: "src/content/projects"
+    create: true
+    delete: true
+    sortable_fields: ["order", "title", "category"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Product Animation", value: "animation" }
+          - { label: "Product Stills", value: "stills" }
+          - { label: "Motion Graphics", value: "motion" }
+          - { label: "Packaging Design", value: "packaging" }
+          - { label: "Logo / Branding", value: "branding" }
+          - { label: "Artwork", value: "artwork" }
+      - { label: "Image (poster / thumbnail) URL", name: "image", widget: "string", hint: "Paste a URL, or upload below and use that." }
+      - { label: "Upload image (optional)", name: "upload", widget: "image", required: false, hint: "Uploads here are served with the site. Copy its URL into the Image field above." }
+      - { label: "Video URL (optional)", name: "video", widget: "string", required: false, hint: "For hover-play + lightbox playback." }
+      - { label: "360° spin — folder (optional)", name: "spinFolder", widget: "string", required: false }
+      - { label: "360° spin — filename prefix (optional)", name: "spinPrefix", widget: "string", required: false }
+      - { label: "360° spin — frame count (optional)", name: "spinCount", widget: "number", required: false }
+      - { label: "Swatch (fallback color)", name: "swatch", widget: "select", default: "navy", options: ["bone", "cream", "ember", "navy", "violet", "rust", "lime"] }
+      - { label: "Order", name: "order", widget: "number", default: 0, hint: "Lower numbers appear first." }
+      - { label: "Notes (optional)", name: "body", widget: "markdown", required: false }
