@@ -62,6 +62,7 @@ const processSteps = [
     </h1>
     <div class="hero-foot">
       <p class="hero-sub" set:html={hero.subtext}></p>
+      {hero.availability && <p class="hero-availability">{hero.availability}</p>}
     </div>
     <div class="hero-reel">
       <button class="reel-frame reel-trigger" type="button" data-vimeo={hero.reelVimeoId}
