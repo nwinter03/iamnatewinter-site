@@ -260,7 +260,7 @@
     const canvas = wrap.querySelector(".about-stopmo");
     if (!video || !canvas) return;
     const ctx = canvas.getContext("2d");
-    const FPS = 8;                               // stepped, but gentler than before
+    const FPS = 12;                              // gentle stepped look, close to smooth
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let nextAt = 0, running = false;
 
