@@ -62,49 +62,66 @@
     });
   }
 
-  /* ---------- WORK FILTERS + LOAD MORE ---------- */
+  /* ---------- WORK FILTERS + PAGINATION ---------- */
   const filters = document.querySelectorAll(".filter");
   const cards = document.querySelectorAll(".work-card");
-  const loadMoreBtn = document.querySelector(".load-more");
-  const PAGE = 16;                 // cards shown per page
+  const pagination = document.querySelector(".work-pagination");
+  const workSection = document.getElementById("work");
+  const PAGE = 16;                 // cards per page
   let currentFilter = "all";
-  let shown = PAGE;
+  let currentPage = 1;
 
   const cardMatches = (card, f) => {
     const cats = (card.dataset.cat || "").split(/\s+/);
     return f === "all" || cats.includes(f);
   };
+  const matchingCards = () => [...cards].filter((c) => cardMatches(c, currentFilter));
 
-  const renderGrid = (animateNew) => {
-    let count = 0;
-    cards.forEach((card) => {
-      const match = cardMatches(card, currentFilter);
-      const visible = match && count < shown;
-      card.classList.toggle("is-hidden", !visible);
-      if (match) count++;
-      if (visible) {
-        card.classList.add("is-in"); // defeat scroll-reveal opacity:0
-        if (animateNew) {
+  const renderPagination = (totalPages) => {
+    if (!pagination) return;
+    if (totalPages <= 1) { pagination.innerHTML = ""; pagination.classList.add("is-hidden"); return; }
+    pagination.classList.remove("is-hidden");
+    let html = `<button class="page-arrow" data-page="prev" ${currentPage === 1 ? "disabled" : ""} aria-label="Previous page">‹</button>`;
+    for (let p = 1; p <= totalPages; p++) {
+      html += `<button class="page-num ${p === currentPage ? "is-active" : ""}" data-page="${p}" aria-label="Page ${p}"${p === currentPage ? ' aria-current="page"' : ""}>${p}</button>`;
+    }
+    html += `<button class="page-arrow" data-page="next" ${currentPage === totalPages ? "disabled" : ""} aria-label="Next page">›</button>`;
+    pagination.innerHTML = html;
+  };
+
+  const renderGrid = (animate) => {
+    const matching = matchingCards();
+    const totalPages = Math.max(1, Math.ceil(matching.length / PAGE));
+    if (currentPage > totalPages) currentPage = totalPages;
+    const start = (currentPage - 1) * PAGE;
+    const end = start + PAGE;
+
+    cards.forEach((card) => card.classList.add("is-hidden"));
+    matching.forEach((card, i) => {
+      if (i >= start && i < end) {
+        card.classList.remove("is-hidden");
+        card.classList.add("is-in");        // defeat scroll-reveal opacity:0
+        if (animate) {
           card.classList.remove("filter-in");
           void card.offsetWidth;
           card.classList.add("filter-in");
         }
       }
     });
-    // Toggle the Load more button based on whether more matching cards remain
-    const totalMatching = [...cards].filter((c) => cardMatches(c, currentFilter)).length;
-    if (loadMoreBtn) {
-      loadMoreBtn.parentElement.classList.toggle("is-hidden", shown >= totalMatching);
-      const remaining = totalMatching - shown;
-      const label = loadMoreBtn.querySelector(".load-more-count");
-      if (label) label.textContent = remaining > 0 ? `+${Math.min(PAGE, remaining)}` : "";
-    }
+    renderPagination(totalPages);
+  };
+
+  const scrollToWorkTop = () => {
+    if (!workSection) return;
+    const top = workSection.getBoundingClientRect().top + window.scrollY - 70;
+    if (lenis) lenis.scrollTo(top, { duration: 0.8 });
+    else window.scrollTo({ top, behavior: "smooth" });
   };
 
   filters.forEach((btn) => {
     btn.addEventListener("click", () => {
       currentFilter = btn.dataset.filter;
-      shown = PAGE;                  // reset paging when changing filter
+      currentPage = 1;
       filters.forEach((b) => {
         b.classList.toggle("is-active", b === btn);
         b.setAttribute("aria-selected", b === btn ? "true" : "false");
@@ -113,14 +130,21 @@
     });
   });
 
-  if (loadMoreBtn) {
-    loadMoreBtn.addEventListener("click", () => {
-      shown += PAGE;
+  if (pagination) {
+    pagination.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-page]");
+      if (!btn || btn.disabled) return;
+      const totalPages = Math.max(1, Math.ceil(matchingCards().length / PAGE));
+      const val = btn.dataset.page;
+      if (val === "prev") currentPage = Math.max(1, currentPage - 1);
+      else if (val === "next") currentPage = Math.min(totalPages, currentPage + 1);
+      else currentPage = parseInt(val, 10);
       renderGrid(true);
+      scrollToWorkTop();
     });
   }
 
-  // Initial state: cap at PAGE on first load
+  // Initial render: page 1
   renderGrid(false);
 
   /* ---------- MAGNETIC HOVER ON BUTTONS ---------- */
