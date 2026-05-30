@@ -17,8 +17,8 @@
   visibility: hidden;
 }
 .loader-video {
-  max-height: 86vh;
-  max-width: 88vw;
+  max-height: 100vh;
+  max-width: 96vw;
   width: auto;
   height: auto;
   display: block;
