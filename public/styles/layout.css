@@ -1153,14 +1153,16 @@ body.lightbox-open .cursor-dot { display: none; }
 .qmark-dot {
   transform-box: fill-box;        /* transforms relative to the dot itself */
   transform-origin: 50% 100%;     /* anchor the base so it squashes on landing */
-  animation: qmark-bob 2.6s cubic-bezier(.5,0,.5,1) infinite;
+  animation: qmark-bob 2.2s ease infinite;
   will-change: transform;
 }
 @keyframes qmark-bob {
-  0%, 16%  { transform: translateY(0)     scale(1, 1);     animation-timing-function: cubic-bezier(.5,0,.95,.45); }
-  50%      { transform: translateY(24px)  scale(0.94, 1.06); animation-timing-function: cubic-bezier(.3,.5,.7,1); } /* fall + stretch */
-  62%      { transform: translateY(31px)  scale(1.26, 0.72); } /* impact — compress at the bottom */
-  76%      { transform: translateY(21px)  scale(0.98, 1.02); animation-timing-function: cubic-bezier(.3,0,.5,1); } /* small rebound */
+  0%, 16%  { transform: translateY(0)     scale(1, 1);     animation-timing-function: cubic-bezier(.5,0,1,.5); }
+  50%      { transform: translateY(29px)  scale(0.88, 1.12); animation-timing-function: cubic-bezier(.2,.6,.4,1); }  /* fall + stretch */
+  59%      { transform: translateY(34px)  scale(1.34, 0.64); animation-timing-function: cubic-bezier(.1,.85,.25,1); } /* impact — compress on the floor */
+  68%      { transform: translateY(2px)   scale(0.88, 1.14); animation-timing-function: cubic-bezier(.3,0,.5,1); }    /* fast pop up, overshoot stretch */
+  80%      { transform: translateY(0)     scale(1.06, 0.94); }                                                        /* settle past rest */
+  90%      { transform: translateY(0)     scale(0.99, 1.01); }
   100%     { transform: translateY(0)     scale(1, 1);     }
 }
 .qmark:hover .qmark-svg,
