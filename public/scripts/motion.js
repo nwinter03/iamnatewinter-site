@@ -37,23 +37,6 @@
     });
   });
 
-  /* ---------- PARALLAX ON WORK THUMBS ---------- */
-  document.querySelectorAll(".work-thumb, .case-visual").forEach((el) => {
-    gsap.fromTo(el,
-      { y: 30 },
-      {
-        y: -30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: el,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true
-        }
-      }
-    );
-  });
-
   /* ---------- PROCESS: SWAP STICKY FRAME LABEL + SWATCH AS YOU SCROLL ----------
      Data-driven: each .case-block declares its own label + swatch via
        data-step-label and data-step-swatch attributes (set in Elementor).
