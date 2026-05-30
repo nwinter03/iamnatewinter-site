@@ -46,6 +46,7 @@ collections:
             name: "marquee"
             widget: "list"
             field: { label: "Term", name: "term", widget: "string" }
+          - { label: "Marquee lead-in (optional)", name: "marqueeLabel", widget: "string", required: false, hint: "Optional text before the looping sectors, e.g. 'Built for'. Leave empty for none." }
           - label: "About"
             name: "about"
             widget: "object"

@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import { getCollection } from 'astro:content';
 
-const { hero, marquee, about, services, contact } = site;
+const { hero, marquee, marqueeLabel, about, services, contact } = site;
 
 // Load category galleries and flatten their items into cards.
 const galleries = await getCollection('galleries');
@@ -84,9 +84,9 @@ const processSteps = [
   <section class="marquee-wrap" aria-label="Sectors">
     <div class="marquee">
       <div class="marquee-track">
-        <span>Working across</span><span class="dot">●</span>
+        {marqueeLabel && <><span>{marqueeLabel}</span><span class="dot">●</span></>}
         {marquee.map((m) => (<><span>{m}</span><span class="dot">●</span></>))}
-        <span>Working across</span><span class="dot">●</span>
+        {marqueeLabel && <><span>{marqueeLabel}</span><span class="dot">●</span></>}
         {marquee.map((m) => (<><span>{m}</span><span class="dot">●</span></>))}
       </div>
     </div>

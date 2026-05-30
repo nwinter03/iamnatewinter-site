@@ -10,27 +10,65 @@
     "reelDuration": "0:47",
     "reelPoster": "/uploads/2024/02/hero.jpg"
   },
-  "marquee": ["CPG", "Supplement", "Beverage", "Beauty & fragrance", "Wearables", "Footwear", "Musical instruments", "E-commerce"],
+  "marquee": [
+    "CPG",
+    "Supplement",
+    "Beverage",
+    "Beauty & Fragrance",
+    "Wearables",
+    "Footwear",
+    "Skincare",
+    "E-commerce"
+  ],
+  "marqueeLabel": "",
   "about": {
     "eyebrow": "About",
-    "title": "Strong creative direction, rendered honestly.",
     "portrait": "/uploads/2024/09/nw-sketch.jpg",
     "portraitVideo": "/uploads/2024/09/sketch-loop.mp4",
+    "title": "Strong creative direction, rendered honestly.",
     "lead": "I'm a Digital Media Artist based in Milwaukee, with 15+ years across 3D product visualization, brand and packaging design, and motion graphics. I work where design and marketing meet, making products look the way they deserve, in films, in stills, and on every shelf and feed that follows.",
     "body1": "I started in graphic design and went deep on 3D when I realized it was the fastest way to bring an art-directed world to life. That graphic-design foundation is still in everything I ship, and it's why the brand and packaging work feels at home next to the renders.",
     "body2": "Most engagements run 3–8 weeks, a hero film and a stills system, sometimes extending into pack design or a full brand refresh. I'm also open to single deliverables, day-rate creative direction, and ongoing retainers. Smaller briefs are welcome."
   },
   "services": [
-    { "group": "Product Visualization", "num": "01", "title": "Product animation", "desc": "Cinematic hero films, launch loops, and short-form cutdowns, the headline service. Built on locked art direction so every shot stays of a piece.", "tag": "Per project" },
-    { "group": "Product Visualization", "num": "02", "title": "Product stills", "desc": "Cinematic 3D stills for PDPs, paid social, retail signage, and Amazon A+, drawn from the same visual system as the film, so the campaign reads as one thing.", "tag": "Per project" },
-    { "group": "Brand & Direction", "num": "03", "title": "Brand & packaging design", "desc": "Identity systems, pack design, and the typography and visual language that earn the shelf. Often paired with a stills library so the brand lands cohesive day one.", "tag": "Per project" },
-    { "group": "Brand & Direction", "num": "04", "title": "Creative direction & consulting", "desc": "By the day or week. Concept, art direction, design critique, or extra hands on someone else's brief. Lower commitment, same craft.", "tag": "Per day" }
+    {
+      "group": "Product Visualization",
+      "num": "01",
+      "title": "Product animation",
+      "desc": "Cinematic hero films, launch loops, and short-form cutdowns, the headline service. Built on locked art direction so every shot stays of a piece.",
+      "tag": "Per project"
+    },
+    {
+      "group": "Product Visualization",
+      "num": "02",
+      "title": "Product stills",
+      "desc": "Cinematic 3D stills for PDPs, paid social, retail signage, and Amazon A+, drawn from the same visual system as the film, so the campaign reads as one thing.",
+      "tag": "Per project"
+    },
+    {
+      "group": "Brand & Direction",
+      "num": "03",
+      "title": "Brand & packaging design",
+      "desc": "Identity systems, pack design, and the typography and visual language that earn the shelf. Often paired with a stills library so the brand lands cohesive day one.",
+      "tag": "Per project"
+    },
+    {
+      "group": "Brand & Direction",
+      "num": "04",
+      "title": "Creative direction & consulting",
+      "desc": "By the day or week. Concept, art direction, design critique, or extra hands on someone else's brief. Lower commitment, same craft.",
+      "tag": "Per day"
+    }
   ],
   "contact": {
     "eyebrow": "Contact",
     "title": "Have a launch on the calendar? Let's talk.",
     "lead": "I take a range of projects each quarter, from single deliverables and short engagements to multi-month campaigns and ongoing creative direction. Also open to full-time and contract roles with the right team. Share your scope, timeline, or opportunity. A short note is all I need to get started.",
-    "expect": ["I reply within two business days.", "We hop on a 30-minute fit call.", "You get a fixed-scope proposal within a week."],
+    "expect": [
+      "I reply within two business days.",
+      "We hop on a 30-minute fit call.",
+      "You get a fixed-scope proposal within a week."
+    ],
     "email": "me@iamnatewinter.com",
     "instagram": "https://www.instagram.com/iamnatewinter/",
     "linkedin": "https://www.linkedin.com/in/natewinterdesign/"
