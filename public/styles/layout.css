@@ -1123,9 +1123,10 @@ body.lightbox-open .cursor-dot { display: none; }
 
 /* ---------- FOOTER ---------- */
 .site-footer {
-  padding: 48px var(--pad);
+  padding: 60px var(--pad) 36px;
   border-top: 1px solid var(--line);
-  margin-top: 80px;
+  margin-top: 72px;
+  text-align: center;
 }
 
 /* ---------- FOOTER "?" MARK (back to top) ----------
@@ -1134,7 +1135,7 @@ body.lightbox-open .cursor-dot { display: none; }
 .qmark {
   display: block;
   width: max-content;
-  margin: 0 auto 52px;
+  margin: 0 auto 44px;
   color: var(--ink);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -1156,43 +1157,57 @@ body.lightbox-open .cursor-dot { display: none; }
   will-change: transform;
 }
 @keyframes qmark-bob {
-  0%, 10%  { transform: translateY(0)      scaleY(1);        }
-  40%      { transform: translateY(-52px)  scale(0.94, 1.07);}  /* lift + stretch */
-  70%      { transform: translateY(0)      scale(1.18, 0.82);}  /* squash on landing */
-  84%      { transform: translateY(-9px)   scale(0.97, 1.03);}  /* small rebound */
-  100%     { transform: translateY(0)      scaleY(1);        }
+  0%, 16%  { transform: translateY(0)     scale(1, 1);     animation-timing-function: cubic-bezier(.5,0,.95,.45); }
+  50%      { transform: translateY(24px)  scale(0.94, 1.06); animation-timing-function: cubic-bezier(.3,.5,.7,1); } /* fall + stretch */
+  62%      { transform: translateY(31px)  scale(1.26, 0.72); } /* impact — compress at the bottom */
+  76%      { transform: translateY(21px)  scale(0.98, 1.02); animation-timing-function: cubic-bezier(.3,0,.5,1); } /* small rebound */
+  100%     { transform: translateY(0)     scale(1, 1);     }
 }
 .qmark:hover .qmark-svg,
 .qmark:focus-visible .qmark-svg { color: var(--accent); transform: rotate(-9deg); }
 .qmark:hover .qmark-dot { animation-duration: 0.9s; }   /* eager bounce on hover */
 .qmark:active .qmark-svg { transform: rotate(-9deg) scale(0.95); }
-.footer-grid {
-  max-width: var(--max);
-  margin: 0 auto;
+.footer-nav {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
+  justify-content: center;
   flex-wrap: wrap;
+  gap: 14px 28px;
+  margin-bottom: 34px;
 }
-.foot-brand { display: flex; align-items: center; gap: 14px; font-size: var(--text-fine); color: var(--ink-dim); }
-.site-footer nav { display: flex; gap: 22px; }
-.site-footer nav a {
+.footer-nav a {
   font-family: var(--font-mono);
   font-size: var(--text-mono-sm);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-dim);
+  transition: color .25s ease;
 }
-.site-footer nav a:hover { color: var(--accent); }
+.footer-nav a:hover { color: var(--accent); }
+.footer-base {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px 24px;
+  flex-wrap: wrap;
+  font-size: var(--text-fine);
+  color: var(--ink-dim);
+}
+.foot-brand { display: flex; align-items: center; gap: 12px; }
+.foot-social { display: flex; gap: 18px; }
+.foot-social a { color: var(--ink-dim); transition: color .25s ease; }
+.foot-social a:hover { color: var(--accent); }
 
 /* ---------- SMALL PHONE (<600px) ---------- */
 @media (max-width: 600px) {
   .hero { padding: 110px 0 40px; }
   .case-visual { aspect-ratio: 4 / 3; max-height: 44vh; }
   .contact-form { grid-template-columns: 1fr; padding: 22px; }
-  .footer-grid { flex-direction: column; align-items: flex-start; gap: 18px; }
-  .site-footer nav { flex-wrap: wrap; row-gap: 10px; }
+  .footer-base { flex-direction: column; justify-content: center; gap: 14px; }
+  .foot-brand, .foot-social { justify-content: center; }
   .marquee-track { gap: 24px; }
   .section { padding: 80px 0; }
 }

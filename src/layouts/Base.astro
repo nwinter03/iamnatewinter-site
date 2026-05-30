@@ -77,18 +77,22 @@ const { hero, contact } = site;
         <path class="qmark-dot" d="M40.52,283.6c-24.9,0-40.52,16.1-40.52,38.55,0,20.01,12.7,28.32,31.24,28.32,24.9,0,40.52-17.09,40.52-38.57,0-15.62-7.81-28.3-31.24-28.3Z"/>
       </svg>
     </a>
-    <div class="footer-grid">
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="footer-base">
       <div class="foot-brand">
         <img src="/assets/logo.svg" alt="Nate Winter" class="brand-logo brand-logo-sm" />
         <span>© 2026 Nate Winter. Made in Milwaukee.</span>
       </div>
-      <nav aria-label="Footer">
-        <a href="#work">Work</a>
-        <a href="#process">Process</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <div class="foot-social">
+        <a href={contact.instagram} target="_blank" rel="noopener">Instagram</a>
+        <a href={contact.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      </div>
     </div>
   </footer>
 
