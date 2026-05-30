@@ -105,8 +105,10 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
     width: 26px;
     height: 1.5px;
     background: var(--ink);
-    transition: transform .3s var(--ease), opacity .3s var(--ease);
+    /* spring: overshoots into the X with a bounce */
+    transition: transform .5s cubic-bezier(0.68, -0.55, 0.27, 1.55), background .4s var(--ease);
   }
+  body.menu-open .menu-bar { background: var(--accent); }
   body.menu-open .menu-bar:first-child { transform: translateY(4.25px) rotate(45deg); }
   body.menu-open .menu-bar:last-child  { transform: translateY(-4.25px) rotate(-45deg); }
 

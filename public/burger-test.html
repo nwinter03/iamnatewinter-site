@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hamburger button animations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300&family=Inter:wght@400;500&family=Syne:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0c; --ink:#f4f1ea; --dim:#a8a39a; --faint:#5a564f; --accent:#d8ff3a;
+    --line:rgba(244,241,234,.12); --line2:rgba(244,241,234,.32);
+    --ease:cubic-bezier(0.65,0,0.05,1);
+    --spring:cubic-bezier(0.68,-0.55,0.27,1.55);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;padding:48px clamp(20px,5vw,72px);min-height:100vh}
+  h1{font-family:Fraunces,serif;font-weight:300;font-size:clamp(30px,4vw,52px);letter-spacing:-.02em;margin-bottom:10px}
+  .sub{color:var(--dim);font-size:14px;margin-bottom:48px;max-width:60ch;line-height:1.6}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px;max-width:1100px}
+  .cell{border:1px solid var(--line);border-radius:10px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:22px}
+  .cell .label{font-family:Syne,sans-serif;font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-align:center}
+  .cell .desc{font-family:Inter;font-size:12px;color:var(--faint);text-align:center;line-height:1.5;margin-top:-12px}
+
+  /* base burger */
+  .burger{
+    width:48px;height:48px;position:relative;background:none;border:none;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
+  }
+  .burger span{display:block;width:28px;height:1.6px;background:var(--ink);border-radius:2px;transform-origin:center}
+
+  /* 1 · ROTATE (current) */
+  .b1 span{transition:transform .35s var(--ease)}
+  .b1.x span:nth-child(1){transform:translateY(4.3px) rotate(45deg)}
+  .b1.x span:nth-child(2){transform:translateY(-4.3px) rotate(-45deg)}
+
+  /* 2 · THREE-LINE (middle fades) */
+  .b2{gap:5px}
+  .b2 span{transition:transform .35s var(--ease),opacity .2s var(--ease)}
+  .b2.x span:nth-child(1){transform:translateY(6.6px) rotate(45deg)}
+  .b2.x span:nth-child(2){opacity:0;transform:scaleX(.2)}
+  .b2.x span:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
+
+  /* 3 · SPIN MORPH (extra 180° rotation) */
+  .b3 span{transition:transform .55s var(--ease)}
+  .b3.x span:nth-child(1){transform:translateY(4.3px) rotate(225deg)}
+  .b3.x span:nth-child(2){transform:translateY(-4.3px) rotate(135deg)}
+
+  /* 4 · SPRING (overshoot easing) */
+  .b4 span{transition:transform .5s var(--spring)}
+  .b4.x span:nth-child(1){transform:translateY(4.3px) rotate(45deg)}
+  .b4.x span:nth-child(2){transform:translateY(-4.3px) rotate(-45deg)}
+
+  /* 5 · BACK ARROW (becomes a < chevron) */
+  .b5 span{transition:transform .4s var(--ease),width .4s var(--ease)}
+  .b5.x span{width:15px}
+  .b5.x span:nth-child(1){transform:translate(-4px,4px) rotate(-45deg)}
+  .b5.x span:nth-child(2){transform:translate(-4px,-4px) rotate(45deg)}
+
+  /* 6 · CROSS-SLIDE (lines slide off, X fades in) */
+  .b6 .line{transition:transform .3s var(--ease),opacity .2s var(--ease)}
+  .b6 .x-mark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s var(--ease) .12s,transform .35s var(--ease) .12s;transform:rotate(-90deg)}
+  .b6 .x-mark::before,.b6 .x-mark::after{content:"";position:absolute;width:28px;height:1.6px;background:var(--ink);border-radius:2px}
+  .b6 .x-mark::before{transform:rotate(45deg)}
+  .b6 .x-mark::after{transform:rotate(-45deg)}
+  .b6.x .line:nth-child(1){transform:translateX(34px);opacity:0}
+  .b6.x .line:nth-child(2){transform:translateX(-34px);opacity:0}
+  .b6.x .x-mark{opacity:1;transform:rotate(0)}
+
+  /* 7 · STAGGER COLLAPSE (top drops, bottom rises, then rotate) */
+  .b7 span{transition:transform .45s var(--ease)}
+  .b7.x span:nth-child(1){transform:translateY(4.3px) rotate(45deg);transition-delay:.0s}
+  .b7.x span:nth-child(2){transform:translateY(-4.3px) rotate(-45deg);transition-delay:.08s}
+
+  /* 8 · ACCENT MORPH (turns lime on open) */
+  .b8 span{transition:transform .4s var(--ease),background .4s var(--ease)}
+  .b8.x span{background:var(--accent)}
+  .b8.x span:nth-child(1){transform:translateY(4.3px) rotate(45deg)}
+  .b8.x span:nth-child(2){transform:translateY(-4.3px) rotate(-45deg)}
+</style>
+</head>
+<body>
+  <h1>Hamburger button — animation options</h1>
+  <p class="sub">Click any button to toggle it open ↔ closed and watch the morph. Tell me the number you want on the real site.</p>
+
+  <div class="grid">
+    <div class="cell"><span class="label">1 · Rotate</span><button class="burger b1"><span></span><span></span></button><span class="desc">current — clean 45° rotate to X</span></div>
+    <div class="cell"><span class="label">2 · Three-line</span><button class="burger b2"><span></span><span></span><span></span></button><span class="desc">middle line fades as outer two cross</span></div>
+    <div class="cell"><span class="label">3 · Spin morph</span><button class="burger b3"><span></span><span></span></button><span class="desc">spins an extra 180° into the X</span></div>
+    <div class="cell"><span class="label">4 · Spring</span><button class="burger b4"><span></span><span></span></button><span class="desc">overshoots with a springy bounce</span></div>
+    <div class="cell"><span class="label">5 · Back arrow</span><button class="burger b5"><span></span><span></span></button><span class="desc">morphs into a ‹ chevron</span></div>
+    <div class="cell"><span class="label">6 · Cross-slide</span><button class="burger b6"><span class="line"></span><span class="line"></span><span class="x-mark"></span></button><span class="desc">lines slide off, X spins in</span></div>
+    <div class="cell"><span class="label">7 · Stagger</span><button class="burger b7"><span></span><span></span></button><span class="desc">lines cross with a slight delay</span></div>
+    <div class="cell"><span class="label">8 · Accent morph</span><button class="burger b8"><span></span><span></span></button><span class="desc">turns lime as it becomes an X</span></div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.burger').forEach(b=>{
+      b.addEventListener('click',()=>b.classList.toggle('x'));
+    });
+  </script>
+</body>
+</html>
