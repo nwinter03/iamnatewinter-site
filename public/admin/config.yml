@@ -39,31 +39,13 @@ collections:
               - { label: "Title — line 3 (italic)", name: "line3", widget: "string" }
               - { label: "Title — line 4 (italic)", name: "line4", widget: "string" }
               - { label: "Subtext", name: "subtext", widget: "text" }
-              - { label: "Reel video URL", name: "reelVideo", widget: "string" }
-              - { label: "Reel poster URL", name: "reelPoster", widget: "string" }
+              - { label: "Reel — Vimeo ID", name: "reelVimeoId", widget: "string", hint: "Just the numeric ID from the Vimeo URL, e.g. 817702560." }
+              - { label: "Reel — duration label", name: "reelDuration", widget: "string", hint: "Shown on the reel button, e.g. 0:47." }
+              - { label: "Reel poster URL", name: "reelPoster", widget: "string", required: false }
           - label: "Marquee terms"
             name: "marquee"
             widget: "list"
             field: { label: "Term", name: "term", widget: "string" }
-          - label: "Featured Film"
-            name: "featured"
-            widget: "object"
-            fields:
-              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Category line", name: "category", widget: "string" }
-              - { label: "Video URL", name: "video", widget: "string" }
-              - { label: "Poster URL", name: "poster", widget: "string" }
-          - label: "Scroll Reveal (360° spotlight)"
-            name: "scrollReveal"
-            widget: "object"
-            fields:
-              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Category line", name: "category", widget: "string" }
-              - { label: "Spin folder", name: "spinFolder", widget: "string" }
-              - { label: "Spin prefix", name: "spinPrefix", widget: "string" }
-              - { label: "Spin frame count", name: "spinCount", widget: "number" }
           - label: "About"
             name: "about"
             widget: "object"
