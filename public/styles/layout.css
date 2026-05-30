@@ -77,8 +77,86 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 }
 .nav-cta:hover { background: var(--accent); color: var(--accent-ink) !important; border-color: var(--accent); }
 
+/* ---------- MOBILE MENU ---------- */
+.menu-toggle { display: none; }
+.mobile-menu { display: none; }
+
 @media (max-width: 720px) {
-  .site-nav a:not(.nav-cta) { display: none; }
+  .site-nav { display: none; }
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 7px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 110;
+  }
+  .menu-bar {
+    display: block;
+    width: 26px;
+    height: 1.5px;
+    background: var(--ink);
+    transition: transform .3s var(--ease), opacity .3s var(--ease);
+  }
+  body.menu-open .menu-bar:first-child { transform: translateY(4.25px) rotate(45deg); }
+  body.menu-open .menu-bar:last-child  { transform: translateY(-4.25px) rotate(-45deg); }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 95;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 56px;
+    padding: 110px var(--pad) 48px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s var(--ease), visibility 0s linear .35s;
+  }
+  .mobile-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .35s var(--ease);
+  }
+  .mobile-nav { display: flex; flex-direction: column; gap: 4px; }
+  .mobile-nav a {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(38px, 11vw, 60px);
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .mobile-nav .mobile-cta { color: var(--accent); font-style: italic; }
+  .mobile-menu-foot {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .mobile-menu-foot > a {
+    font-family: var(--font-display);
+    font-size: var(--text-display-sm);
+    color: var(--ink);
+  }
+  .mobile-socials { display: flex; gap: 24px; }
+  .mobile-socials a {
+    font-family: var(--font-mono);
+    font-size: var(--text-mono-sm);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  body.menu-open { overflow: hidden; }
 }
 
 /* ---------- HERO ---------- */

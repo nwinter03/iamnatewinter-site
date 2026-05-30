@@ -46,6 +46,28 @@
     document.body.classList.remove("is-loading");
   }
 
+  /* ---------- MOBILE MENU ---------- */
+  const menuToggle = document.querySelector(".menu-toggle");
+  const mobileMenu = document.querySelector(".mobile-menu");
+  if (menuToggle && mobileMenu) {
+    const setMenu = (open) => {
+      mobileMenu.classList.toggle("is-open", open);
+      document.body.classList.toggle("menu-open", open);
+      menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      mobileMenu.setAttribute("aria-hidden", open ? "false" : "true");
+    };
+    menuToggle.addEventListener("click", () =>
+      setMenu(!mobileMenu.classList.contains("is-open"))
+    );
+    mobileMenu.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => setMenu(false))
+    );
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && mobileMenu.classList.contains("is-open")) setMenu(false);
+    });
+  }
+
   /* ---------- CUSTOM CURSOR ---------- */
   if (!isTouch) {
     const ring = document.querySelector(".cursor");

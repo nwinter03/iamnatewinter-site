@@ -42,7 +42,29 @@ const { hero, contact } = site;
       <a href="#services">Services</a>
       <a href="#contact" class="nav-cta">Start a project</a>
     </nav>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="menu-bar"></span>
+      <span class="menu-bar"></span>
+    </button>
   </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav class="mobile-nav" aria-label="Mobile">
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact" class="mobile-cta">Start a project</a>
+    </nav>
+    <div class="mobile-menu-foot">
+      <a href="mailto:me@iamnatewinter.com">me@iamnatewinter.com</a>
+      <div class="mobile-socials">
+        <a href="https://www.instagram.com/iamnatewinter/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.linkedin.com/in/natewinterdesign/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
 
   <main id="top">
     <slot />
