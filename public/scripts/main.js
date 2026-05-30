@@ -260,9 +260,9 @@
     const canvas = wrap.querySelector(".about-stopmo");
     if (!video || !canvas) return;
     const ctx = canvas.getContext("2d");
-    const FPS = 8;                               // stop-motion cadence
+    const FPS = 6;                               // lower = choppier, hides AI interpolation
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let last = -1e9, running = false;
+    let nextAt = 0, running = false;
 
     function resize() {
       const r = canvas.getBoundingClientRect();
@@ -274,13 +274,19 @@
       const cw = canvas.width, ch = canvas.height;
       const vw = video.videoWidth, vh = video.videoHeight;
       if (!vw || !vh) return;
-      const s  = Math.max(cw / vw, ch / vh);     // cover-fit
+      const s  = Math.max(cw / vw, ch / vh) * 1.05;     // cover + overscan for weave room
       const dw = vw * s, dh = vh * s;
-      ctx.drawImage(video, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+      const jx = (Math.random() * 2 - 1) * cw * 0.010;  // gate weave (film registration jitter)
+      const jy = (Math.random() * 2 - 1) * ch * 0.010;
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.drawImage(video, (cw - dw) / 2 + jx, (ch - dh) / 2 + jy, dw, dh);
     }
     function loop(t) {
       if (!running) return;
-      if (t - last >= 1000 / FPS) { last = t; draw(); }
+      if (t >= nextAt) {
+        draw();
+        nextAt = t + (1000 / FPS) * (0.8 + Math.random() * 0.45); // organic, non-metronomic stutter
+      }
       requestAnimationFrame(loop);
     }
     function run()  { if (!running) { running = true; requestAnimationFrame(loop); } }

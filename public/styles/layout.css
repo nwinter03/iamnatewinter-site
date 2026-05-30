@@ -817,16 +817,38 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 }
 /* stop-motion canvas takes over once it's sampling; the video keeps
    playing underneath as the (hidden) frame source */
-.about-portrait .about-stopmo { opacity: 0; transition: opacity .45s ease; }
+.about-portrait .about-stopmo {
+  opacity: 0;
+  transition: opacity .45s ease;
+  /* film grade — desaturate + contrast to kill AI colour tells and match
+     the B&W sketch; the flicker animation jumps brightness like a projector */
+  filter: grayscale(0.95) contrast(1.13) brightness(1.02);
+  animation: about-flicker 0.5s steps(1) infinite;
+}
 .about-portrait.stopmo-live .about-stopmo { opacity: 1; }
 .about-portrait.stopmo-live .about-src { opacity: 0; }
+@keyframes about-flicker {
+  0%, 58% { filter: grayscale(0.95) contrast(1.13) brightness(1.02); }
+  22%     { filter: grayscale(0.95) contrast(1.13) brightness(1.08); }
+  40%     { filter: grayscale(0.95) contrast(1.16) brightness(0.95); }
+  80%     { filter: grayscale(0.95) contrast(1.13) brightness(1.05); }
+}
+/* old-film vignette over the stop-motion portrait */
+.about-portrait:has(.about-stopmo)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: radial-gradient(125% 95% at 50% 42%, transparent 50%, rgba(0,0,0,0.5));
+}
 /* boiling film grain over the portrait, stepped to match the choppy motion */
 .about-grain {
   position: absolute;
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  opacity: 0.16;
+  opacity: 0.22;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
   background-size: 140px 140px;
