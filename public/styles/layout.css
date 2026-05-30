@@ -22,7 +22,7 @@
   width: auto;
   height: auto;
   display: block;
-  transform: translateY(-16vh);   /* shift the video up the page */
+  transform: translate(1vw, -16vh);   /* nudge right a hair, shift up the page */
 }
 @media (max-width: 720px) {
   .loader-video { max-height: 54vh; max-width: 70vw; }
