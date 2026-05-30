@@ -24,6 +24,9 @@
   display: block;
   transform: translateY(-16vh);   /* shift the video up the page */
 }
+@media (max-width: 720px) {
+  .loader-video { max-height: 54vh; max-width: 70vw; }
+}
 body.is-loading { overflow: hidden; }
 
 /* ---------- LAYOUT PRIMITIVES ---------- */
