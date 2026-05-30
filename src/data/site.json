@@ -6,7 +6,8 @@
     "line3": "for brands that",
     "line4": "refuse to look ordinary.",
     "subtext": "I'm Nate Winter. Fifteen years making products move. Cinematic 3D visualization, brand systems, and packaging — built for the shelf, the feed, and the film. Open for projects and full-time roles.",
-    "reelVideo": "https://iamnatewinter.com/wp-content/uploads/2024/02/hero-sim-2.mp4",
+    "reelVimeoId": "817702560",
+    "reelDuration": "0:47",
     "reelPoster": "/uploads/2024/02/hero.jpg"
   },
   "marquee": ["CPG", "Supplement", "Beverage", "Beauty & fragrance", "Wearables", "Footwear", "Musical instruments", "E-commerce"],
@@ -16,14 +17,6 @@
     "category": "Animation · Motion · Art Direction",
     "video": "https://iamnatewinter.com/wp-content/uploads/2023/03/Salve-Reveal.mp4",
     "poster": "/uploads/2023/03/salve-reveal_poster.jpg"
-  },
-  "scrollReveal": {
-    "eyebrow": "Scroll to inspect",
-    "title": "Whey Goods — 360°",
-    "category": "Product visualization · Packaging system",
-    "spinFolder": "2025/12",
-    "spinPrefix": "wheygoods_",
-    "spinCount": 12
   },
   "about": {
     "eyebrow": "03 — About",

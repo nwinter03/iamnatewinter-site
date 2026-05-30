@@ -76,6 +76,14 @@
         const cats = (card.dataset.cat || "").split(/\s+/);
         const match = f === "all" || cats.includes(f);
         card.classList.toggle("is-hidden", !match);
+        // Restart the fade-up animation on matching cards, and force them
+        // visible even if they never scrolled into view (overrides reveal-target).
+        card.classList.remove("filter-in");
+        if (match) {
+          card.classList.add("is-in");        // defeat scroll-reveal opacity:0
+          void card.offsetWidth;               // reflow so the animation re-fires
+          card.classList.add("filter-in");
+        }
       });
     });
   });
@@ -219,12 +227,40 @@
       lightbox.classList.remove("is-open");
       lightbox.setAttribute("aria-hidden", "true");
       document.body.classList.remove("lightbox-open");
-      // pause video / tear down spinner before clearing
+      // pause video / stop iframe / tear down spinner before clearing
       const v = stage.querySelector("video");
       if (v) v.pause();
+      const f = stage.querySelector("iframe");
+      if (f) f.src = "";  // stop Vimeo playback + sound immediately
       if (activeSpinner) { activeSpinner.destroy(); activeSpinner = null; }
       setTimeout(() => { stage.innerHTML = ""; }, 400);
     };
+
+    // Open the full demo reel (Vimeo) with sound — used by hero + PiP
+    const openVimeo = (id) => {
+      if (activeSpinner) { activeSpinner.destroy(); activeSpinner = null; }
+      stage.innerHTML = "";
+      const wrap = document.createElement("div");
+      wrap.className = "lightbox-vimeo";
+      wrap.innerHTML = `<iframe src="https://player.vimeo.com/video/${id}?autoplay=1&title=0&byline=0&portrait=0&dnt=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+      stage.appendChild(wrap);
+      titleEl.textContent = "Demo Reel";
+      catEl.textContent = "Nate Winter — Selected Work";
+      currentIndex = -1;
+      lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.classList.add("lightbox-open");
+    };
+    window.__openReel = openVimeo;
+
+    // Hero reel button → open full reel with sound
+    const reelTrigger = document.querySelector(".reel-trigger");
+    if (reelTrigger) {
+      reelTrigger.addEventListener("click", () => {
+        const id = reelTrigger.dataset.vimeo;
+        if (id) openVimeo(id);
+      });
+    }
 
     const navigate = (dir) => {
       const cards = visibleCards();
@@ -395,31 +431,34 @@
      When the hero leaves the viewport, the hero reel reappears as a small
      floating thumbnail bottom-right. Click expands back to top. */
   const pip = document.querySelector(".pip-reel");
-  const pipVid = pip?.querySelector(".pip-video");
   const pipClose = pip?.querySelector(".pip-close");
+  const pipMount = pip?.querySelector(".pip-mount");
   const heroSection = document.querySelector(".hero");
-  if (pip && pipVid && heroSection) {
-    let dismissed = false;
+  if (pip && pipMount && heroSection) {
+    const vimeoId = pip.dataset.vimeo;
+    let dismissed = false, injected = false;
     const obs = new IntersectionObserver((entries) => {
       if (dismissed) return;
       entries.forEach((entry) => {
         const past = !entry.isIntersecting;
         pip.classList.toggle("is-visible", past);
-        if (past && !reduceMotion) pipVid.play().catch(() => {});
-        else pipVid.pause();
+        if (past && !injected && !reduceMotion && vimeoId) {
+          pipMount.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&dnt=1" allow="autoplay" loading="lazy"></iframe>`;
+          injected = true;
+        }
       });
     }, { threshold: 0 });
     obs.observe(heroSection);
 
     pip.addEventListener("click", (e) => {
       if (e.target === pipClose || pipClose?.contains(e.target)) return;
-      (lenis ? lenis.scrollTo(0) : window.scrollTo({ top: 0, behavior: "smooth" }));
+      if (window.__openReel && vimeoId) window.__openReel(vimeoId);
     });
     pipClose?.addEventListener("click", (e) => {
       e.stopPropagation();
       dismissed = true;
       pip.classList.add("is-dismissed");
-      pipVid.pause();
+      pipMount.innerHTML = "";
     });
   }
 

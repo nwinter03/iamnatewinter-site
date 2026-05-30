@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import { getCollection } from 'astro:content';
 
-const { hero, marquee, featured, scrollReveal, about, services, contact } = site;
+const { hero, marquee, featured, about, services, contact } = site;
 
 const projects = (await getCollection('projects')).sort(
   (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
@@ -55,18 +55,19 @@ const processSteps = [
       </a>
     </div>
     <div class="hero-reel">
-      <div class="reel-frame">
-        <video class="reel-video" autoplay muted loop playsinline poster={hero.reelPoster}>
-          <source src={hero.reelVideo} type="video/mp4" />
-        </video>
+      <button class="reel-frame reel-trigger" type="button" data-vimeo={hero.reelVimeoId}
+              aria-label="Watch the demo reel with sound">
+        <iframe class="reel-bg" tabindex="-1" aria-hidden="true"
+          src={`https://player.vimeo.com/video/${hero.reelVimeoId}?background=1&autoplay=1&loop=1&muted=1&dnt=1`}
+          frameborder="0" allow="autoplay; fullscreen" loading="lazy"></iframe>
         <div class="reel-overlay">
-          <span class="reel-label">Reel · 2026 — now playing</span>
-          <button class="reel-sound" type="button" aria-label="Toggle reel sound">
-            <span class="sound-dot" aria-hidden="true"></span>
-            <span class="sound-text">Muted</span>
-          </button>
+          <span class="reel-label">Demo Reel · {hero.reelDuration}</span>
+          <span class="reel-watch">
+            <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+            Watch with sound
+          </span>
         </div>
-      </div>
+      </button>
     </div>
   </section>
 
@@ -79,20 +80,6 @@ const processSteps = [
         <span>Working across</span><span class="dot">●</span>
         {marquee.map((m) => (<><span>{m}</span><span class="dot">●</span></>))}
       </div>
-    </div>
-  </section>
-
-  <!-- SCROLL-DRIVEN PRODUCT REVEAL -->
-  <section class="scroll-reveal" aria-label="Product spotlight"
-           data-spin-folder={scrollReveal.spinFolder} data-spin-prefix={scrollReveal.spinPrefix} data-spin-count={scrollReveal.spinCount}>
-    <div class="scroll-reveal-pin">
-      <canvas class="scroll-reveal-canvas" aria-hidden="true"></canvas>
-      <div class="scroll-reveal-meta">
-        <span class="featured-eyebrow">{scrollReveal.eyebrow}</span>
-        <h2 class="scroll-reveal-title">{scrollReveal.title}</h2>
-        <p class="scroll-reveal-cat">{scrollReveal.category}</p>
-      </div>
-      <div class="scroll-reveal-hint" aria-hidden="true">Keep scrolling ↓</div>
     </div>
   </section>
 
