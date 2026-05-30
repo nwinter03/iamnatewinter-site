@@ -506,41 +506,6 @@
   // Expose so lightbox can spawn one
   window.__SpinViewer = SpinViewer;
 
-  /* ---------- PICTURE-IN-PICTURE REEL ----------
-     When the hero leaves the viewport, the hero reel reappears as a small
-     floating thumbnail bottom-right. Click expands back to top. */
-  const pip = document.querySelector(".pip-reel");
-  const pipClose = pip?.querySelector(".pip-close");
-  const pipMount = pip?.querySelector(".pip-mount");
-  const heroSection = document.querySelector(".hero");
-  if (pip && pipMount && heroSection) {
-    const vimeoId = pip.dataset.vimeo;
-    let dismissed = false, injected = false;
-    const obs = new IntersectionObserver((entries) => {
-      if (dismissed) return;
-      entries.forEach((entry) => {
-        const past = !entry.isIntersecting;
-        pip.classList.toggle("is-visible", past);
-        if (past && !injected && !reduceMotion && vimeoId) {
-          pipMount.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&dnt=1" allow="autoplay" loading="lazy"></iframe>`;
-          injected = true;
-        }
-      });
-    }, { threshold: 0 });
-    obs.observe(heroSection);
-
-    pip.addEventListener("click", (e) => {
-      if (e.target === pipClose || pipClose?.contains(e.target)) return;
-      if (window.__openReel && vimeoId) window.__openReel(vimeoId);
-    });
-    pipClose?.addEventListener("click", (e) => {
-      e.stopPropagation();
-      dismissed = true;
-      pip.classList.add("is-dismissed");
-      pipMount.innerHTML = "";
-    });
-  }
-
   /* ---------- SCROLL-DRIVEN PRODUCT REVEAL ----------
      Canvas pinned via CSS sticky. As the section scrolls past, scrub
      through the spin sequence frame-by-frame. */
