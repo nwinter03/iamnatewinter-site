@@ -250,6 +250,15 @@
     else img.addEventListener("error", useVideoFrame);
   });
 
+  /* ---------- FOOTER "?" — SMOOTH BACK TO TOP ---------- */
+  document.querySelectorAll('.qmark, .brand[href="#top"]').forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (lenis) lenis.scrollTo(0, { duration: 1.1 });
+      else window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+
   /* ---------- REDUCED MOTION SAFETY ---------- */
   if (reduceMotion) {
     document.querySelectorAll("video[autoplay]").forEach((v) => {

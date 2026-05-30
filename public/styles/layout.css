@@ -1127,6 +1127,45 @@ body.lightbox-open .cursor-dot { display: none; }
   border-top: 1px solid var(--line);
   margin-top: 80px;
 }
+
+/* ---------- FOOTER "?" MARK (back to top) ----------
+   Nate's brand mark, inline so the detached dot (a separate path) can
+   bounce on its own — squash & stretch, the way a motion designer would. */
+.qmark {
+  display: block;
+  width: max-content;
+  margin: 0 auto 52px;
+  color: var(--ink);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.qmark-svg {
+  display: block;
+  height: 104px;
+  width: auto;
+  overflow: visible;
+  transform-origin: 50% 82%;
+  transition: transform .55s cubic-bezier(.34,1.56,.4,1), color .35s ease;
+  will-change: transform;
+}
+.qmark-svg path { fill: currentColor; }
+.qmark-dot {
+  transform-box: fill-box;        /* transforms relative to the dot itself */
+  transform-origin: 50% 100%;     /* anchor the base so it squashes on landing */
+  animation: qmark-bob 2.6s cubic-bezier(.5,0,.5,1) infinite;
+  will-change: transform;
+}
+@keyframes qmark-bob {
+  0%, 10%  { transform: translateY(0)      scaleY(1);        }
+  40%      { transform: translateY(-52px)  scale(0.94, 1.07);}  /* lift + stretch */
+  70%      { transform: translateY(0)      scale(1.18, 0.82);}  /* squash on landing */
+  84%      { transform: translateY(-9px)   scale(0.97, 1.03);}  /* small rebound */
+  100%     { transform: translateY(0)      scaleY(1);        }
+}
+.qmark:hover .qmark-svg,
+.qmark:focus-visible .qmark-svg { color: var(--accent); transform: rotate(-9deg); }
+.qmark:hover .qmark-dot { animation-duration: 0.9s; }   /* eager bounce on hover */
+.qmark:active .qmark-svg { transform: rotate(-9deg) scale(0.95); }
 .footer-grid {
   max-width: var(--max);
   margin: 0 auto;
