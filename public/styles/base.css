@@ -16,7 +16,9 @@
 
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: "Fraunces", "Times New Roman", serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  /* Label / UI-chrome font (eyebrows, tags, filters, pagination). Syne — distinctive
+     grotesque, replaces the old mono. Still referenced as --font-mono everywhere. */
+  --font-mono: "Syne", "Inter", sans-serif;
 
   --ease: cubic-bezier(0.65, 0, 0.05, 1);
 

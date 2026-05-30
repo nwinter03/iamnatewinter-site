@@ -1238,3 +1238,16 @@ body.lightbox-open .cursor-dot { display: none; }
   .filters { gap: 6px; }
   .service { padding: 28px 0; gap: 18px; }
 }
+
+/* ---------- LABEL FONT WEIGHT ----------
+   Syne (the --font-mono label font) reads best at 500 in letter-spaced caps —
+   the weight evaluated and chosen. One rule covers every label/UI-chrome element. */
+.eyebrow, .section-num, .work-meta .work-cat, .thumb-tag, .filter,
+.reel-label, .reel-sound, .reel-watch, .reel-placeholder,
+.featured-eyebrow, .featured-cat, .case-frame-label, .case-block h3, .case-stats dt,
+.side-block h4, .svc-num, .svc-tag, .contact-expect span, .contact-form span,
+.socials a, .site-footer nav a, .form-success, .scroll-cue, .group-title,
+.page-step, .page-counter, .pip-label, .lightbox-cat, .statement-eyebrow,
+.spin-hint, .scroll-reveal-cat, .scroll-reveal-hint {
+  font-weight: 500;
+}

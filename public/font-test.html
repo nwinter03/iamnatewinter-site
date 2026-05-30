@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Label font comparison — sans</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&family=Syne:wght@500;600&family=Archivo:wght@400;500;600&family=Bricolage+Grotesque:wght@400;500&family=Schibsted+Grotesk:wght@400;500&family=Chivo:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0c; --ink:#f4f1ea; --dim:#a8a39a; --faint:#5a564f;
+    --accent:#7b2cff; --line:rgba(244,241,234,.12); --line2:rgba(244,241,234,.32);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;padding:48px clamp(20px,5vw,72px);}
+  h1{font-family:Fraunces,serif;font-weight:300;font-size:clamp(28px,4vw,52px);letter-spacing:-.02em;margin-bottom:8px}
+  .sub{color:var(--dim);font-size:14px;margin-bottom:48px;max-width:64ch;line-height:1.6}
+  .row{border-top:1px solid var(--line);padding:36px 0;display:grid;grid-template-columns:190px 1fr;gap:32px;align-items:start}
+  .name{display:flex;flex-direction:column;gap:6px}
+  .name b{font-family:Fraunces,serif;font-style:italic;font-weight:400;font-size:22px}
+  .name span{font-family:Inter;font-size:12px;color:var(--faint)}
+  .current{color:var(--accent)!important}
+  .samples{display:flex;flex-direction:column;gap:20px}
+  .lab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);}
+  .big{font-size:13px;letter-spacing:.18em}
+  .pill{display:inline-flex;align-items:center;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
+        padding:8px 14px;border:1px solid var(--line2);border-radius:999px}
+  .filter{display:inline-flex;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+          padding:9px 14px;border:1px solid var(--line);border-radius:999px}
+  .counter{font-size:11px;letter-spacing:.16em;color:var(--faint)}
+  .counter b{color:var(--ink);font-weight:400}
+  .set{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .f-jet{font-family:'JetBrains Mono',monospace}
+  .f-spacegro{font-family:'Space Grotesk',sans-serif}
+  .f-syne{font-family:'Syne',sans-serif;font-weight:500}
+  .f-archivo{font-family:'Archivo',sans-serif;font-weight:500}
+  .f-bricolage{font-family:'Bricolage Grotesque',sans-serif;font-weight:500}
+  .f-schibsted{font-family:'Schibsted Grotesk',sans-serif;font-weight:500}
+  .f-chivo{font-family:'Chivo',sans-serif;font-weight:500}
+  @media(max-width:680px){.row{grid-template-columns:1fr;gap:16px}}
+</style>
+</head>
+<body>
+  <h1>Label font comparison — sans serif</h1>
+  <p class="sub">Your actual labels in letter-spaced caps, each in a different sans. These have more personality than a neutral mono and read "design studio" rather than "dev tool." Pick one — I'll wire it in everywhere.</p>
+
+  <div class="row">
+    <div class="name"><b>JetBrains Mono</b><span class="current">CURRENT — what we're replacing</span></div>
+    <div class="samples f-jet">
+      <div class="set"><span class="pill">Demo Reel · 0:47</span><span class="filter">Motion Graphics</span></div>
+      <div class="lab big">Digital Media Artist · 15+ Years · Milwaukee, WI</div>
+      <div class="set"><span class="lab">01 — Work</span><span class="counter">Prev&nbsp;&nbsp;<b>01</b>&nbsp;/&nbsp;06&nbsp;&nbsp;Next</span></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="name"><b>Space Grotesk</b><span>Distinctive grotesque · clean with character</span></div>
+    <div class="samples f-spacegro">
+      <div class="set"><span class="pill">Demo Reel · 0:47</span><span class="filter">Motion Graphics</span></div>
+      <div class="lab big">Digital Media Artist · 15+ Years · Milwaukee, WI</div>
+      <div class="set"><span class="lab">01 — Work</span><span class="counter">Prev&nbsp;&nbsp;<b>01</b>&nbsp;/&nbsp;06&nbsp;&nbsp;Next</span></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="name"><b>Archivo</b><span>Technical grotesque · editorial · sturdy in caps</span></div>
+    <div class="samples f-archivo">
+      <div class="set"><span class="pill">Demo Reel · 0:47</span><span class="filter">Motion Graphics</span></div>
+      <div class="lab big">Digital Media Artist · 15+ Years · Milwaukee, WI</div>
+      <div class="set"><span class="lab">01 — Work</span><span class="counter">Prev&nbsp;&nbsp;<b>01</b>&nbsp;/&nbsp;06&nbsp;&nbsp;Next</span></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="name"><b>Syne</b><span>Art-gallery / fashion · striking · most distinctive</span></div>
+    <div class="samples f-syne">
+      <div class="set"><span class="pill">Demo Reel · 0:47</span><span class="filter">Motion Graphics</span></div>
+      <div class="lab big">Digital Media Artist · 15+ Years · Milwaukee, WI</div>
+      <div class="set"><span class="lab">01 — Work</span><span class="counter">Prev&nbsp;&nbsp;<b>01</b>&nbsp;/&nbsp;06&nbsp;&nbsp;Next</span></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="name"><b>Bricolage Grotesque</b><span>Editorial · warm character · contemporary</span></div>
+    <div class="samples f-bricolage">
+      <div class="set"><span class="pill">Demo Reel · 0:47</span><span class="filter">Motion Graphics</span></div>
+      <div class="lab big">Digital Media Artist · 15+ Years · Milwaukee, WI</div>
+      <div class="set"><span class="lab">01 — Work</span><span class="counter">Prev&nbsp;&nbsp;<b>01</b>&nbsp;/&nbsp;06&nbsp;&nbsp;Next</span></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="name"><b>Schibsted Grotesk</b><span>Clean neutral grotesque · quiet, modern</span></div>
+    <div class="samples f-schibsted">
+      <div class="set"><span class="pill">Demo Reel · 0:47</span><span class="filter">Motion Graphics</span></div>
+      <div class="lab big">Digital Media Artist · 15+ Years · Milwaukee, WI</div>
+      <div class="set"><span class="lab">01 — Work</span><span class="counter">Prev&nbsp;&nbsp;<b>01</b>&nbsp;/&nbsp;06&nbsp;&nbsp;Next</span></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="name"><b>Chivo</b><span>Grotesque · confident · good in small caps</span></div>
+    <div class="samples f-chivo">
+      <div class="set"><span class="pill">Demo Reel · 0:47</span><span class="filter">Motion Graphics</span></div>
+      <div class="lab big">Digital Media Artist · 15+ Years · Milwaukee, WI</div>
+      <div class="set"><span class="lab">01 — Work</span><span class="counter">Prev&nbsp;&nbsp;<b>01</b>&nbsp;/&nbsp;06&nbsp;&nbsp;Next</span></div>
+    </div>
+  </div>
+</body>
+</html>
