@@ -921,7 +921,7 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
   align-items: baseline;
   padding: 36px 0;
   border-top: 1px solid var(--line);
-  transition: padding .6s cubic-bezier(.22,.61,.36,1), background .6s cubic-bezier(.22,.61,.36,1);
+  transition: padding .6s ease-in-out, background .6s ease-in-out;
 }
 .service:last-child { border-bottom: 1px solid var(--line); }
 .service:hover { padding-left: 16px; padding-right: 16px; background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.06), transparent); }
