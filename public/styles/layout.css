@@ -345,6 +345,19 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 }
 .reel-trigger:hover .reel-watch { transform: scale(1.05); }
 
+/* Mobile: keep the reel overlay pills compact and on one line */
+@media (max-width: 720px) {
+  .reel-overlay { padding: 12px; }
+  .reel-label,
+  .reel-watch {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    padding: 6px 10px;
+    white-space: nowrap;
+  }
+  .reel-watch { gap: 5px; }
+}
+
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; }
   .hero-reel { grid-column: 1 / -1; }
