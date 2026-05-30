@@ -3,7 +3,7 @@
   position: fixed;
   inset: 0;
   z-index: 2000;
-  background: var(--bg);
+  background: #000;            /* pure black to match the video's background so its edges vanish */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,6 +11,7 @@
   visibility: visible;
   transition: opacity .7s var(--ease), visibility 0s linear .7s;
 }
+.loader-video { background: #000; }
 .page-loader.is-done {
   opacity: 0;
   visibility: hidden;
