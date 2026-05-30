@@ -219,7 +219,7 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 .hero-cta {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 32px;
   flex-wrap: wrap;
 }
 .hero-cta-link {
