@@ -250,6 +250,62 @@
     else img.addEventListener("error", useVideoFrame);
   });
 
+  /* ---------- ABOUT PORTRAIT — STOP-MOTION SAMPLER ----------
+     Draw the (same-origin) video to a canvas at a low frame rate so smooth
+     footage reads as choppy stop-motion. Video stays as the frame source. */
+  (function () {
+    const wrap = document.querySelector(".about-portrait");
+    if (!wrap || reduceMotion) return;
+    const video  = wrap.querySelector(".about-src");
+    const canvas = wrap.querySelector(".about-stopmo");
+    if (!video || !canvas) return;
+    const ctx = canvas.getContext("2d");
+    const FPS = 8;                               // stop-motion cadence
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let last = -1e9, running = false;
+
+    function resize() {
+      const r = canvas.getBoundingClientRect();
+      canvas.width  = Math.max(1, Math.round(r.width  * dpr));
+      canvas.height = Math.max(1, Math.round(r.height * dpr));
+      draw();
+    }
+    function draw() {
+      const cw = canvas.width, ch = canvas.height;
+      const vw = video.videoWidth, vh = video.videoHeight;
+      if (!vw || !vh) return;
+      const s  = Math.max(cw / vw, ch / vh);     // cover-fit
+      const dw = vw * s, dh = vh * s;
+      ctx.drawImage(video, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+    }
+    function loop(t) {
+      if (!running) return;
+      if (t - last >= 1000 / FPS) { last = t; draw(); }
+      requestAnimationFrame(loop);
+    }
+    function run()  { if (!running) { running = true; requestAnimationFrame(loop); } }
+    function stop() { running = false; }
+    function start() {
+      resize();
+      wrap.classList.add("stopmo-live");
+      run();
+    }
+
+    video.play().catch(() => {});
+    if (video.readyState >= 2) start();
+    else video.addEventListener("loadeddata", start, { once: true });
+    window.addEventListener("resize", resize);
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { video.play().catch(() => {}); run(); }
+          else { stop(); video.pause(); }
+        });
+      }, { threshold: 0.05 }).observe(wrap);
+    }
+  })();
+
   /* ---------- FOOTER "?" — SMOOTH BACK TO TOP ---------- */
   document.querySelectorAll('.qmark, .brand[href="#top"]').forEach((el) => {
     el.addEventListener("click", (e) => {

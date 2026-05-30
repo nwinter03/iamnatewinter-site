@@ -156,8 +156,12 @@ const processSteps = [
     <div class="about-grid">
       <div class="about-portrait">
         {about.portraitVideo
-          ? <video src={about.portraitVideo} poster={about.portrait || undefined}
-                   autoplay muted loop playsinline preload="metadata" aria-label="Nate Winter sketching"></video>
+          ? <Fragment>
+              <video class="about-src" src={about.portraitVideo} poster={about.portrait || undefined}
+                     autoplay muted loop playsinline preload="auto" aria-label="Nate Winter sketching"></video>
+              <canvas class="about-stopmo" aria-hidden="true"></canvas>
+              <span class="about-grain" aria-hidden="true"></span>
+            </Fragment>
           : (about.portrait && <img src={about.portrait} alt="Nate Winter" loading="lazy" onerror="this.style.display='none'" />)}
       </div>
       <div class="about-copy">

@@ -807,12 +807,38 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
     linear-gradient(160deg, #1a1a1c, #0e0e10 70%);
 }
 .about-portrait img,
-.about-portrait video {
+.about-portrait video,
+.about-portrait .about-stopmo {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+/* stop-motion canvas takes over once it's sampling; the video keeps
+   playing underneath as the (hidden) frame source */
+.about-portrait .about-stopmo { opacity: 0; transition: opacity .45s ease; }
+.about-portrait.stopmo-live .about-stopmo { opacity: 1; }
+.about-portrait.stopmo-live .about-src { opacity: 0; }
+/* boiling film grain over the portrait, stepped to match the choppy motion */
+.about-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
+  background-size: 140px 140px;
+  animation: about-grain 0.66s steps(1) infinite;
+}
+@keyframes about-grain {
+  0%   { background-position:   0px   0px; }
+  20%  { background-position: -34px  16px; }
+  40%  { background-position:  22px -28px; }
+  60%  { background-position: -16px -20px; }
+  80%  { background-position:  30px  24px; }
+  100% { background-position:   0px   0px; }
 }
 .about-copy { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
 .about-side {
