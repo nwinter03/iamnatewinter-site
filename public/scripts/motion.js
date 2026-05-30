@@ -17,7 +17,7 @@
     ".section-head",
     ".filters",
     ".work-card",
-    ".case-block",
+    ".process-step",
     ".about-copy > *",
     ".about-side .side-block",
     ".service",

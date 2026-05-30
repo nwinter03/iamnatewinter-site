@@ -40,14 +40,12 @@ const serviceGroups = services.reduce((acc, s) => {
 }, {});
 
 const processSteps = [
-  { num: '01 · Discovery', label: '01 / 04 · Discovery', swatch: 'cream',
-    body: "We start with a short, focused conversation about the brand, the audience, and what the work needs to do. Within a few days you get a clear scope, a single price, and a timeline." },
-  { num: '02 · Direction', label: '02 / 04 · Direction', swatch: 'violet',
-    body: "Before anything gets made, we lock the creative direction: the look, tone, and visual language the whole project hangs on. Everything downstream inherits it, so the work stays cohesive without endless revision rounds." },
-  { num: '03 · Craft', label: '03 / 04 · Craft', swatch: 'ember',
-    body: "I make the work the project needs, from brand and packaging to product visualization and motion, and whatever a brief calls for beyond that. You see progress at every major beat, with structured feedback built in." },
-  { num: '04 · Delivery', label: '04 / 04 · Delivery', swatch: 'lime',
-    body: "You get the finished work, every deliverable the project needs, and the source files. A clean handoff with no subscriptions, no retainers, and no surprises." },
+  { num: '01 · Discovery',
+    body: "A focused conversation about the brand, the audience, and what the work needs to do. You get a clear scope, price, and timeline up front." },
+  { num: '02 · Direction & craft',
+    body: "We lock the creative direction the whole project hangs on, then I make the work across whatever disciplines the brief calls for, with feedback at every beat." },
+  { num: '03 · Delivery',
+    body: "The finished work, every deliverable, and the source files. A clean handoff, no retainers or surprises." },
 ];
 ---
 <Base>
@@ -138,25 +136,18 @@ const processSteps = [
   </section>
 
   <!-- PROCESS -->
-  <section class="section case" id="process" aria-label="Process">
+  <section class="section process" id="process" aria-label="Process">
     <header class="section-head">
       <span class="section-num">02 · Process</span>
       <h2 class="section-title">How I work, <span class="italic">end to end.</span></h2>
     </header>
-    <div class="case-grid" id="process-grid">
-      <div class="case-sticky">
-        <div class="case-visual" data-swatch="cream">
-          <span class="case-frame-label">01 / 04 · Discovery</span>
-        </div>
-      </div>
-      <div class="case-content">
-        {processSteps.map((s) => (
-          <article class="case-block" data-step-label={s.label} data-step-swatch={s.swatch}>
-            <h3>{s.num}</h3>
-            <p>{s.body}</p>
-          </article>
-        ))}
-      </div>
+    <div class="process-steps">
+      {processSteps.map((s) => (
+        <article class="process-step">
+          <span class="process-num">{s.num}</span>
+          <p>{s.body}</p>
+        </article>
+      ))}
     </div>
   </section>
 
@@ -167,27 +158,30 @@ const processSteps = [
       <h2 class="section-title">Strong creative direction, <span class="italic">rendered honestly.</span></h2>
     </header>
     <div class="about-grid">
+      <div class="about-portrait">
+        {about.portrait && <img src={about.portrait} alt="Nate Winter" loading="lazy" onerror="this.style.display='none'" />}
+      </div>
       <div class="about-copy">
         <p class="lead">{about.lead}</p>
         <p>{about.body1}</p>
         <p>{about.body2}</p>
         <a href="#contact" class="btn">Start a project →</a>
       </div>
-      <aside class="about-side">
-        <div class="side-block">
-          <h4>Tools</h4>
-          <ul>{about.tools.map((t) => <li>{t}</li>)}</ul>
-        </div>
-        <div class="side-block">
-          <h4>Sectors</h4>
-          <ul>{about.sectors.map((t) => <li>{t}</li>)}</ul>
-        </div>
-        <div class="side-block">
-          <h4>How I work</h4>
-          <ul>{about.howIWork.map((t) => <li>{t}</li>)}</ul>
-        </div>
-      </aside>
     </div>
+    <aside class="about-side">
+      <div class="side-block">
+        <h4>Tools</h4>
+        <ul>{about.tools.map((t) => <li>{t}</li>)}</ul>
+      </div>
+      <div class="side-block">
+        <h4>Sectors</h4>
+        <ul>{about.sectors.map((t) => <li>{t}</li>)}</ul>
+      </div>
+      <div class="side-block">
+        <h4>How I work</h4>
+        <ul>{about.howIWork.map((t) => <li>{t}</li>)}</ul>
+      </div>
+    </aside>
   </section>
 
   <!-- SERVICES -->

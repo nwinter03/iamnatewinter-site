@@ -69,6 +69,7 @@ collections:
             widget: "object"
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Portrait photo", name: "portrait", widget: "image", required: false, hint: "A headshot of you for the About section. Drag/drop to upload." }
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Lead paragraph", name: "lead", widget: "text" }
               - { label: "Body paragraph 1", name: "body1", widget: "text" }
