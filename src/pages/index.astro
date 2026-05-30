@@ -5,9 +5,24 @@ import { getCollection } from 'astro:content';
 
 const { hero, marquee, about, services, contact } = site;
 
-const projects = (await getCollection('projects')).sort(
-  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
-);
+// Load category galleries and flatten their items into cards.
+const galleries = await getCollection('galleries');
+const byCat = {};
+for (const g of galleries) {
+  byCat[g.data.category] = g.data.items.map((it) => ({ ...it, category: g.data.category }));
+}
+// Round-robin interleave across categories so the "All" view reads as a mix.
+const catOrder = ['animation', 'stills', 'motion', 'packaging', 'branding', 'artwork'];
+const projects = [];
+let ri = 0, addedAny = true;
+while (addedAny) {
+  addedAny = false;
+  for (const cat of catOrder) {
+    const arr = byCat[cat] || [];
+    if (ri < arr.length) { projects.push({ data: arr[ri] }); addedAny = true; }
+  }
+  ri++;
+}
 
 const catLabels = {
   animation: 'Product Animation',

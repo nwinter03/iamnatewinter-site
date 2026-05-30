@@ -97,32 +97,104 @@ collections:
               - { label: "Instagram URL", name: "instagram", widget: "string" }
               - { label: "LinkedIn URL", name: "linkedin", widget: "string" }
 
-  # ---------- PROJECTS (one entry per work-grid item) ----------
-  - name: "projects"
-    label: "Projects"
-    label_singular: "Project"
-    folder: "src/content/projects"
-    create: true
-    delete: true
-    sortable_fields: ["order", "title", "category"]
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - label: "Category"
-        name: "category"
-        widget: "select"
-        options:
-          - { label: "Product Animation", value: "animation" }
-          - { label: "Product Stills", value: "stills" }
-          - { label: "Motion Graphics", value: "motion" }
-          - { label: "Packaging Design", value: "packaging" }
-          - { label: "Logo / Branding", value: "branding" }
-          - { label: "Artwork", value: "artwork" }
-      - { label: "Image (poster / thumbnail) URL", name: "image", widget: "string", hint: "Paste a URL, or upload below and use that." }
-      - { label: "Upload image (optional)", name: "upload", widget: "image", required: false, hint: "Uploads here are served with the site. Copy its URL into the Image field above." }
-      - { label: "Video URL (optional)", name: "video", widget: "string", required: false, hint: "For hover-play + lightbox playback." }
-      - { label: "360° spin — folder (optional)", name: "spinFolder", widget: "string", required: false }
-      - { label: "360° spin — filename prefix (optional)", name: "spinPrefix", widget: "string", required: false }
-      - { label: "360° spin — frame count (optional)", name: "spinCount", widget: "number", required: false }
-      - { label: "Swatch (fallback color)", name: "swatch", widget: "select", default: "navy", options: ["bone", "cream", "ember", "navy", "violet", "rust", "lime"] }
-      - { label: "Order", name: "order", widget: "number", default: 0, hint: "Lower numbers appear first." }
-      - { label: "Notes (optional)", name: "body", widget: "markdown", required: false }
+  # ---------- WORK (one bulk gallery per category) ----------
+  - name: "work"
+    label: "Work"
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: "animation"
+        label: "Product Animation"
+        file: "src/content/galleries/animation.md"
+        fields:
+          - { label: "Category", name: "category", widget: "hidden", default: "animation" }
+          - { label: "Label", name: "label", widget: "hidden", default: "Product Animation" }
+          - label: "Pieces"
+            name: "items"
+            label_singular: "Piece"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Image (poster)", name: "image", widget: "image", hint: "Drag/drop or pick. The still shown before hover." }
+              - { label: "Video URL", name: "video", widget: "string", required: false, hint: "Plays on hover + in the lightbox." }
+              - { label: "Swatch (fallback color)", name: "swatch", widget: "select", default: "navy", options: ["bone","cream","ember","navy","violet","rust","lime"] }
+      - name: "stills"
+        label: "Product Stills"
+        file: "src/content/galleries/stills.md"
+        fields:
+          - { label: "Category", name: "category", widget: "hidden", default: "stills" }
+          - { label: "Label", name: "label", widget: "hidden", default: "Product Stills" }
+          - label: "Images"
+            name: "items"
+            label_singular: "Image"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Image", name: "image", widget: "image", hint: "Drag/drop to upload." }
+              - { label: "Swatch (fallback color)", name: "swatch", widget: "select", default: "navy", options: ["bone","cream","ember","navy","violet","rust","lime"] }
+      - name: "motion"
+        label: "Motion Graphics"
+        file: "src/content/galleries/motion.md"
+        fields:
+          - { label: "Category", name: "category", widget: "hidden", default: "motion" }
+          - { label: "Label", name: "label", widget: "hidden", default: "Motion Graphics" }
+          - label: "Pieces"
+            name: "items"
+            label_singular: "Piece"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Image (poster)", name: "image", widget: "image" }
+              - { label: "Video URL", name: "video", widget: "string", required: false, hint: "Plays on hover + in the lightbox." }
+              - { label: "Swatch (fallback color)", name: "swatch", widget: "select", default: "navy", options: ["bone","cream","ember","navy","violet","rust","lime"] }
+      - name: "packaging"
+        label: "Packaging Design"
+        file: "src/content/galleries/packaging.md"
+        fields:
+          - { label: "Category", name: "category", widget: "hidden", default: "packaging" }
+          - { label: "Label", name: "label", widget: "hidden", default: "Packaging Design" }
+          - label: "360° Products"
+            name: "items"
+            label_singular: "Product"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "First frame image", name: "image", widget: "image", hint: "The thumbnail shown in the grid." }
+              - { label: "360° folder", name: "spinFolder", widget: "string", hint: "e.g. 2025/12" }
+              - { label: "360° filename prefix", name: "spinPrefix", widget: "string", hint: "e.g. treatos_" }
+              - { label: "360° frame count", name: "spinCount", widget: "number", default: 12 }
+              - { label: "Swatch (fallback color)", name: "swatch", widget: "select", default: "navy", options: ["bone","cream","ember","navy","violet","rust","lime"] }
+      - name: "branding"
+        label: "Logo / Branding"
+        file: "src/content/galleries/branding.md"
+        fields:
+          - { label: "Category", name: "category", widget: "hidden", default: "branding" }
+          - { label: "Label", name: "label", widget: "hidden", default: "Logo / Branding" }
+          - label: "Images"
+            name: "items"
+            label_singular: "Image"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Swatch (fallback color)", name: "swatch", widget: "select", default: "navy", options: ["bone","cream","ember","navy","violet","rust","lime"] }
+      - name: "artwork"
+        label: "Artwork"
+        file: "src/content/galleries/artwork.md"
+        fields:
+          - { label: "Category", name: "category", widget: "hidden", default: "artwork" }
+          - { label: "Label", name: "label", widget: "hidden", default: "Artwork" }
+          - label: "Images"
+            name: "items"
+            label_singular: "Image"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Swatch (fallback color)", name: "swatch", widget: "select", default: "navy", options: ["bone","cream","ember","navy","violet","rust","lime"] }
