@@ -19,7 +19,6 @@
     ".work-card",
     ".process-step",
     ".about-copy > *",
-    ".about-side .side-block",
     ".service",
     ".contact-copy > *",
     ".contact-form"

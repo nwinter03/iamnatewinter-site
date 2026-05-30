@@ -74,8 +74,6 @@ collections:
               - { label: "Lead paragraph", name: "lead", widget: "text" }
               - { label: "Body paragraph 1", name: "body1", widget: "text" }
               - { label: "Body paragraph 2", name: "body2", widget: "text" }
-              - { label: "Sectors", name: "sectors", widget: "list", field: { label: "Sector", name: "sector", widget: "string" } }
-              - { label: "How I work", name: "howIWork", widget: "list", field: { label: "Item", name: "item", widget: "string" } }
           - label: "Services"
             name: "services"
             widget: "list"
