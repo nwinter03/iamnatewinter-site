@@ -1147,7 +1147,7 @@ body.lightbox-open .cursor-dot { display: none; }
 .case-frame-label, .case-block h3, .case-stats dt,
 .side-block h4, .svc-num, .svc-tag, .contact-expect span, .contact-form span,
 .socials a, .site-footer nav a, .form-success, .scroll-cue, .group-title,
-.page-step, .page-counter, .pip-label, .lightbox-cat,
+.page-step, .page-counter, .lightbox-cat,
 .spin-hint {
   font-weight: 500;
 }
