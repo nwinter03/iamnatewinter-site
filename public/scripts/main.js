@@ -21,7 +21,7 @@
   }
 
   /* ---------- PAGE LOADER ----------
-     Logo signature draws on, then fades out into the hero. */
+     Intro video plays on every load, then fades out into the hero. */
   document.body.classList.add("is-loading");
   const loader = document.querySelector(".page-loader");
   const dismissLoader = () => {
@@ -29,8 +29,19 @@
     document.body.classList.remove("is-loading");
   };
   if (loader) {
-    // Match the loader-draw animation length (1.7s = 0.2s delay + 1.5s anim) + small hold
-    setTimeout(dismissLoader, 2100);
+    const introVid = loader.querySelector(".loader-video");
+    if (introVid && !reduceMotion) {
+      let dismissed = false;
+      const done = () => { if (!dismissed) { dismissed = true; dismissLoader(); } };
+      introVid.addEventListener("ended", done);
+      // Autoplay (muted is required for browsers to allow it on first load)
+      introVid.play().catch(() => done());
+      // Fallbacks: stalled load or 'ended' never fires
+      setTimeout(done, 4500);
+    } else {
+      // Reduced motion or no video: reveal the site immediately
+      setTimeout(dismissLoader, 300);
+    }
   } else {
     document.body.classList.remove("is-loading");
   }

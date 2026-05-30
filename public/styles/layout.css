@@ -15,15 +15,12 @@
   opacity: 0;
   visibility: hidden;
 }
-.loader-logo {
-  width: clamp(220px, 32vw, 440px);
+.loader-video {
+  max-height: 86vh;
+  max-width: 88vw;
+  width: auto;
   height: auto;
   display: block;
-  clip-path: inset(0 100% 0 0);
-  animation: loader-draw 1.5s cubic-bezier(0.65, 0, 0.05, 1) .2s forwards;
-}
-@keyframes loader-draw {
-  to { clip-path: inset(0 0 0 0); }
 }
 body.is-loading { overflow: hidden; }
 
