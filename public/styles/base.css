@@ -106,7 +106,7 @@ img, video { display: block; max-width: 100%; }
 .eyebrow {
   font-family: var(--font-mono);
   font-size: var(--text-mono-sm);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-dim);
 }
