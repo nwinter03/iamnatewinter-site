@@ -1,5 +1,5 @@
 ---
-title: "Heavenly Mint"
+title: "Sky Blue"
 category: "animation"
 image: "/uploads/2023/03/heavenly-mint_poster.jpg"
 swatch: "cream"

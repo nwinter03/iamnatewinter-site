@@ -1,5 +1,5 @@
 ---
-title: "Gucci Bloom Wide"
+title: "Gucci Bloom"
 category: "animation"
 image: "/uploads/2023/03/gucci-bloom-wide_poster.jpg"
 swatch: "lime"

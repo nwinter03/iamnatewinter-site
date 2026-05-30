@@ -1,5 +1,5 @@
 ---
-title: "Pmchews"
+title: "Pmchews 00001"
 category: "packaging"
 image: "/uploads/2025/12/pmchews_00001.jpg"
 swatch: "cream"

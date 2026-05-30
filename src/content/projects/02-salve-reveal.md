@@ -1,5 +1,5 @@
 ---
-title: "Salve Reveal"
+title: "Fire & Ice"
 category: "animation"
 image: "/uploads/2023/03/salve-reveal_poster.jpg"
 swatch: "cream"

@@ -1,5 +1,5 @@
 ---
-title: "Artificial FINAL"
+title: "ART-ificial"
 category: "artwork"
 image: "/uploads/2024/02/artificial-FINAL.jpg"
 swatch: "lime"

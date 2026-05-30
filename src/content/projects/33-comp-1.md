@@ -1,5 +1,5 @@
 ---
-title: "Comp 1"
+title: "Donut Disturbed"
 category: "motion"
 image: "/uploads/2023/03/comp-1_poster.jpg"
 swatch: "violet"

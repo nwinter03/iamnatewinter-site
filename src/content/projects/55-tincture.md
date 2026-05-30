@@ -1,5 +1,5 @@
 ---
-title: "Tincture"
+title: "Tincture 00001"
 category: "packaging"
 image: "/uploads/2025/12/tincture_00001.jpg"
 swatch: "bone"

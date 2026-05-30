@@ -1,5 +1,5 @@
 ---
-title: "Berberine"
+title: "Berberine 00001"
 category: "packaging"
 image: "/uploads/2025/12/berberine_00001.jpg"
 swatch: "navy"

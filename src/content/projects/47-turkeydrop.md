@@ -1,5 +1,5 @@
 ---
-title: "Turkeydrop"
+title: "Gobble Down"
 category: "motion"
 image: "/uploads/2023/03/turkeydrop_poster.jpg"
 swatch: "violet"

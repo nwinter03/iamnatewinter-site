@@ -1,5 +1,5 @@
 ---
-title: "WG Lemon Twist"
+title: "Lemon Twist"
 category: "animation"
 image: "/uploads/2023/03/wg-lemon-twist_poster.jpg"
 swatch: "ember"

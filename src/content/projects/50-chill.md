@@ -1,5 +1,5 @@
 ---
-title: "Chill"
+title: "Chill 00001"
 category: "packaging"
 image: "/uploads/2025/12/chill_00001.jpg"
 swatch: "ember"

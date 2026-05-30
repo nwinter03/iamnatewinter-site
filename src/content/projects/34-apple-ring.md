@@ -1,5 +1,5 @@
 ---
-title: "Apple Ring"
+title: "Fruits of Labor"
 category: "motion"
 image: "/uploads/2023/03/apple-ring_poster.jpg"
 swatch: "rust"

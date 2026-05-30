@@ -1,5 +1,5 @@
 ---
-title: "Colorloop New"
+title: "Chroma Loop"
 category: "artwork"
 image: "/uploads/2023/03/colorloop-new.jpg"
 swatch: "ember"

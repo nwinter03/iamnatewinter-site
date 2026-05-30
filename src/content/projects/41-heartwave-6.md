@@ -1,5 +1,5 @@
 ---
-title: "Heartwave 6"
+title: "Heartwave"
 category: "motion"
 image: "/uploads/2023/03/heartwave-6_poster.jpg"
 swatch: "rust"

@@ -1,5 +1,5 @@
 ---
-title: "Hdaa 1"
+title: "HDAA"
 category: "branding"
 image: "/uploads/2025/12/hdaa-1.jpg"
 swatch: "bone"

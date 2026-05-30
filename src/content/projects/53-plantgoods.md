@@ -1,5 +1,5 @@
 ---
-title: "Plantgoods"
+title: "Plantgoods 00001"
 category: "packaging"
 image: "/uploads/2025/12/plantgoods_00001.jpg"
 swatch: "rust"

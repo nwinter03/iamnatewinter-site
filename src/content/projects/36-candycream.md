@@ -1,5 +1,5 @@
 ---
-title: "Candycream"
+title: "Candy Cream"
 category: "motion"
 image: "/uploads/2023/03/candycream_poster.jpg"
 swatch: "bone"

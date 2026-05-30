@@ -1,5 +1,5 @@
 ---
-title: "Pm Spinfall"
+title: "Snooze Chews"
 category: "animation"
 image: "/uploads/2023/03/pm-spinfall_poster.jpg"
 swatch: "violet"

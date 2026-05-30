@@ -1,5 +1,5 @@
 ---
-title: "BL BMT"
+title: "Black Milk Tea"
 category: "animation"
 image: "/uploads/2023/12/bl-bmt_poster.jpg"
 swatch: "rust"

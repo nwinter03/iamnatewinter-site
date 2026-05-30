@@ -1,5 +1,5 @@
 ---
-title: "Treatos"
+title: "Treatos 00001"
 category: "packaging"
 image: "/uploads/2025/12/treatos_00001.jpg"
 swatch: "ember"

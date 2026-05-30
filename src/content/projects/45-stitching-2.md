@@ -1,5 +1,5 @@
 ---
-title: "Stitching 2"
+title: "Stitch in Time"
 category: "motion"
 image: "/uploads/2023/03/stitching-2_poster.jpg"
 swatch: "ember"

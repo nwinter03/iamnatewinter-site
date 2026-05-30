@@ -1,5 +1,5 @@
 ---
-title: "Clothblob"
+title: "Breaking Wind"
 category: "motion"
 image: "/uploads/2023/03/clothblob_poster.jpg"
 swatch: "cream"

@@ -1,5 +1,5 @@
 ---
-title: "Snacktime"
+title: "Snacktime Brands"
 category: "branding"
 image: "/uploads/2025/12/snacktime.jpg"
 swatch: "violet"

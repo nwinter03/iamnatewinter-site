@@ -1,5 +1,5 @@
 ---
-title: "Cool Ranch Final"
+title: "Cool Ranch"
 category: "animation"
 image: "/uploads/2023/12/cool_ranch_final_poster.jpg"
 swatch: "cream"

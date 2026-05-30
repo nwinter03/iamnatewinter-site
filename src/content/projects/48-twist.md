@@ -1,5 +1,5 @@
 ---
-title: "Twist"
+title: "Slick & Twisted"
 category: "motion"
 image: "/uploads/2023/03/twist_poster.jpg"
 swatch: "rust"

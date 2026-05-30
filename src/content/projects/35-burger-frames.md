@@ -1,5 +1,5 @@
 ---
-title: "Burger Frames"
+title: "Raw Truth"
 category: "motion"
 image: "/uploads/2023/03/burger-frames_poster.jpg"
 swatch: "lime"

@@ -1,5 +1,5 @@
 ---
-title: "Brightcrystal"
+title: "BrightCrystal"
 category: "animation"
 image: "/uploads/2023/12/brightcrystal_poster.jpg"
 swatch: "lime"

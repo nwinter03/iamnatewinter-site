@@ -1,5 +1,5 @@
 ---
-title: "Love Holiday"
+title: "Sweet Obsession"
 category: "motion"
 image: "/uploads/2025/12/love-holiday_poster.jpg"
 swatch: "lime"

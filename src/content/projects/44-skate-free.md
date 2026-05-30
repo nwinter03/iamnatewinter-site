@@ -1,5 +1,5 @@
 ---
-title: "Skate Free"
+title: "Disagreedom"
 category: "motion"
 image: "/uploads/2023/03/skate-free_poster.jpg"
 swatch: "cream"

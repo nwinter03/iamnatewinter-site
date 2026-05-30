@@ -1,5 +1,5 @@
 ---
-title: "Box Stack"
+title: "Stacked"
 category: "stills"
 image: "/uploads/2023/12/box-stack.jpg"
 swatch: "navy"

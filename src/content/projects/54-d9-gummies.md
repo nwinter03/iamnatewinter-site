@@ -1,5 +1,5 @@
 ---
-title: "D9 Gummies"
+title: "D9 Gummies 00001"
 category: "packaging"
 image: "/uploads/2025/12/D9-Gummies_00001.jpg"
 swatch: "lime"
