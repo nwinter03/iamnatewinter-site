@@ -210,11 +210,24 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 .hero-title .reveal { display: inline-block; transform: translateY(110%); }
 .hero-foot {
   grid-column: 1 / 2;
-  align-self: start;          /* sit right under the headline, not at the bottom */
+  align-self: stretch;        /* fill the row so the CTA can anchor the bottom */
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  justify-content: space-between;  /* paragraph up by the headline, CTA at the bottom */
+  gap: 28px;
 }
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.hero-cta-link {
+  font-size: var(--text-body-sm);
+  color: var(--ink-dim);
+  transition: color .25s var(--ease);
+}
+.hero-cta-link:hover { color: var(--accent); }
 .hero-sub {
   font-size: var(--text-lead);
   color: var(--ink-dim);

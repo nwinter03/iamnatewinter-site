@@ -310,6 +310,17 @@
     }
   })();
 
+  /* ---------- HERO CTA — SMOOTH SCROLL TO SECTION ---------- */
+  document.querySelectorAll('.hero-cta a[href^="#"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const target = document.querySelector(a.getAttribute("href"));
+      if (!target) return;
+      e.preventDefault();
+      if (lenis) lenis.scrollTo(target, { offset: -20, duration: 1.0 });
+      else target.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+
   /* ---------- FOOTER "?" — SMOOTH BACK TO TOP ---------- */
   document.querySelectorAll('.qmark, .brand[href="#top"]').forEach((el) => {
     el.addEventListener("click", (e) => {
