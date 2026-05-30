@@ -17,11 +17,12 @@
   visibility: hidden;
 }
 .loader-video {
-  max-height: 100vh;
+  max-height: 90vh;
   max-width: 96vw;
   width: auto;
   height: auto;
   display: block;
+  transform: translateY(-16vh);   /* shift the video up the page */
 }
 body.is-loading { overflow: hidden; }
 
