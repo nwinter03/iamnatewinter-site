@@ -806,7 +806,8 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
     radial-gradient(120% 80% at 50% 30%, rgba(var(--accent-rgb), 0.12), transparent 60%),
     linear-gradient(160deg, #1a1a1c, #0e0e10 70%);
 }
-.about-portrait img {
+.about-portrait img,
+.about-portrait video {
   position: absolute;
   inset: 0;
   width: 100%;

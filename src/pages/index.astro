@@ -155,7 +155,10 @@ const processSteps = [
     </header>
     <div class="about-grid">
       <div class="about-portrait">
-        {about.portrait && <img src={about.portrait} alt="Nate Winter" loading="lazy" onerror="this.style.display='none'" />}
+        {about.portraitVideo
+          ? <video src={about.portraitVideo} poster={about.portrait || undefined}
+                   autoplay muted loop playsinline preload="metadata" aria-label="Nate Winter sketching"></video>
+          : (about.portrait && <img src={about.portrait} alt="Nate Winter" loading="lazy" onerror="this.style.display='none'" />)}
       </div>
       <div class="about-copy">
         <p class="lead">{about.lead}</p>
