@@ -441,6 +441,23 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 .filter:hover { color: var(--ink); border-color: var(--line-strong); }
 .filter.is-active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 
+/* Mobile: one horizontal swipe row instead of a ragged wrap */
+@media (max-width: 720px) {
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    /* bleed to the screen edges so it's clear there's more to swipe */
+    margin-left: calc(var(--pad) * -1);
+    margin-right: calc(var(--pad) * -1);
+    padding-left: var(--pad);
+    padding-right: var(--pad);
+  }
+  .filters::-webkit-scrollbar { display: none; }
+  .filter { flex: 0 0 auto; }
+}
+
 .work-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
