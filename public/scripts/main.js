@@ -182,21 +182,6 @@
   // Initial render: page 1
   renderGrid(false);
 
-  /* ---------- MAGNETIC HOVER ON BUTTONS ---------- */
-  if (!isTouch && !reduceMotion) {
-    document.querySelectorAll(".btn, .nav-cta, .scroll-cue").forEach((el) => {
-      el.addEventListener("pointermove", (e) => {
-        const r = el.getBoundingClientRect();
-        const dx = (e.clientX - (r.left + r.width / 2)) * 0.18;
-        const dy = (e.clientY - (r.top + r.height / 2)) * 0.18;
-        el.style.transform = `translate(${dx}px, ${dy}px)`;
-      });
-      el.addEventListener("pointerleave", () => {
-        el.style.transform = "";
-      });
-    });
-  }
-
   /* ---------- NAV BACKGROUND ON SCROLL ---------- */
   const header = document.querySelector(".site-header");
   const onScroll = () => {
