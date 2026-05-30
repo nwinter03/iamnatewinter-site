@@ -39,7 +39,6 @@ collections:
               - { label: "Title — line 3 (italic)", name: "line3", widget: "string" }
               - { label: "Title — line 4 (italic)", name: "line4", widget: "string" }
               - { label: "Subtext", name: "subtext", widget: "text" }
-              - { label: "Availability line", name: "availability", widget: "string", required: false, hint: "Small status line under the bio, e.g. 'Available for freelance projects and full-time roles.'" }
               - { label: "Reel — Vimeo ID", name: "reelVimeoId", widget: "string", hint: "Just the numeric ID from the Vimeo URL, e.g. 817702560." }
               - { label: "Reel — duration label", name: "reelDuration", widget: "string", hint: "Shown on the reel button, e.g. 0:47." }
               - { label: "Reel poster URL", name: "reelPoster", widget: "string", required: false }
