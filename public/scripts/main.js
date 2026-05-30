@@ -589,4 +589,68 @@
     }, { threshold: [0, 0.6, 0.9] });
     motionCards.forEach((c) => scrollObserver.observe(c));
   }
+
+  /* ---------- GRID 360° AUTO-SPIN (packaging cards) ----------
+     Packaging cards slowly rotate through their 360° frames — on hover
+     (desktop) and when scrolled into view (mobile), like the videos. */
+  const FRAME_MS = 280; // slow, ambient rotation
+  const makeGridSpinner = (card) => {
+    const img = card.querySelector(".work-thumb img");
+    const folder = card.dataset.spinFolder;
+    const prefix = card.dataset.spinPrefix;
+    const count = parseInt(card.dataset.spinCount, 10) || 12;
+    if (!img || !prefix) return null;
+    const firstSrc = img.src;
+    let frames = null, idx = 0, timer = null;
+
+    const preload = () => {
+      if (frames) return Promise.resolve();
+      frames = [];
+      const ps = [];
+      for (let i = 1; i <= count; i++) {
+        const im = new Image();
+        im.src = spinUrl(folder, prefix, i);
+        frames.push(im);
+        ps.push(new Promise((r) => { im.complete ? r() : (im.onload = r, im.onerror = r); }));
+      }
+      return Promise.all(ps);
+    };
+    return {
+      start() {
+        preload().then(() => {
+          if (timer) return;
+          timer = setInterval(() => {
+            idx = (idx + 1) % count;
+            img.src = frames[idx].src;
+          }, FRAME_MS);
+        });
+      },
+      stop() {
+        if (timer) { clearInterval(timer); timer = null; }
+        idx = 0;
+        img.src = firstSrc; // settle back to the first frame
+      },
+    };
+  };
+
+  const spinGridCards = document.querySelectorAll(".work-card[data-spin-prefix]");
+  if (!isTouch) {
+    spinGridCards.forEach((card) => {
+      const sp = makeGridSpinner(card);
+      if (!sp) return;
+      card.addEventListener("pointerenter", () => sp.start());
+      card.addEventListener("pointerleave", () => sp.stop());
+    });
+  } else if ("IntersectionObserver" in window) {
+    const spinObs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const card = entry.target;
+        if (!card.__gridSpinner) card.__gridSpinner = makeGridSpinner(card);
+        if (!card.__gridSpinner) return;
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.6) card.__gridSpinner.start();
+        else card.__gridSpinner.stop();
+      });
+    }, { threshold: [0, 0.6] });
+    spinGridCards.forEach((c) => spinObs.observe(c));
+  }
 })();
