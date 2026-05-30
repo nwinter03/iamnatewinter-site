@@ -260,7 +260,7 @@
     const canvas = wrap.querySelector(".about-stopmo");
     if (!video || !canvas) return;
     const ctx = canvas.getContext("2d");
-    const FPS = 6;                               // lower = choppier, hides AI interpolation
+    const FPS = 8;                               // stepped, but gentler than before
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let nextAt = 0, running = false;
 
@@ -274,18 +274,16 @@
       const cw = canvas.width, ch = canvas.height;
       const vw = video.videoWidth, vh = video.videoHeight;
       if (!vw || !vh) return;
-      const s  = Math.max(cw / vw, ch / vh) * 1.02;     // cover + slight overscan for weave room
+      const s  = Math.max(cw / vw, ch / vh);            // cover-fit, no weave
       const dw = vw * s, dh = vh * s;
-      const jx = (Math.random() * 2 - 1) * cw * 0.0025; // very subtle gate weave
-      const jy = (Math.random() * 2 - 1) * ch * 0.0025;
       ctx.clearRect(0, 0, cw, ch);
-      ctx.drawImage(video, (cw - dw) / 2 + jx, (ch - dh) / 2 + jy, dw, dh);
+      ctx.drawImage(video, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
     }
     function loop(t) {
       if (!running) return;
       if (t >= nextAt) {
         draw();
-        nextAt = t + (1000 / FPS) * (0.92 + Math.random() * 0.18); // gentle, near-even cadence
+        nextAt = t + (1000 / FPS);                       // steady cadence (no jitter)
       }
       requestAnimationFrame(loop);
     }
