@@ -135,7 +135,7 @@ const processSteps = [
         return (
           <a class="work-card" href="#" data-cat={d.category} data-aspect="square" {...videoAttr} {...spinAttrs}>
             <div class="work-thumb" data-swatch={d.swatch}>
-              <img src={d.image} alt={d.title} loading="lazy" />
+              <img src={d.image} alt={d.title} loading="lazy" onerror="this.style.display='none'" />
               {d.video && <video class="work-video" muted loop playsinline preload="none"></video>}
               <div class="work-meta">
                 <h3>{d.title}</h3>

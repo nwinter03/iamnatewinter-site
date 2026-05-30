@@ -7,7 +7,7 @@
     "line4": "refuse to look ordinary.",
     "subtext": "I'm Nate Winter. Fifteen years making products move. Cinematic 3D visualization, brand systems, and packaging — built for the shelf, the feed, and the film. Open for projects and full-time roles.",
     "reelVideo": "https://iamnatewinter.com/wp-content/uploads/2024/02/hero-sim-2.mp4",
-    "reelPoster": "https://iamnatewinter.com/wp-content/uploads/2024/02/hero.jpg"
+    "reelPoster": "/uploads/2024/02/hero.jpg"
   },
   "marquee": ["CPG", "Supplement", "Beverage", "Beauty & fragrance", "Wearables", "Footwear", "Musical instruments", "E-commerce"],
   "featured": {
@@ -15,7 +15,7 @@
     "title": "Salve — Launch Reveal",
     "category": "Animation · Motion · Art Direction",
     "video": "https://iamnatewinter.com/wp-content/uploads/2023/03/Salve-Reveal.mp4",
-    "poster": "https://iamnatewinter.com/wp-content/uploads/2023/03/salve-reveal_poster.jpg"
+    "poster": "/uploads/2023/03/salve-reveal_poster.jpg"
   },
   "scrollReveal": {
     "eyebrow": "Scroll to inspect",
