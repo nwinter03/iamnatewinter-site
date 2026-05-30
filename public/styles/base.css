@@ -35,7 +35,12 @@
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* Reserve the scrollbar's space from first paint so the header/logo never
+     shift left when the page becomes scrollable after the loader clears. */
+  scrollbar-gutter: stable;
+}
 body {
   background: var(--bg);
   color: var(--ink);
