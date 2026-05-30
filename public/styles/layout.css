@@ -642,9 +642,11 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
   .work-card[data-aspect="wide"] { grid-column: span 2; }
 }
 @media (max-width: 500px) {
-  .work-grid { grid-template-columns: 1fr; }
-  .work-card[data-aspect="wide"] { grid-column: span 1; }
-  .work-card[data-aspect="wide"] .work-thumb { aspect-ratio: 16 / 9; }
+  .work-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  /* smaller cards → smaller always-on labels */
+  .work-meta { padding: 12px; }
+  .work-meta h3 { font-size: 14px; }
+  .work-meta .work-cat { font-size: 9px; margin-top: 1px; }
 }
 
 /* ---------- CASE STUDY / PROCESS ---------- */
