@@ -828,10 +828,10 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 .about-portrait.stopmo-live .about-stopmo { opacity: 1; }
 .about-portrait.stopmo-live .about-src { opacity: 0; }
 @keyframes about-flicker {
-  0%, 58% { filter: grayscale(0.95) contrast(1.13) brightness(1.02); }
-  22%     { filter: grayscale(0.95) contrast(1.13) brightness(1.08); }
-  40%     { filter: grayscale(0.95) contrast(1.16) brightness(0.95); }
-  80%     { filter: grayscale(0.95) contrast(1.13) brightness(1.05); }
+  0%, 58% { filter: grayscale(0.95) contrast(1.13) brightness(1.01); }
+  22%     { filter: grayscale(0.95) contrast(1.13) brightness(1.03); }
+  40%     { filter: grayscale(0.95) contrast(1.14) brightness(0.985); }
+  80%     { filter: grayscale(0.95) contrast(1.13) brightness(1.02); }
 }
 /* old-film vignette over the stop-motion portrait */
 .about-portrait:has(.about-stopmo)::after {

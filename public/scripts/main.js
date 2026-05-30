@@ -274,10 +274,10 @@
       const cw = canvas.width, ch = canvas.height;
       const vw = video.videoWidth, vh = video.videoHeight;
       if (!vw || !vh) return;
-      const s  = Math.max(cw / vw, ch / vh) * 1.05;     // cover + overscan for weave room
+      const s  = Math.max(cw / vw, ch / vh) * 1.02;     // cover + slight overscan for weave room
       const dw = vw * s, dh = vh * s;
-      const jx = (Math.random() * 2 - 1) * cw * 0.010;  // gate weave (film registration jitter)
-      const jy = (Math.random() * 2 - 1) * ch * 0.010;
+      const jx = (Math.random() * 2 - 1) * cw * 0.0025; // very subtle gate weave
+      const jy = (Math.random() * 2 - 1) * ch * 0.0025;
       ctx.clearRect(0, 0, cw, ch);
       ctx.drawImage(video, (cw - dw) / 2 + jx, (ch - dh) / 2 + jy, dw, dh);
     }
@@ -285,7 +285,7 @@
       if (!running) return;
       if (t >= nextAt) {
         draw();
-        nextAt = t + (1000 / FPS) * (0.8 + Math.random() * 0.45); // organic, non-metronomic stutter
+        nextAt = t + (1000 / FPS) * (0.92 + Math.random() * 0.18); // gentle, near-even cadence
       }
       requestAnimationFrame(loop);
     }
