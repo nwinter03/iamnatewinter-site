@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import { getCollection } from 'astro:content';
 
-const { hero, marquee, featured, about, services, contact } = site;
+const { hero, marquee, statement, about, services, contact } = site;
 
 const projects = (await getCollection('projects')).sort(
   (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
@@ -83,18 +83,12 @@ const processSteps = [
     </div>
   </section>
 
-  <!-- FEATURED FILM -->
-  <section class="featured-film" aria-label="Featured film">
-    <div class="featured-frame">
-      <video class="featured-video" autoplay muted loop playsinline poster={featured.poster}>
-        <source src={featured.video} type="video/mp4" />
-      </video>
-      <div class="featured-overlay">
-        <span class="featured-eyebrow">{featured.eyebrow}</span>
-        <h2 class="featured-title">{featured.title}</h2>
-        <p class="featured-cat">{featured.category}</p>
-      </div>
-    </div>
+  <!-- STATEMENT -->
+  <section class="statement" aria-label="Approach">
+    <span class="statement-eyebrow">{statement.eyebrow}</span>
+    <p class="statement-text">
+      {statement.lead} <span class="italic">{statement.accent}</span>
+    </p>
   </section>
 
   <!-- WORK GRID -->

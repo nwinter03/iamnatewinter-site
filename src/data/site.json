@@ -11,12 +11,10 @@
     "reelPoster": "/uploads/2024/02/hero.jpg"
   },
   "marquee": ["CPG", "Supplement", "Beverage", "Beauty & fragrance", "Wearables", "Footwear", "Musical instruments", "E-commerce"],
-  "featured": {
-    "eyebrow": "Now playing — Featured",
-    "title": "Salve — Launch Reveal",
-    "category": "Animation · Motion · Art Direction",
-    "video": "https://iamnatewinter.com/wp-content/uploads/2023/03/Salve-Reveal.mp4",
-    "poster": "/uploads/2023/03/salve-reveal_poster.jpg"
+  "statement": {
+    "eyebrow": "Approach",
+    "lead": "Most product shots sell a feature.",
+    "accent": "Mine sell a feeling."
   },
   "about": {
     "eyebrow": "03 — About",

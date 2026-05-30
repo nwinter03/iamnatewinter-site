@@ -404,7 +404,7 @@
         const dx = e.clientX - this.startX;
         const sensitivity = canvas.clientWidth / this.count;
         const delta = Math.round(dx / sensitivity);
-        this.idx = ((this.startIdx - delta) % this.count + this.count) % this.count;
+        this.idx = ((this.startIdx + delta) % this.count + this.count) % this.count;
         this.draw();
       });
       const endDrag = (e) => {

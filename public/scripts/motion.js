@@ -12,6 +12,8 @@
 
   /* ---------- SCROLL REVEALS ---------- */
   const targets = [
+    ".statement-eyebrow",
+    ".statement-text",
     ".section-head",
     ".filters",
     ".work-card",
