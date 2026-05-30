@@ -584,6 +584,8 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 .work-card.is-playing .work-video {
   opacity: 1;
 }
+/* Cards whose poster image is missing: show the video's own frame instead of the swatch */
+.work-video.as-poster { opacity: 1; }
 .work-card:hover .work-thumb { transform: scale(0.99); }
 .thumb-meta {
   position: absolute;

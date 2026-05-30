@@ -226,6 +226,30 @@
     });
   }
 
+  /* ---------- MISSING-POSTER FALLBACK ----------
+     Some video cards have no poster image on the server (the swatch shows
+     instead). Detect the failed image and show the video's own frame. */
+  document.querySelectorAll(".work-card[data-video]").forEach((card) => {
+    const img = card.querySelector(".work-thumb img");
+    const video = card.querySelector(".work-video");
+    if (!img || !video) return;
+    const useVideoFrame = () => {
+      if (video.dataset.posterFallback) return;
+      video.dataset.posterFallback = "1";
+      video.preload = "metadata";
+      video.muted = true;
+      if (!video.getAttribute("src")) video.src = card.dataset.video;
+      card.dataset.videoLoaded = "1";
+      video.classList.add("as-poster");
+      // seek a touch in to skip a possible black opening frame
+      video.addEventListener("loadeddata", () => {
+        try { video.currentTime = Math.min(0.8, (video.duration || 3) * 0.12); } catch (e) {}
+      }, { once: true });
+    };
+    if (img.complete && img.naturalWidth === 0) useVideoFrame();
+    else img.addEventListener("error", useVideoFrame);
+  });
+
   /* ---------- REDUCED MOTION SAFETY ---------- */
   if (reduceMotion) {
     document.querySelectorAll("video[autoplay]").forEach((v) => {
