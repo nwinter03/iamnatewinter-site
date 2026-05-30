@@ -62,31 +62,66 @@
     });
   }
 
-  /* ---------- WORK FILTERS ---------- */
+  /* ---------- WORK FILTERS + LOAD MORE ---------- */
   const filters = document.querySelectorAll(".filter");
   const cards = document.querySelectorAll(".work-card");
+  const loadMoreBtn = document.querySelector(".load-more");
+  const PAGE = 16;                 // cards shown per page
+  let currentFilter = "all";
+  let shown = PAGE;
+
+  const cardMatches = (card, f) => {
+    const cats = (card.dataset.cat || "").split(/\s+/);
+    return f === "all" || cats.includes(f);
+  };
+
+  const renderGrid = (animateNew) => {
+    let count = 0;
+    cards.forEach((card) => {
+      const match = cardMatches(card, currentFilter);
+      const visible = match && count < shown;
+      card.classList.toggle("is-hidden", !visible);
+      if (match) count++;
+      if (visible) {
+        card.classList.add("is-in"); // defeat scroll-reveal opacity:0
+        if (animateNew) {
+          card.classList.remove("filter-in");
+          void card.offsetWidth;
+          card.classList.add("filter-in");
+        }
+      }
+    });
+    // Toggle the Load more button based on whether more matching cards remain
+    const totalMatching = [...cards].filter((c) => cardMatches(c, currentFilter)).length;
+    if (loadMoreBtn) {
+      loadMoreBtn.parentElement.classList.toggle("is-hidden", shown >= totalMatching);
+      const remaining = totalMatching - shown;
+      const label = loadMoreBtn.querySelector(".load-more-count");
+      if (label) label.textContent = remaining > 0 ? `+${Math.min(PAGE, remaining)}` : "";
+    }
+  };
+
   filters.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const f = btn.dataset.filter;
+      currentFilter = btn.dataset.filter;
+      shown = PAGE;                  // reset paging when changing filter
       filters.forEach((b) => {
         b.classList.toggle("is-active", b === btn);
         b.setAttribute("aria-selected", b === btn ? "true" : "false");
       });
-      cards.forEach((card) => {
-        const cats = (card.dataset.cat || "").split(/\s+/);
-        const match = f === "all" || cats.includes(f);
-        card.classList.toggle("is-hidden", !match);
-        // Restart the fade-up animation on matching cards, and force them
-        // visible even if they never scrolled into view (overrides reveal-target).
-        card.classList.remove("filter-in");
-        if (match) {
-          card.classList.add("is-in");        // defeat scroll-reveal opacity:0
-          void card.offsetWidth;               // reflow so the animation re-fires
-          card.classList.add("filter-in");
-        }
-      });
+      renderGrid(true);
     });
   });
+
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener("click", () => {
+      shown += PAGE;
+      renderGrid(true);
+    });
+  }
+
+  // Initial state: cap at PAGE on first load
+  renderGrid(false);
 
   /* ---------- MAGNETIC HOVER ON BUTTONS ---------- */
   if (!isTouch && !reduceMotion) {
