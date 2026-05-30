@@ -81,12 +81,14 @@
     if (!pagination) return;
     if (totalPages <= 1) { pagination.innerHTML = ""; pagination.classList.add("is-hidden"); return; }
     pagination.classList.remove("is-hidden");
-    let html = `<button class="page-arrow" data-page="prev" ${currentPage === 1 ? "disabled" : ""} aria-label="Previous page">‹</button>`;
-    for (let p = 1; p <= totalPages; p++) {
-      html += `<button class="page-num ${p === currentPage ? "is-active" : ""}" data-page="${p}" aria-label="Page ${p}"${p === currentPage ? ' aria-current="page"' : ""}>${p}</button>`;
-    }
-    html += `<button class="page-arrow" data-page="next" ${currentPage === totalPages ? "disabled" : ""} aria-label="Next page">›</button>`;
-    pagination.innerHTML = html;
+    const pad = (n) => String(n).padStart(2, "0");
+    pagination.innerHTML = `
+      <button class="page-step" data-page="prev" ${currentPage === 1 ? "disabled" : ""} aria-label="Previous page">Prev</button>
+      <span class="page-counter" aria-label="Page ${currentPage} of ${totalPages}">
+        <span class="page-current">${pad(currentPage)}</span><span class="page-sep">/</span><span class="page-total">${pad(totalPages)}</span>
+      </span>
+      <button class="page-step" data-page="next" ${currentPage === totalPages ? "disabled" : ""} aria-label="Next page">Next</button>
+    `;
   };
 
   const renderGrid = (animate) => {
