@@ -921,13 +921,13 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
   align-items: baseline;
   padding: 36px 0;
   border-top: 1px solid var(--line);
-  transition: background .6s ease-in-out;
+  transition: background .4s ease-in-out;
 }
 .service:last-child { border-bottom: 1px solid var(--line); }
 .service:hover { background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.06), transparent); }
 /* Indent the row on hover with transform (GPU-smooth — padding would not animate).
    Left content slides right, the tag slides left, recreating the inset. */
-.svc-num, .service > div, .svc-tag { transition: transform .6s ease-in-out; }
+.svc-num, .service > div, .svc-tag { transition: transform .4s ease-in-out; }
 .service:hover .svc-num,
 .service:hover > div { transform: translateX(16px); }
 .service:hover .svc-tag { transform: translateX(-16px); }
