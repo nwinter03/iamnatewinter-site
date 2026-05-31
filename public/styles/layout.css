@@ -600,6 +600,33 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 }
 /* Cards whose poster image is missing: show the video's own frame instead of the swatch */
 .work-video.as-poster { opacity: 1; }
+
+/* Hover affordance — signals the card is clickable (zoom / play / 360 spin) */
+.work-cue {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(11, 11, 12, 0.42);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(244, 241, 234, 0.22);
+  color: var(--accent);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.82);
+  transition: opacity .3s var(--ease), transform .3s var(--ease);
+  pointer-events: none;
+}
+.work-cue svg { display: block; }
+.work-card:hover .work-cue {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
 .work-card:hover .work-thumb { transform: scale(0.99); }
 
 /* Slow cinematic push-in for static cards only (no hover-video, no 360 spin),
