@@ -88,10 +88,34 @@
     };
     tick();
 
-    const interactive = "a, button, .work-card, .filter, .service, input, select, textarea";
+    const interactive = "a, button, .filter, .service, input, select, textarea";
     document.querySelectorAll(interactive).forEach((el) => {
+      if (el.classList.contains("work-card")) return; // work cards get the icon cursor below
       el.addEventListener("pointerenter", () => ring.classList.add("is-active"));
       el.addEventListener("pointerleave", () => ring.classList.remove("is-active"));
+    });
+
+    // Work cards: the cursor itself becomes a contextual icon (play / 360 / zoom)
+    const CUE_SVG = {
+      play: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>',
+      spin: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="21 5 21 10 16 10"/><path d="M19.4 14a8 8 0 1 1-1.85-8.3L21 7.5"/></svg>',
+      zoom: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>',
+    };
+    const cueEl = ring.querySelector(".cursor-cue");
+    document.querySelectorAll(".work-card").forEach((card) => {
+      const type = card.hasAttribute("data-video") ? "play"
+                 : card.hasAttribute("data-spin-prefix") ? "spin"
+                 : "zoom";
+      card.addEventListener("pointerenter", () => {
+        if (cueEl) cueEl.innerHTML = CUE_SVG[type];
+        ring.classList.add("has-cue");
+        dot.style.opacity = "0";
+      });
+      card.addEventListener("pointerleave", () => {
+        ring.classList.remove("has-cue");
+        if (cueEl) cueEl.innerHTML = "";
+        dot.style.opacity = "";
+      });
     });
   }
 

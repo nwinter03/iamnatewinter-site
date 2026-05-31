@@ -95,6 +95,22 @@ img, video { display: block; max-width: 100%; }
   border-color: var(--accent);
   mix-blend-mode: difference;
 }
+/* Work-card cursor: ring fills with the accent and shows a contextual icon */
+.cursor-cue { display: none; }
+.cursor.has-cue {
+  width: 54px; height: 54px;
+  background: var(--accent);
+  border-color: var(--accent);
+  mix-blend-mode: normal;
+  display: grid;
+  place-items: center;
+}
+.cursor.has-cue .cursor-cue {
+  display: grid;
+  place-items: center;
+  color: var(--accent-ink);
+}
+.cursor.has-cue .cursor-cue svg { display: block; }
 
 @media (hover: none) {
   body { cursor: auto; }
