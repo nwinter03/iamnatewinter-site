@@ -1,11 +1,11 @@
 {
   "hero": {
-    "eyebrow": "Digital Media Artist · Milwaukee, WI",
+    "eyebrow": "Designer & Art Director · Milwaukee, WI",
     "line1": "3D product",
     "line2": "visualization",
     "line3": "for brands that refuse",
     "line4": "to look ordinary.",
-    "subtext": "I'm Nate Winter, a Milwaukee-based designer and art director focused on product-led brands. Most of what I make starts in 3D, where I control every angle, surface, and reflection and get shots a camera never could. From there I build out the motion, packaging, and brand around it, so the product stands out wherever it lands, on a shelf, a site, or a feed.",
+    "subtext": "I'm Nate Winter, a Milwaukee-based designer and art director focused on product-led brands. I build the visual world around a product, starting in 3D for control a camera can't match, then carrying it through motion, packaging, and campaign work, so it lands sharper, more premium, and impossible to ignore.",
     "reelVimeoId": "817702560",
     "reelDuration": "0:47",
     "reelPoster": "/uploads/2024/02/hero.jpg"
@@ -18,6 +18,7 @@
     "Wearables",
     "Footwear",
     "Skincare",
+    "Wellness",
     "E-commerce"
   ],
   "marqueeLabel": "",
@@ -26,43 +27,43 @@
     "portrait": "/uploads/2024/09/nw-sketch.jpg",
     "portraitVideo": "/uploads/2024/09/sketch-loop.mp4",
     "title": "Strong creative direction, rendered honestly.",
-    "lead": "I'm a Digital Media Artist based in Milwaukee, working across 3D product visualization, brand and packaging design, and motion graphics, where design and marketing meet. I make products look the way they deserve, in films, in stills, and on every shelf and feed that follows.",
-    "body1": "I started in graphic design and went deep on 3D when I realized it was the fastest way to bring an art-directed world to life. That graphic-design foundation is still in everything I ship, and it's why the brand and packaging work feels at home next to the renders.",
-    "body2": "Most engagements run 3–8 weeks, a hero film and a stills system, sometimes extending into pack design or a full brand refresh. I'm also open to single deliverables, day-rate creative direction, and ongoing retainers. Smaller briefs are welcome."
+    "lead": "I'm a Milwaukee-based designer and art director. I treat 3D less like a render pass and more like visual art direction, where the goal isn't just to make a product look real, but to make it feel considered, premium, and right for the brand it belongs to.",
+    "body1": "I came up through graphic design before going deep on 3D, and that foundation still runs through everything, the composition, the type, the restraint. It's why the brand and packaging work sits naturally next to the renders, and why I care as much about the strategy and the small material decisions as the final frame.",
+    "body2": "Engagements usually run a few weeks to a couple of months, often a hero piece plus the system around it, though I'm just as happy with a single deliverable or ongoing creative direction. If it's a product worth getting right, it's worth a conversation."
   },
   "services": [
     {
       "group": "Product Visualization",
       "num": "01",
       "title": "Product animation",
-      "desc": "Hero films, launch loops, and short-form cutdowns, the headline service. Built on locked art direction so every shot stays of a piece.",
+      "desc": "Launch films, scroll-stopping loops, and paid-social cutdowns, built to make the product feel alive in motion. All on one locked art direction, so every frame stays of a piece.",
       "tag": "Per project"
     },
     {
       "group": "Product Visualization",
       "num": "02",
       "title": "Product stills",
-      "desc": "3D stills for PDPs, paid social, retail signage, and Amazon A+, drawn from the same visual system as the film, so the campaign reads as one thing.",
+      "desc": "Photoreal 3D stills for PDPs, paid social, retail, and Amazon A+, with control a camera can't give you. Drawn from the same visual system as the film, so the whole campaign reads as one thing.",
       "tag": "Per project"
     },
     {
       "group": "Brand & Direction",
       "num": "03",
       "title": "Brand & packaging design",
-      "desc": "Identity systems, pack design, and the typography and visual language that earn the shelf. Often paired with a stills library so the brand lands cohesive day one.",
+      "desc": "Identity systems, packaging, label design, and the visual language that earns the shelf. Often paired with a stills library, so the brand lands cohesive from day one.",
       "tag": "Per project"
     },
     {
       "group": "Brand & Direction",
       "num": "04",
       "title": "Creative direction & consulting",
-      "desc": "By the day or week. Concept, art direction, design critique, or extra hands on someone else's brief. Lower commitment, same craft.",
+      "desc": "Visual strategy, campaign direction, and production guidance, by the day or week. For teams that want sharper creative decisions and an art-directed set of eyes on the brief.",
       "tag": "Per day"
     }
   ],
   "contact": {
     "eyebrow": "Contact",
-    "title": "Have a launch on the calendar? Let's talk.",
+    "title": "Have a product that needs a stronger visual world? Let's talk.",
     "lead": "I take a range of projects each quarter, from single deliverables and short engagements to multi-month campaigns and ongoing creative direction. Also open to full-time and contract roles with the right team. Share your scope, timeline, or opportunity. A short note is all I need to get started.",
     "expect": [
       "I reply within two business days.",

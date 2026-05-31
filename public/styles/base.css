@@ -3,7 +3,7 @@
   --bg: #0b0b0c;
   --bg-elev: #131314;
   --ink: #f4f1ea;
-  --ink-dim: #a8a39a;
+  --ink-dim: #b6b0a5;
   --ink-faint: #5a564f;
   --line: rgba(244, 241, 234, 0.12);
   --line-strong: rgba(244, 241, 234, 0.32);
@@ -28,11 +28,11 @@
   --text-display-md: clamp(24px, 2.6vw, 40px);   /* service h3, marquee */
   --text-display-sm: clamp(20px, 1.6vw, 28px);   /* process prose, work card h3, email link */
   --text-lead:       clamp(17px, 1.3vw, 20px);   /* lead paragraphs */
-  --text-body:       16px;                       /* default body */
-  --text-body-sm:    14px;                       /* nav, btn, sidebar lists, contact-expect */
+  --text-body:       17px;                       /* default body */
+  --text-body-sm:    15px;                       /* nav, btn, sidebar lists, contact-expect */
   --text-fine:       13px;                       /* footer brand, fine print */
   --text-mono:       12px;                       /* brand mark, svc-num, form-success */
-  --text-mono-sm:    11px;                       /* eyebrow + every micro label */
+  --text-mono-sm:    12px;                       /* eyebrow + every micro label */
 }
 
 * { box-sizing: border-box; }
@@ -48,7 +48,7 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: var(--text-body);
-  line-height: 1.55;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
