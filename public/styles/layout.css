@@ -68,6 +68,28 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 .brand-logo-sm { height: 20px; }
 /* legacy classes — unused, kept for back-compat */
 .brand-mark, .brand-name { display: none; }
+
+/* Header logo: a slow lime shimmer drifts across the wordmark every ~13s.
+   Overlay only — the accessible <img> underneath is untouched. */
+.site-header .brand { position: relative; }
+.site-header .brand::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent 44%, rgba(var(--accent-rgb), 0.8) 50%, transparent 56%);
+  background-repeat: no-repeat;
+  background-size: 250% 100%;
+  -webkit-mask: url("/assets/logo.svg") no-repeat left center / auto 100%;
+          mask: url("/assets/logo.svg") no-repeat left center / auto 100%;
+  mix-blend-mode: multiply;
+  animation: logo-shimmer 13s ease-in-out infinite;
+}
+@keyframes logo-shimmer {
+  0%, 12% { background-position: 175% 0; }  /* band waits off to the right */
+  46%     { background-position: -60% 0; }  /* slow sweep across the wordmark */
+  100%    { background-position: -60% 0; }  /* hold off-screen, then loop */
+}
 .site-nav { display: flex; align-items: center; gap: 28px; }
 .site-nav a { font-size: var(--text-body-sm); color: var(--ink-dim); transition: color .2s var(--ease); }
 .site-nav a:hover { color: var(--ink); }
