@@ -422,8 +422,7 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 .marquee-wrap {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  background: var(--bg);
-  overflow: hidden;
+  overflow: hidden;        /* transparent — the ambient glow shows through the band */
 }
 .marquee { padding: 18px 0; }
 .marquee-track {
@@ -1217,6 +1216,7 @@ body.lightbox-open .cursor-dot { display: none; }
   border-top: 1px solid var(--line);
   margin-top: 72px;
   text-align: center;
+  background: var(--bg);     /* opaque — blocks the ambient glow behind the footer */
 }
 
 /* ---------- FOOTER "?" MARK (back to top) ----------
