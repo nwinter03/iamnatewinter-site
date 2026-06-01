@@ -124,7 +124,7 @@
   const cards = document.querySelectorAll(".work-card");
   const pagination = document.querySelector(".work-pagination");
   const workSection = document.getElementById("work");
-  const PAGE = 16;                 // cards per page
+  const PAGE = 999;                // show all cards (pagination effectively off)
   let currentFilter = "all";
   let currentPage = 1;
 
