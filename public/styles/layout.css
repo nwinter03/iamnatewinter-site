@@ -868,7 +868,8 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
   background-size: 140px 140px;
 }
-.about-copy { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
+.about-copy { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
+.about-copy p { margin: 0; }   /* gap controls spacing; kill default <p> margins that were doubling it */
 .about-side {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
