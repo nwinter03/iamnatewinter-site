@@ -124,7 +124,7 @@
   const cards = document.querySelectorAll(".work-card");
   const pagination = document.querySelector(".work-pagination");
   const workSection = document.getElementById("work");
-  const PAGE = 999;                // show all cards (pagination effectively off)
+  const PAGE = 20;                 // "All" view paginates at this; individual filters show all
   let currentFilter = "all";
   let currentPage = 1;
 
@@ -150,10 +150,12 @@
 
   const renderGrid = (animate) => {
     const matching = matchingCards();
-    const totalPages = Math.max(1, Math.ceil(matching.length / PAGE));
+    // Paginate only the "All" view; individual category filters show everything.
+    const pageSize = currentFilter === "all" ? PAGE : Math.max(matching.length, 1);
+    const totalPages = Math.max(1, Math.ceil(matching.length / pageSize));
     if (currentPage > totalPages) currentPage = totalPages;
-    const start = (currentPage - 1) * PAGE;
-    const end = start + PAGE;
+    const start = (currentPage - 1) * pageSize;
+    const end = start + pageSize;
 
     cards.forEach((card) => card.classList.add("is-hidden"));
     matching.forEach((card, i) => {
