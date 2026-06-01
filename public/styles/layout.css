@@ -210,11 +210,10 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 .hero-title .reveal { display: inline-block; transform: translateY(110%); }
 .hero-foot {
   grid-column: 1 / 2;
-  align-self: stretch;        /* fill the row so the CTA can anchor the bottom */
+  align-self: start;          /* hug the headline; CTA sits just under the paragraph */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;  /* paragraph up by the headline, CTA at the bottom */
-  gap: 28px;
+  gap: 34px;
 }
 .hero-cta {
   display: flex;
