@@ -170,8 +170,7 @@ const processSteps = [
       </div>
       <div class="about-copy">
         <p class="lead">{about.lead}</p>
-        <p>{about.body1}</p>
-        <p>{about.body2}</p>
+        {about.body.map((para) => <p>{para}</p>)}
         <a href="#contact" class="btn">Start a project →</a>
       </div>
     </div>

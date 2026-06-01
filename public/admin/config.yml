@@ -55,9 +55,11 @@ collections:
               - { label: "Portrait photo", name: "portrait", widget: "image", required: false, hint: "Still shown before the video loads (and for reduced-motion visitors). Drag/drop to upload." }
               - { label: "Portrait video (optional, silent loop)", name: "portraitVideo", widget: "file", required: false, hint: "An MP4 that autoplays muted and loops in the About portrait. Leave empty to show just the photo." }
               - { label: "Title", name: "title", widget: "string" }
-              - { label: "Lead paragraph", name: "lead", widget: "text" }
-              - { label: "Body paragraph 1", name: "body1", widget: "text" }
-              - { label: "Body paragraph 2", name: "body2", widget: "text" }
+              - { label: "Lead line", name: "lead", widget: "text", hint: "The brighter opening line, e.g. 'Hi, I'm Nate Winter.'" }
+              - label: "Body paragraphs"
+                name: "body"
+                widget: "list"
+                field: { label: "Paragraph", name: "paragraph", widget: "text" }
           - label: "Services"
             name: "services"
             widget: "list"
