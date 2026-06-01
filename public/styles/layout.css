@@ -69,26 +69,19 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 /* legacy classes — unused, kept for back-compat */
 .brand-mark, .brand-name { display: none; }
 
-/* Header logo: a slow lime shimmer drifts across the wordmark every ~13s.
-   Overlay only — the accessible <img> underneath is untouched. */
-.site-header .brand { position: relative; }
-.site-header .brand::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(100deg, transparent 44%, rgba(var(--accent-rgb), 0.8) 50%, transparent 56%);
-  background-repeat: no-repeat;
-  background-size: 250% 100%;
-  -webkit-mask: url("/assets/logo.svg") no-repeat left center / auto 100%;
-          mask: url("/assets/logo.svg") no-repeat left center / auto 100%;
-  mix-blend-mode: multiply;
-  animation: logo-shimmer 13s ease-in-out infinite;
+/* Header wordmark is inline SVG so the detached dot can animate. */
+.brand-logo path { fill: #fff; }
+.brand .wm-dot { transform-box: fill-box; transform-origin: 50% 50%; }
+/* On load (once the intro loader clears) the dot rolls in from the left,
+   overshoots, and rocks back to home — never rising up into the letters. */
+.header-ready .brand .wm-dot {
+  animation: wm-rollin 1.8s cubic-bezier(.16, .7, .3, 1) both;
 }
-@keyframes logo-shimmer {
-  0%, 12% { background-position: 175% 0; }  /* band waits off to the right */
-  46%     { background-position: -60% 0; }  /* slow sweep across the wordmark */
-  100%    { background-position: -60% 0; }  /* hold off-screen, then loop */
+@keyframes wm-rollin {
+  0%   { transform: translateX(-540px) rotate(0deg);   }
+  70%  { transform: translateX(36px)   rotate(740deg); }  /* roll in + overshoot right */
+  85%  { transform: translateX(-11px)  rotate(712deg); }  /* rock back */
+  100% { transform: translateX(0)      rotate(720deg); }  /* settle, upright */
 }
 .site-nav { display: flex; align-items: center; gap: 28px; }
 .site-nav a { font-size: var(--text-body-sm); color: var(--ink-dim); transition: color .2s var(--ease); }

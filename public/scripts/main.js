@@ -27,6 +27,7 @@
   const dismissLoader = () => {
     loader?.classList.add("is-done");
     document.body.classList.remove("is-loading");
+    document.body.classList.add("header-ready");   // fire the wordmark dot roll-in
   };
   if (loader) {
     const introVid = loader.querySelector(".loader-video");
