@@ -74,9 +74,9 @@ img, video { display: block; max-width: 100%; }
    A few large, soft lime radials that drift on slow, offset loops. Cheap:
    only transform animates (GPU-composited), no blur filters, no repaints. */
 .ambient-glow {
-  position: absolute;     /* fills the hero only — can't reach the marquee */
+  position: fixed;        /* site-wide, behind all content */
   inset: 0;
-  z-index: -1;            /* behind hero content, in front of the page background */
+  z-index: -1;            /* behind content, in front of the page background */
   overflow: hidden;
   pointer-events: none;
 }
@@ -93,7 +93,7 @@ img, video { display: block; max-width: 100%; }
   animation: glow-drift-1 38s ease-in-out infinite;
 }
 .glow-2 {
-  top: 16vh; right: -16vw;
+  bottom: -22vw; right: -14vw;
   width: 52vw; height: 52vw;
   background: radial-gradient(circle, rgba(var(--accent-rgb), 0.075), transparent 62%);
   animation: glow-drift-2 47s ease-in-out infinite;

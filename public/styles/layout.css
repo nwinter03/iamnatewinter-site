@@ -205,7 +205,6 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 
 /* ---------- HERO ---------- */
 .hero {
-  position: relative;     /* anchor for the ambient glow */
   padding: 140px 0 80px;
   display: grid;
   grid-template-columns: 1fr 1fr;
