@@ -71,7 +71,8 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 
 /* Header wordmark is inline SVG so the detached dot can animate. */
 .brand-logo path { fill: #fff; }
-.brand .wm-dot { transform-box: fill-box; transform-origin: 50% 50%; }
+/* Dot waits off-screen-left until the roll-in fires (so it isn't seen at home first) */
+.brand .wm-dot { transform-box: fill-box; transform-origin: 50% 50%; transform: translateX(-540px); }
 /* On load (once the intro loader clears) the dot rolls in from the left,
    overshoots, and rocks back to home — never rising up into the letters. */
 .header-ready .brand .wm-dot {
