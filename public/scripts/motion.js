@@ -8,6 +8,9 @@
   const hero = document.querySelector(".hero-title");
   if (hero) {
     requestAnimationFrame(() => hero.classList.add("is-in"));
+    // After the slide-up reveal finishes, drop the mask so descenders (the "y"
+    // in "ordinary.") aren't clipped. Last line: .42s delay + 1.1s duration.
+    setTimeout(() => hero.classList.add("reveal-done"), 1700);
   }
 
   /* ---------- SCROLL REVEALS ---------- */
