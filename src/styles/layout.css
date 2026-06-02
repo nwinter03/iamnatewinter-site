@@ -910,7 +910,7 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 @media (max-width: 1024px) {
   /* Stack into one full-width column — image box + copy fill the width, no centered gaps */
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
-  .about-portrait { width: 100%; max-width: none; aspect-ratio: 4 / 5; min-height: 0; }
+  .about-portrait { width: 100%; max-width: none; aspect-ratio: 4 / 3; min-height: 0; }
   .about-copy { width: 100%; max-width: none; }
   .about-side { grid-template-columns: 1fr; gap: 32px; }
 }
