@@ -75,6 +75,5 @@
   }
   .hero-title .reveal { transform: none !important; }
   .hero-title .line { overflow: visible; }
-  .brand .wm-dot { animation: none !important; transform: none !important; }
   .reveal-target { opacity: 1 !important; transform: none !important; }
 }

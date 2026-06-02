@@ -69,21 +69,8 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 /* legacy classes — unused, kept for back-compat */
 .brand-mark, .brand-name { display: none; }
 
-/* Header wordmark is inline SVG so the detached dot can animate. */
+/* Header wordmark is inline SVG; keep its paths filled. */
 .brand-logo path { fill: #fff; }
-/* Dot waits off-screen-left until the roll-in fires (so it isn't seen at home first) */
-.brand .wm-dot { transform-box: fill-box; transform-origin: 50% 50%; transform: translateX(-540px); }
-/* On load (once the intro loader clears) the dot rolls in from the left,
-   overshoots, and rocks back to home — never rising up into the letters. */
-.header-ready .brand .wm-dot {
-  animation: wm-rollin 1.8s cubic-bezier(.16, .7, .3, 1) both;
-}
-@keyframes wm-rollin {
-  0%   { transform: translateX(-540px) rotate(0deg);   }
-  70%  { transform: translateX(36px)   rotate(740deg); }  /* roll in + overshoot right */
-  85%  { transform: translateX(-11px)  rotate(712deg); }  /* rock back */
-  100% { transform: translateX(0)      rotate(720deg); }  /* settle, upright */
-}
 .site-nav { display: flex; align-items: center; gap: 28px; }
 .site-nav a { font-size: var(--text-body-sm); color: var(--ink-dim); transition: color .2s var(--ease); }
 .site-nav a:hover { color: var(--ink); }

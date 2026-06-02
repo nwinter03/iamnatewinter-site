@@ -27,8 +27,6 @@
   const dismissLoader = () => {
     loader?.classList.add("is-done");
     document.body.classList.remove("is-loading");
-    // wait out the loader's 0.7s fade so the roll-in plays on a fully clear header
-    setTimeout(() => document.body.classList.add("header-ready"), 750);
   };
   if (loader) {
     const introVid = loader.querySelector(".loader-video");
