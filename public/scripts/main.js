@@ -590,7 +590,7 @@
         if (!this.auto) return;
         this.idx = (this.idx + 1) % this.count;
         this.draw();
-      }, 140); // ~7fps auto-rotate, slow & cinematic
+      }, 250); // ~4fps auto-rotate, slow & cinematic
     }
 
     stopAutoSpin() {
