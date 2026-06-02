@@ -46,6 +46,15 @@ collections:
             widget: "list"
             field: { label: "Term", name: "term", widget: "string" }
           - { label: "Marquee lead-in (optional)", name: "marqueeLabel", widget: "string", required: false, hint: "Optional text before the looping sectors, e.g. 'Built for'. Leave empty for none." }
+          - label: "Process steps"
+            name: "process"
+            widget: "list"
+            label_singular: "Step"
+            collapsed: true
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Label", name: "label", widget: "string", hint: "e.g. Direction — the '01 ·' number is added automatically." }
+              - { label: "Body", name: "body", widget: "text" }
           - label: "About"
             name: "about"
             widget: "object"
@@ -73,6 +82,7 @@ collections:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Lead paragraph", name: "lead", widget: "markdown", minimal: true }
               - { label: "What to expect", name: "expect", widget: "list", field: { label: "Step", name: "step", widget: "string" } }
+              - { label: "Project types (contact form dropdown)", name: "projectTypes", widget: "list", field: { label: "Option", name: "option", widget: "string" } }
               - { label: "Email", name: "email", widget: "string" }
               - { label: "Instagram URL", name: "instagram", widget: "string" }
               - { label: "LinkedIn URL", name: "linkedin", widget: "string" }

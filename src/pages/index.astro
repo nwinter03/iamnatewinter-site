@@ -46,14 +46,7 @@ const serviceGroups = services.reduce((acc, s) => {
   return acc;
 }, {});
 
-const processSteps = [
-  { num: '01 · Direction',
-    body: "We define the product, the audience, and the look before anything gets made. You leave with a clear creative direction, scope, price, and timeline, no guessing." },
-  { num: '02 · Build',
-    body: "I build the product world, the 3D, motion, packaging, and campaign frames the brief calls for, art-directed as one cohesive system with feedback at every beat." },
-  { num: '03 · Delivery',
-    body: "Launch-ready files for web, social, ads, PDPs, and decks. Every deliverable plus the source, a clean handoff with no retainers or surprises." },
-];
+const processSteps = site.process || [];
 ---
 <Base>
   <!-- HERO -->
@@ -146,9 +139,9 @@ const processSteps = [
       <h2 class="section-title">How I work, <span class="italic">end to end.</span></h2>
     </header>
     <div class="process-steps">
-      {processSteps.map((s) => (
+      {processSteps.map((s, i) => (
         <article class="process-step">
-          <span class="process-num">{s.num}</span>
+          <span class="process-num">{`0${i + 1} · ${s.label}`}</span>
           <p>{s.body}</p>
         </article>
       ))}
@@ -231,11 +224,7 @@ const processSteps = [
         <label><span>Brand / company</span><input type="text" name="brand" /></label>
         <label><span>Project type</span>
           <select name="type">
-            <option>Product animation</option>
-            <option>Product stills</option>
-            <option>Brand &amp; packaging design</option>
-            <option>Creative direction &amp; consulting</option>
-            <option>Not sure yet</option>
+            {(contact.projectTypes || []).map((t) => <option>{t}</option>)}
           </select>
         </label>
         <label class="full"><span>Tell me about the project</span><textarea name="message" rows="4" required></textarea></label>

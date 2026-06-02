@@ -4,7 +4,7 @@
     "line2": "visualization",
     "line3": "for brands that refuse",
     "line4": "to look ordinary.",
-    "subtext": "I am Nate Winter, a Milwaukee-based designer and art director. I help brands build the visual world around their products, shaping everything from brand and packaging to the visuals that bring them into motion.\n\nWhether a brand is launching something new or refining what it already has, my work is built to make the product impossible to overlook.",
+    "subtext": "Helping brands build the visual world around their products, shaping everything from identity and packaging to the visuals that bring them into motion.\n\nWhether a brand is launching something new or refining what it already has, the work is built to make the product impossible to overlook.",
     "reelVimeoId": "817702560",
     "reelDuration": "0:47",
     "reelPoster": "/uploads/2024/02/hero.jpg"
@@ -21,6 +21,11 @@
     "E-commerce"
   ],
   "marqueeLabel": "",
+  "process": [
+    { "label": "Direction", "body": "We define the purpose, audience, tone, and visual direction before anything gets made. This creates a clear foundation for the work and makes sure every decision has a reason behind it." },
+    { "label": "Development", "body": "I turn that direction into visual work with a clear point of view, shaping the details across whatever the project needs. The process stays flexible, but the goal is always the same: make the work feel cohesive, intentional, and complete." },
+    { "label": "Handoff", "body": "The final work is refined, organized, and prepared for real use. Whether it lives online, in motion, in print, or across a launch, the handoff is built to be clear, useful, and ready to move." }
+  ],
   "about": {
     "eyebrow": "About",
     "portrait": "/uploads/2024/09/nw-sketch.jpg",
@@ -33,28 +38,28 @@
     {
       "group": "Product Visualization",
       "num": "01",
-      "title": "Product animation",
+      "title": "Product Animation",
       "desc": "Launch films, scroll-stopping loops, and paid-social cutdowns, built to make the product feel alive in motion. All on one locked art direction, so every frame stays of a piece.",
       "tag": "Per project"
     },
     {
       "group": "Product Visualization",
       "num": "02",
-      "title": "Product stills",
+      "title": "Product Stills",
       "desc": "Photoreal 3D stills for PDPs, paid social, retail, and Amazon A+, with control a camera can't give you. Drawn from the same visual system as the film, so the whole campaign reads as one thing.",
       "tag": "Per project"
     },
     {
       "group": "Brand & Direction",
       "num": "03",
-      "title": "Brand & packaging design",
+      "title": "Brand & Packaging Design",
       "desc": "Identity systems, packaging, label design, and the visual language that earns the shelf. Often paired with a stills library, so the brand lands cohesive from day one.",
       "tag": "Per project"
     },
     {
       "group": "Brand & Direction",
       "num": "04",
-      "title": "Creative direction & consulting",
+      "title": "Creative Direction & Consulting",
       "desc": "Visual strategy, campaign direction, and production guidance, by the day or week. For teams that want sharper creative decisions and an art-directed set of eyes on the brief.",
       "tag": "Per day"
     }
@@ -68,6 +73,7 @@
       "We hop on a 30-minute fit call.",
       "You get a fixed-scope proposal within a week."
     ],
+    "projectTypes": ["Product animation", "Product stills", "Brand & packaging design", "Creative direction & consulting", "Not sure yet"],
     "email": "me@iamnatewinter.com",
     "instagram": "https://www.instagram.com/iamnatewinter/",
     "linkedin": "https://www.linkedin.com/in/natewinterdesign/"
