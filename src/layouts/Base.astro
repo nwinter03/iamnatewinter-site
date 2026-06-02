@@ -1,14 +1,52 @@
 ---
 import site from '../data/site.json';
 const { hero, contact } = site;
+
+const siteUrl = (Astro.site?.href || 'https://iamnatewinter.com/').replace(/\/$/, '');
+const pageTitle = 'Nate Winter · Designer & Art Director · 3D Product Visualization & Motion';
+const pageDesc = 'Nate Winter is a Milwaukee designer and art director specializing in 3D product visualization, motion, packaging, and brand work for product-led brands across CPG, supplements, beverage, beauty, and wellness.';
+const ogImage = `${siteUrl}/uploads/2024/02/hero.jpg`;
+const canonical = `${siteUrl}/`;
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Nate Winter',
+  jobTitle: 'Designer & Art Director',
+  url: `${siteUrl}/`,
+  image: ogImage,
+  description: pageDesc,
+  address: { '@type': 'PostalAddress', addressLocality: 'Milwaukee', addressRegion: 'WI', addressCountry: 'US' },
+  sameAs: [contact.instagram, contact.linkedin].filter(Boolean),
+};
 ---
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nate Winter · Designer &amp; Art Director · 3D Product Visualization &amp; Motion</title>
-  <meta name="description" content="Nate Winter is a Milwaukee designer and art director specializing in 3D product visualization, motion, packaging, and brand work for product-led brands across CPG, supplements, beverage, beauty, and wellness." />
+  <title>{pageTitle}</title>
+  <meta name="description" content={pageDesc} />
+  <link rel="canonical" href={canonical} />
+  <meta name="theme-color" content="#0b0b0c" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <!-- Open Graph (link previews: iMessage, LinkedIn, Slack, Facebook) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nate Winter" />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={pageDesc} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1920" />
+  <meta property="og:image:height" content="1080" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={pageDesc} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(personLd)}></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
