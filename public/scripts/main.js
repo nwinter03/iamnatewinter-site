@@ -519,7 +519,7 @@
      Canvas-based product rotator. Auto-spins, drag/swipe to control,
      resumes auto-spin after idle. Lazy-preloads all frames. */
   const spinUrl = (folder, prefix, n) =>
-    `https://iamnatewinter.com/wp-content/uploads/${folder}/${prefix}${String(n).padStart(5, "0")}.jpg`;
+    `/uploads/${folder}/${prefix}${String(n).padStart(5, "0")}.jpg`;
 
   class SpinViewer {
     constructor(mountEl, { folder, prefix, count }) {
