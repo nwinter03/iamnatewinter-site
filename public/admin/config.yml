@@ -114,7 +114,7 @@ collections:
                 collapsed: true
                 summary: "{{fields.title}}"
                 fields:
-                  - { label: "Group", name: "group", widget: "select", options: ["Product Visualization", "Brand & Direction"] }
+                  - { label: "Group", name: "group", widget: "select", options: ["Visualization & Motion", "Brand & Direction"] }
                   - { label: "Number", name: "num", widget: "string" }
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Description", name: "desc", widget: "text" }

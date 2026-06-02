@@ -4,10 +4,10 @@
     "description": "Nate Winter is a Milwaukee designer and art director specializing in 3D product visualization, motion, packaging, and brand work for product-led brands across CPG, supplements, beverage, beauty, and wellness."
   },
   "hero": {
-    "line1": "3D product",
-    "line2": "visualization",
-    "line3": "for brands that refuse",
-    "line4": "to look ordinary.",
+    "line1": "Product visuals",
+    "line2": "and motion",
+    "line3": "for brands built",
+    "line4": "to stand apart.",
     "subtext": "Helping brands build the visual world around their products, shaping everything from identity and packaging to the visuals that bring them into motion.\n\nWhether a brand is launching something new or refining what it already has, the work is built to make the product impossible to overlook.",
     "reelVimeoId": "817702560",
     "reelDuration": "0:47"
@@ -59,46 +59,46 @@
     "title": "What I make.",
     "items": [
       {
-        "group": "Product Visualization",
+        "group": "Visualization & Motion",
         "num": "01",
-        "title": "Product Animation",
-        "desc": "Launch films, scroll-stopping loops, and paid-social cutdowns, built to make the product feel alive in motion. All on one locked art direction, so every frame stays of a piece.",
+        "title": "Product Visualization & Animation",
+        "desc": "Hero renders, campaign visuals, launch films, product motion, and photoreal CGI for brands that need their products to feel polished and premium.",
         "tag": "Per project"
       },
       {
-        "group": "Product Visualization",
+        "group": "Visualization & Motion",
         "num": "02",
         "title": "Product Stills",
-        "desc": "Photoreal 3D stills for PDPs, paid social, retail, and Amazon A+, with control a camera can't give you. Drawn from the same visual system as the film, so the whole campaign reads as one thing.",
+        "desc": "High-quality still imagery for websites, ads, packaging, social, retail pages, and launch campaigns.",
         "tag": "Per project"
       },
       {
         "group": "Brand & Direction",
         "num": "03",
         "title": "Brand & Packaging Design",
-        "desc": "Identity systems, packaging, label design, and the visual language that earns the shelf. Often paired with a stills library, so the brand lands cohesive from day one.",
+        "desc": "Visual identity, packaging direction, label systems, mockups, and brand assets that help products feel more complete and refined.",
         "tag": "Per project"
       },
       {
         "group": "Brand & Direction",
         "num": "04",
         "title": "Creative Direction & Consulting",
-        "desc": "Visual strategy, campaign direction, and production guidance, by the day or week. For teams that want sharper creative decisions and an art-directed set of eyes on the brief.",
+        "desc": "Early-stage direction, visual strategy, art direction, and creative support for brands that need help shaping how something should look and feel.",
         "tag": "Per day"
       }
     ]
   },
   "contact": {
     "eyebrow": "Contact",
-    "title": "Bring your product into focus. *Let’s talk.*",
-    "lead": "I work with brands, studios, and teams looking to create stronger product visuals, sharper campaigns, and more considered brand moments. Projects can range from a single deliverable to a larger creative engagement. Send a short note with what you’re building, launching, or looking to improve, and I’ll take it from there.",
+    "title": "Have a product, launch, or idea that needs shape?\n*Let's talk.*",
+    "lead": "I work with brands, studios, and teams on imagery, motion, packaging, brand direction, and campaign assets. Projects can be focused and fast-moving or part of a larger creative engagement. Send a short note with what you're building, launching, or trying to improve.",
     "expect": [
       "Send over the basics.",
-      "We’ll talk through fit, scope, and timing.",
-      "I’ll follow up with a clear next steps."
+      "We'll talk through fit, scope, and timing.",
+      "I'll follow up with a clear next step."
     ],
     "projectTypes": [
-      "Product Animation",
+      "Product Visualization & Animation",
       "Product Stills",
       "Brand & Packaging Design",
       "Creative Direction & Consulting",
