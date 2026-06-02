@@ -33,7 +33,6 @@ collections:
             name: "hero"
             widget: "object"
             fields:
-              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
               - { label: "Title — line 1", name: "line1", widget: "string" }
               - { label: "Title — line 2", name: "line2", widget: "string" }
               - { label: "Title — line 3 (italic)", name: "line3", widget: "string" }
