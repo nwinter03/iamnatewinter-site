@@ -125,7 +125,7 @@
   const pagination = document.querySelector(".work-pagination");
   const workSection = document.getElementById("work");
   const PAGE = 20;                 // "All" view paginates at this; individual filters show all
-  let currentFilter = "animation";
+  let currentFilter = "all";
   let currentPage = 1;
 
   const cardMatches = (card, f) => {
