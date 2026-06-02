@@ -16,7 +16,16 @@ const contactLeadHtml = (await mdProcessor.render(contact.lead || '')).code;
 const galleries = await getCollection('galleries');
 const byCat = {};
 for (const g of galleries) {
-  byCat[g.data.category] = g.data.items.map((it) => ({ ...it, category: g.data.category }));
+  let items = g.data.items.map((it) => ({ ...it, category: g.data.category }));
+  // Per-category randomization, toggled in the CMS at the top of each filter.
+  // Shuffles only this category's items at build time; curated keeps the order.
+  if (g.data.order === 'random') {
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+  }
+  byCat[g.data.category] = items;
 }
 // Round-robin interleave across categories so the "All" view reads as a mix.
 const catOrder = ['animation', 'stills', 'motion', 'packaging', 'branding', 'artwork'];
@@ -29,15 +38,6 @@ while (addedAny) {
     if (ri < arr.length) { projects.push({ data: arr[ri] }); addedAny = true; }
   }
   ri++;
-}
-
-// Optional back-end randomization (set in the CMS). Shuffles the whole grid at
-// build time, so the order is baked into the static HTML — re-rolled each publish.
-if (site.workOrder === 'random') {
-  for (let i = projects.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [projects[i], projects[j]] = [projects[j], projects[i]];
-  }
 }
 
 const catLabels = {
@@ -118,14 +118,16 @@ const processSteps = site.process || [];
       <button class="filter" data-filter="artwork" role="tab">Artwork</button>
     </div>
     <div class="work-grid">
-      {projects.map((p) => {
+      {projects.map((p, i) => {
         const d = p.data;
+        // Editorial mosaic: every 7th tile (incl. the first) renders large.
+        const aspect = i % 7 === 0 ? 'big' : 'square';
         const spinAttrs = d.spinPrefix
           ? { 'data-spin-folder': d.spinFolder, 'data-spin-prefix': d.spinPrefix, 'data-spin-count': d.spinCount }
           : {};
         const videoAttr = d.video ? { 'data-video': d.video } : {};
         return (
-          <a class="work-card" href="#" data-cat={d.category} data-aspect="square" {...videoAttr} {...spinAttrs}>
+          <a class="work-card" href="#" data-cat={d.category} data-aspect={aspect} {...videoAttr} {...spinAttrs}>
             <div class="work-thumb" data-swatch={d.swatch}>
               <img src={d.image} alt={d.title} loading="lazy" onerror="this.style.display='none'" />
               {d.video && <video class="work-video" muted loop playsinline preload="none"></video>}

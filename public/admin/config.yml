@@ -46,7 +46,6 @@ collections:
             widget: "list"
             field: { label: "Term", name: "term", widget: "string" }
           - { label: "Marquee lead-in (optional)", name: "marqueeLabel", widget: "string", required: false, hint: "Optional text before the looping sectors, e.g. 'Built for'. Leave empty for none." }
-          - { label: "Work grid order", name: "workOrder", widget: "select", options: ["curated", "random"], default: "random", hint: "Curated keeps your set order; Random shuffles the whole grid (re-rolled each time the site publishes)." }
           - label: "Process steps"
             name: "process"
             widget: "list"
@@ -100,6 +99,7 @@ collections:
         fields:
           - { label: "Category", name: "category", widget: "hidden", default: "animation" }
           - { label: "Label", name: "label", widget: "hidden", default: "Product Animation" }
+          - { label: "Order", name: "order", widget: "select", options: ["curated", "random"], default: "curated", hint: "Curated keeps the order below. Random reshuffles this category each time you publish." }
           - label: "Pieces"
             name: "items"
             label_singular: "Piece"
@@ -117,6 +117,7 @@ collections:
         fields:
           - { label: "Category", name: "category", widget: "hidden", default: "stills" }
           - { label: "Label", name: "label", widget: "hidden", default: "Product Stills" }
+          - { label: "Order", name: "order", widget: "select", options: ["curated", "random"], default: "curated", hint: "Curated keeps the order below. Random reshuffles this category each time you publish." }
           - label: "Images"
             name: "items"
             label_singular: "Image"
@@ -133,6 +134,7 @@ collections:
         fields:
           - { label: "Category", name: "category", widget: "hidden", default: "motion" }
           - { label: "Label", name: "label", widget: "hidden", default: "Motion Graphics" }
+          - { label: "Order", name: "order", widget: "select", options: ["curated", "random"], default: "curated", hint: "Curated keeps the order below. Random reshuffles this category each time you publish." }
           - label: "Pieces"
             name: "items"
             label_singular: "Piece"
@@ -150,6 +152,7 @@ collections:
         fields:
           - { label: "Category", name: "category", widget: "hidden", default: "packaging" }
           - { label: "Label", name: "label", widget: "hidden", default: "Packaging Design" }
+          - { label: "Order", name: "order", widget: "select", options: ["curated", "random"], default: "curated", hint: "Curated keeps the order below. Random reshuffles this category each time you publish." }
           - label: "360° Products"
             name: "items"
             label_singular: "Product"
@@ -169,6 +172,7 @@ collections:
         fields:
           - { label: "Category", name: "category", widget: "hidden", default: "branding" }
           - { label: "Label", name: "label", widget: "hidden", default: "Logo / Branding" }
+          - { label: "Order", name: "order", widget: "select", options: ["curated", "random"], default: "curated", hint: "Curated keeps the order below. Random reshuffles this category each time you publish." }
           - label: "Images"
             name: "items"
             label_singular: "Image"
@@ -185,6 +189,7 @@ collections:
         fields:
           - { label: "Category", name: "category", widget: "hidden", default: "artwork" }
           - { label: "Label", name: "label", widget: "hidden", default: "Artwork" }
+          - { label: "Order", name: "order", widget: "select", options: ["curated", "random"], default: "curated", hint: "Curated keeps the order below. Random reshuffles this category each time you publish." }
           - label: "Images"
             name: "items"
             label_singular: "Image"

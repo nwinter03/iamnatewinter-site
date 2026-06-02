@@ -8,6 +8,7 @@ const galleries = defineCollection({
   schema: z.object({
     category: z.enum(['animation', 'stills', 'motion', 'packaging', 'branding', 'artwork']),
     label: z.string(),
+    order: z.enum(['curated', 'random']).default('curated'),
     items: z.array(
       z.object({
         title: z.string(),
