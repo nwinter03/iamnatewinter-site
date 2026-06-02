@@ -1,6 +1,7 @@
 ---
 category: packaging
 label: Packaging Design
+order: random
 items:
   - title: Anytime Drink
     image: /uploads/2025/12/anytime_00001.jpg
