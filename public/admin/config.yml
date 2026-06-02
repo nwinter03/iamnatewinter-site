@@ -46,6 +46,7 @@ collections:
             widget: "list"
             field: { label: "Term", name: "term", widget: "string" }
           - { label: "Marquee lead-in (optional)", name: "marqueeLabel", widget: "string", required: false, hint: "Optional text before the looping sectors, e.g. 'Built for'. Leave empty for none." }
+          - { label: "Work grid order", name: "workOrder", widget: "select", options: ["curated", "random"], default: "random", hint: "Curated keeps your set order; Random shuffles the whole grid (re-rolled each time the site publishes)." }
           - label: "Process steps"
             name: "process"
             widget: "list"

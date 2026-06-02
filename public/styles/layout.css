@@ -495,9 +495,6 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 }
 .filter:hover { color: var(--ink); border-color: var(--line-strong); }
 .filter.is-active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.filter-shuffle { display: inline-flex; align-items: center; gap: 6px; }
-.filter-shuffle svg { display: block; }
-.filter-shuffle.is-active { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 
 
 .work-grid {
