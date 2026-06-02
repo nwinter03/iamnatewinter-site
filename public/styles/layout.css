@@ -574,9 +574,6 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 .work-card[data-aspect="wide"]     .work-thumb { aspect-ratio: 16 / 9; }
 .work-card[data-aspect="tall"]     .work-thumb { aspect-ratio: 9 / 16; }
 .work-card[data-aspect="wide"] { grid-column: span 2; }
-/* Mosaic feature tile: a larger 2×2 square that anchors the grid rhythm. */
-.work-card[data-aspect="big"]      .work-thumb { aspect-ratio: 1 / 1; }
-.work-card[data-aspect="big"] { grid-column: span 2; grid-row: span 2; }
 
 /* Image inside thumb fills the slot, gradient swatch shows underneath if image fails */
 .work-thumb img {
@@ -718,8 +715,6 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 @media (max-width: 800px) {
   .work-grid { grid-template-columns: repeat(2, 1fr); }
   .work-card[data-aspect="wide"] { grid-column: span 2; }
-  /* On phones the mosaic flattens back to a clean, even 2-up grid. */
-  .work-card[data-aspect="big"] { grid-column: span 1; grid-row: span 1; }
 }
 @media (max-width: 500px) {
   .work-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }

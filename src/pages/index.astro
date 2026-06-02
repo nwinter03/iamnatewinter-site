@@ -118,16 +118,14 @@ const processSteps = site.process || [];
       <button class="filter" data-filter="artwork" role="tab">Artwork</button>
     </div>
     <div class="work-grid">
-      {projects.map((p, i) => {
+      {projects.map((p) => {
         const d = p.data;
-        // Editorial mosaic: every 7th tile (incl. the first) renders large.
-        const aspect = i % 7 === 0 ? 'big' : 'square';
         const spinAttrs = d.spinPrefix
           ? { 'data-spin-folder': d.spinFolder, 'data-spin-prefix': d.spinPrefix, 'data-spin-count': d.spinCount }
           : {};
         const videoAttr = d.video ? { 'data-video': d.video } : {};
         return (
-          <a class="work-card" href="#" data-cat={d.category} data-aspect={aspect} {...videoAttr} {...spinAttrs}>
+          <a class="work-card" href="#" data-cat={d.category} data-aspect="square" {...videoAttr} {...spinAttrs}>
             <div class="work-thumb" data-swatch={d.swatch}>
               <img src={d.image} alt={`${d.title}, ${catLabels[d.category]} by Nate Winter`} loading="lazy" onerror="this.style.display='none'" />
               {d.video && <video class="work-video" muted loop playsinline preload="none" aria-label={`${d.title}, ${catLabels[d.category]} by Nate Winter`}></video>}
