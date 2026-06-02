@@ -8,7 +8,7 @@
 
 backend:
   name: github
-  repo: natewinter/iamnatewinter-site   # ← update to your real repo when deploying
+  repo: nwinter03/iamnatewinter-site   # GitHub repo the live CMS commits to
   branch: main
 
 # Enables editing local files during `npm run dev` (no GitHub needed to test)
