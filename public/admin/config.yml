@@ -30,6 +30,20 @@ collections:
         label: "All Page Copy"
         file: "src/data/site.json"
         fields:
+          # Order mirrors the page top-to-bottom. SEO sits up top (it is the
+          # browser tab + Google result, not a visible section). Each section
+          # carries its own Eyebrow + Headline right above its content.
+
+          # ---- SEO ----
+          - label: "SEO (browser tab + Google result)"
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Page title", name: "title", widget: "string", hint: "Shows in the browser tab and as the Google result title." }
+              - { label: "Meta description", name: "description", widget: "text", hint: "The grey summary under your title in Google (~150-160 characters)." }
+
+          # ---- HERO ----
           - label: "Hero"
             name: "hero"
             widget: "object"
@@ -41,83 +55,78 @@ collections:
               - { label: "Subtext", name: "subtext", widget: "markdown", minimal: true, hint: "Body copy under the headline. Blank line = new paragraph; toolbar for bold/italic." }
               - { label: "Reel — Vimeo ID", name: "reelVimeoId", widget: "string", hint: "Just the numeric ID from the Vimeo URL, e.g. 817702560." }
               - { label: "Reel — duration label", name: "reelDuration", widget: "string", hint: "Shown on the reel button, e.g. 0:47." }
-          - label: "SEO (browser tab + Google result)"
-            name: "seo"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Page title", name: "title", widget: "string", hint: "Shows in the browser tab and as the Google result title." }
-              - { label: "Meta description", name: "description", widget: "text", hint: "The grey summary under your title in Google (~150-160 characters)." }
-          - label: "Section headers (eyebrow + headline per section)"
-            name: "sections"
-            widget: "object"
-            collapsed: true
-            fields:
-              - label: "Work"
-                name: "work"
-                widget: "object"
-                fields:
-                  - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-                  - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
-              - label: "Process"
-                name: "process"
-                widget: "object"
-                fields:
-                  - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-                  - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
-              - label: "About"
-                name: "about"
-                widget: "object"
-                fields:
-                  - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-                  - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
-              - label: "Services"
-                name: "services"
-                widget: "object"
-                fields:
-                  - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-                  - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
-              - label: "Contact"
-                name: "contact"
-                widget: "object"
-                fields:
-                  - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-                  - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
+
+          # ---- MARQUEE (scrolling sectors, just under the hero) ----
           - label: "Marquee terms"
             name: "marquee"
             widget: "list"
             field: { label: "Term", name: "term", widget: "string" }
           - { label: "Marquee lead-in (optional)", name: "marqueeLabel", widget: "string", required: false, hint: "Optional text before the looping sectors, e.g. 'Built for'. Leave empty for none." }
-          - label: "Process steps"
-            name: "process"
-            widget: "list"
-            label_singular: "Step"
-            collapsed: true
-            summary: "{{fields.label}}"
+
+          # ---- WORK (section header; portfolio images are edited under “Work” in the sidebar) ----
+          - label: "Work"
+            name: "work"
+            widget: "object"
             fields:
-              - { label: "Label", name: "label", widget: "string", hint: "e.g. Direction — the '01 ·' number is added automatically." }
-              - { label: "Body", name: "body", widget: "text" }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line. (Portfolio images are edited under “Work” in the left sidebar.)" }
+
+          # ---- PROCESS ----
+          - label: "Process"
+            name: "process"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
+              - label: "Steps"
+                name: "steps"
+                widget: "list"
+                label_singular: "Step"
+                collapsed: true
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "Label", name: "label", widget: "string", hint: "e.g. Direction — the '01 ·' number is added automatically." }
+                  - { label: "Body", name: "body", widget: "text" }
+
+          # ---- ABOUT ----
           - label: "About"
             name: "about"
             widget: "object"
             fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
               - { label: "Portrait photo", name: "portrait", widget: "image", required: false, hint: "Still shown before the video loads (and for reduced-motion visitors). Drag/drop to upload." }
               - { label: "Portrait video (optional, silent loop)", name: "portraitVideo", widget: "file", required: false, hint: "An MP4 that autoplays muted and loops in the About portrait. Leave empty to show just the photo." }
               - { label: "Lead line", name: "lead", widget: "text", hint: "The brighter opening line, e.g. 'Hi, I'm Nate Winter.'" }
               - { label: "Body", name: "body", widget: "markdown", minimal: true, hint: "The main About story. Use the toolbar for bold, italic, links, etc. Blank line = new paragraph." }
+
+          # ---- SERVICES ----
           - label: "Services"
             name: "services"
-            widget: "list"
+            widget: "object"
             fields:
-              - { label: "Group", name: "group", widget: "select", options: ["Product Visualization", "Brand & Direction"] }
-              - { label: "Number", name: "num", widget: "string" }
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Description", name: "desc", widget: "text" }
-              - { label: "Tag", name: "tag", widget: "string" }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                label_singular: "Service"
+                collapsed: true
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: "Group", name: "group", widget: "select", options: ["Product Visualization", "Brand & Direction"] }
+                  - { label: "Number", name: "num", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
+                  - { label: "Tag", name: "tag", widget: "string" }
+
+          # ---- CONTACT ----
           - label: "Contact"
             name: "contact"
             widget: "object"
             fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
               - { label: "Lead paragraph", name: "lead", widget: "markdown", minimal: true }
               - { label: "What to expect", name: "expect", widget: "list", field: { label: "Step", name: "step", widget: "string" } }
               - { label: "Project types (contact form dropdown)", name: "projectTypes", widget: "list", field: { label: "Option", name: "option", widget: "string" } }
