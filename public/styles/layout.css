@@ -210,7 +210,7 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
   letter-spacing: -0.035em;
 }
 .hero-title .line { display: block; overflow: hidden; }
-.hero-title .reveal { display: inline-block; transform: translateY(110%); }
+.hero-title .reveal { display: inline-block; transform: translateY(110%); text-wrap: balance; }
 .hero-foot {
   grid-column: 1 / 2;
   align-self: start;          /* hug the headline; CTA sits just under the paragraph */

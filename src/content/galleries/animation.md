@@ -1,6 +1,7 @@
 ---
 category: animation
 label: Product Animation
+order: random
 items:
   - title: Controller
     image: /uploads/2023/12/controller_poster.jpg
