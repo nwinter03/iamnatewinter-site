@@ -98,6 +98,7 @@ collections:
             label_singular: "Piece"
             widget: "list"
             summary: "{{fields.title}}"
+            collapsed: true
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Image (poster)", name: "image", widget: "image", hint: "Drag/drop or pick. The still shown before hover." }
@@ -114,6 +115,7 @@ collections:
             label_singular: "Image"
             widget: "list"
             summary: "{{fields.title}}"
+            collapsed: true
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Image", name: "image", widget: "image", hint: "Drag/drop to upload." }
@@ -129,6 +131,7 @@ collections:
             label_singular: "Piece"
             widget: "list"
             summary: "{{fields.title}}"
+            collapsed: true
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Image (poster)", name: "image", widget: "image" }
@@ -145,6 +148,7 @@ collections:
             label_singular: "Product"
             widget: "list"
             summary: "{{fields.title}}"
+            collapsed: true
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "First frame image", name: "image", widget: "image", hint: "The thumbnail shown in the grid." }
@@ -163,6 +167,7 @@ collections:
             label_singular: "Image"
             widget: "list"
             summary: "{{fields.title}}"
+            collapsed: true
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Image", name: "image", widget: "image" }
@@ -178,6 +183,7 @@ collections:
             label_singular: "Image"
             widget: "list"
             summary: "{{fields.title}}"
+            collapsed: true
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Image", name: "image", widget: "image" }
