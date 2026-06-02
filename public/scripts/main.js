@@ -122,17 +122,39 @@
   /* ---------- WORK FILTERS + PAGINATION ---------- */
   const filters = document.querySelectorAll(".filter");
   const cards = document.querySelectorAll(".work-card");
+  const grid = document.querySelector(".work-grid");
   const pagination = document.querySelector(".work-pagination");
   const workSection = document.getElementById("work");
   const PAGE = 20;                 // "All" view paginates at this; individual filters show all
   let currentFilter = "all";
   let currentPage = 1;
 
+  // Mutable display order — "Shuffle" randomizes it; choosing a category restores the curated order.
+  const baseOrder = [...cards];
+  let cardOrder = [...cards];
+  let shuffled = false;
+  const applyOrder = () => { if (grid) cardOrder.forEach((c) => grid.appendChild(c)); };
+  const shuffleOrder = () => {
+    cardOrder = [...baseOrder];
+    for (let i = cardOrder.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [cardOrder[i], cardOrder[j]] = [cardOrder[j], cardOrder[i]];
+    }
+    applyOrder();
+    shuffled = true;
+  };
+  const restoreOrder = () => {
+    if (!shuffled) return;
+    cardOrder = [...baseOrder];
+    applyOrder();
+    shuffled = false;
+  };
+
   const cardMatches = (card, f) => {
     const cats = (card.dataset.cat || "").split(/\s+/);
     return f === "all" || cats.includes(f);
   };
-  const matchingCards = () => [...cards].filter((c) => cardMatches(c, currentFilter));
+  const matchingCards = () => cardOrder.filter((c) => cardMatches(c, currentFilter));
 
   const renderPagination = (totalPages) => {
     if (!pagination) return;
@@ -179,14 +201,29 @@
     else window.scrollTo({ top, behavior: "smooth" });
   };
 
+  const setActive = (active) => {
+    filters.forEach((b) => {
+      b.classList.toggle("is-active", b === active);
+      b.setAttribute("aria-selected", b === active ? "true" : "false");
+    });
+  };
+
   filters.forEach((btn) => {
+    if (btn.classList.contains("filter-shuffle")) {
+      btn.addEventListener("click", () => {       // randomize the whole grid
+        currentFilter = "all";
+        currentPage = 1;
+        shuffleOrder();
+        setActive(btn);
+        renderGrid(true);
+      });
+      return;
+    }
     btn.addEventListener("click", () => {
       currentFilter = btn.dataset.filter;
       currentPage = 1;
-      filters.forEach((b) => {
-        b.classList.toggle("is-active", b === btn);
-        b.setAttribute("aria-selected", b === btn ? "true" : "false");
-      });
+      restoreOrder();                              // un-shuffle back to curated order
+      setActive(btn);
       renderGrid(true);
     });
   });

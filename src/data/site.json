@@ -22,9 +22,18 @@
   ],
   "marqueeLabel": "",
   "process": [
-    { "label": "Direction", "body": "We define the purpose, audience, tone, and visual direction before anything gets made. This creates a clear foundation for the work and makes sure every decision has a reason behind it." },
-    { "label": "Development", "body": "I turn that direction into visual work with a clear point of view, shaping the details across whatever the project needs. The process stays flexible, but the goal is always the same: make the work feel cohesive, intentional, and complete." },
-    { "label": "Handoff", "body": "The final work is refined, organized, and prepared for real use. Whether it lives online, in motion, in print, or across a launch, the handoff is built to be clear, useful, and ready to move." }
+    {
+      "label": "Direction",
+      "body": "We define the purpose, audience, tone, and visual direction before anything gets made. This creates a clear foundation for the work and makes sure every decision has a reason behind it."
+    },
+    {
+      "label": "Development",
+      "body": "I turn that direction into visual work with a clear point of view, shaping the details across whatever the project needs. The process stays flexible, but the goal is always the same: make the work feel cohesive, intentional, and complete."
+    },
+    {
+      "label": "Delivery",
+      "body": "The final work is refined, organized, and prepared for real use. Whether it lives online, in motion, in print, or across a launch, the handoff is built to be clear, useful, and ready to move."
+    }
   ],
   "about": {
     "eyebrow": "About",
@@ -73,7 +82,13 @@
       "We hop on a 30-minute fit call.",
       "You get a fixed-scope proposal within a week."
     ],
-    "projectTypes": ["Product animation", "Product stills", "Brand & packaging design", "Creative direction & consulting", "Not sure yet"],
+    "projectTypes": [
+      "Product Animation",
+      "Product Stills",
+      "Brand & Packaging Design",
+      "Creative Direction & Consulting",
+      "Not sure yet"
+    ],
     "email": "me@iamnatewinter.com",
     "instagram": "https://www.instagram.com/iamnatewinter/",
     "linkedin": "https://www.linkedin.com/in/natewinterdesign/"
