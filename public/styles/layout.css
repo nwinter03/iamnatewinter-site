@@ -907,9 +907,11 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 .side-block ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
 .side-block li { font-size: var(--text-body-sm); color: var(--ink); }
 
-@media (max-width: 900px) {
-  .about-grid { grid-template-columns: 1fr; }
-  .about-portrait { max-width: 360px; }
+@media (max-width: 860px) {
+  /* Stack into one clean centered column — portrait + copy share the same width, no dead space */
+  .about-grid { grid-template-columns: 1fr; gap: 40px; justify-items: center; }
+  .about-portrait { width: 100%; max-width: 480px; }
+  .about-copy { width: 100%; max-width: 560px; }
   .about-side { grid-template-columns: 1fr; gap: 32px; }
 }
 
