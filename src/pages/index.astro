@@ -76,7 +76,7 @@ const processSteps = site.process || [];
     <div class="hero-reel">
       <button class="reel-frame reel-trigger" type="button" data-vimeo={hero.reelVimeoId}
               aria-label="Watch the demo reel with sound">
-        <iframe class="reel-bg" tabindex="-1" aria-hidden="true"
+        <iframe class="reel-bg" tabindex="-1" aria-hidden="true" title="Nate Winter demo reel"
           src={`https://player.vimeo.com/video/${hero.reelVimeoId}?background=1&autoplay=1&loop=1&muted=1&dnt=1`}
           frameborder="0" allow="autoplay; fullscreen" loading="lazy"></iframe>
         <div class="reel-overlay">
@@ -129,8 +129,8 @@ const processSteps = site.process || [];
         return (
           <a class="work-card" href="#" data-cat={d.category} data-aspect={aspect} {...videoAttr} {...spinAttrs}>
             <div class="work-thumb" data-swatch={d.swatch}>
-              <img src={d.image} alt={d.title} loading="lazy" onerror="this.style.display='none'" />
-              {d.video && <video class="work-video" muted loop playsinline preload="none"></video>}
+              <img src={d.image} alt={`${d.title}, ${catLabels[d.category]} by Nate Winter`} loading="lazy" onerror="this.style.display='none'" />
+              {d.video && <video class="work-video" muted loop playsinline preload="none" aria-label={`${d.title}, ${catLabels[d.category]} by Nate Winter`}></video>}
               <div class="work-meta">
                 <h3>{d.title}</h3>
                 <span class="work-cat">{catLabels[d.category]}</span>
@@ -174,7 +174,7 @@ const processSteps = site.process || [];
               <canvas class="about-stopmo" aria-hidden="true"></canvas>
               <span class="about-grain" aria-hidden="true"></span>
             </Fragment>
-          : (about.portrait && <img src={about.portrait} alt="Nate Winter" loading="lazy" onerror="this.style.display='none'" />)}
+          : (about.portrait && <img src={about.portrait} alt="Nate Winter, Milwaukee designer and art director" loading="lazy" onerror="this.style.display='none'" />)}
       </div>
       <div class="about-copy">
         <p class="lead">{about.lead}</p>
