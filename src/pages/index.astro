@@ -8,7 +8,9 @@ const { hero, sections, marquee, marqueeLabel, about, services, contact } = site
 
 // Section headings: wrap the italic phrase in *asterisks* in the CMS → rendered as the two-tone style.
 const escapeHtml = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const sectionTitle = (s) => escapeHtml(s || '').replace(/\*([^*]+)\*/g, '<span class="italic">$1</span>');
+const sectionTitle = (s) => escapeHtml(s || '')
+  .replace(/\r?\n/g, '<br>')
+  .replace(/\*([^*]+)\*/g, '<span class="italic">$1</span>');
 
 // About body is rich text (markdown) from the CMS — render it to HTML
 const mdProcessor = await createMarkdownProcessor({ smartypants: false });

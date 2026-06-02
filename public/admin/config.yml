@@ -58,31 +58,31 @@ collections:
                 widget: "object"
                 fields:
                   - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-                  - { label: "Headline", name: "title", widget: "string", hint: "Wrap the italic phrase in *asterisks*, e.g. Made for clients, *and for the craft.*" }
+                  - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
               - label: "Process"
                 name: "process"
                 widget: "object"
                 fields:
                   - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-                  - { label: "Headline", name: "title", widget: "string", hint: "Wrap the italic phrase in *asterisks*." }
+                  - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
               - label: "About"
                 name: "about"
                 widget: "object"
                 fields:
                   - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-                  - { label: "Headline", name: "title", widget: "string", hint: "Wrap the italic phrase in *asterisks*." }
+                  - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
               - label: "Services"
                 name: "services"
                 widget: "object"
                 fields:
                   - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-                  - { label: "Headline", name: "title", widget: "string", hint: "Wrap the italic phrase in *asterisks*." }
+                  - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
               - label: "Contact"
                 name: "contact"
                 widget: "object"
                 fields:
                   - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-                  - { label: "Headline", name: "title", widget: "string", hint: "Wrap the italic phrase in *asterisks*." }
+                  - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
           - label: "Marquee terms"
             name: "marquee"
             widget: "list"
