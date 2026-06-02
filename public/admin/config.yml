@@ -56,10 +56,7 @@ collections:
               - { label: "Portrait video (optional, silent loop)", name: "portraitVideo", widget: "file", required: false, hint: "An MP4 that autoplays muted and loops in the About portrait. Leave empty to show just the photo." }
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Lead line", name: "lead", widget: "text", hint: "The brighter opening line, e.g. 'Hi, I'm Nate Winter.'" }
-              - label: "Body paragraphs"
-                name: "body"
-                widget: "list"
-                field: { label: "Paragraph", name: "paragraph", widget: "text" }
+              - { label: "Body", name: "body", widget: "markdown", minimal: true, hint: "The main About story. Use the toolbar for bold, italic, links, etc. Blank line = new paragraph." }
           - label: "Services"
             name: "services"
             widget: "list"

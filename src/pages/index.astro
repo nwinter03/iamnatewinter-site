@@ -2,8 +2,13 @@
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import { getCollection } from 'astro:content';
+import { createMarkdownProcessor } from '@astrojs/markdown-remark';
 
 const { hero, marquee, marqueeLabel, about, services, contact } = site;
+
+// About body is rich text (markdown) from the CMS — render it to HTML
+const mdProcessor = await createMarkdownProcessor({ smartypants: false });
+const aboutBodyHtml = (await mdProcessor.render(about.body || '')).code;
 
 // Load category galleries and flatten their items into cards.
 const galleries = await getCollection('galleries');
@@ -172,7 +177,7 @@ const processSteps = [
       </div>
       <div class="about-copy">
         <p class="lead">{about.lead}</p>
-        {about.body.map((para) => <p>{para}</p>)}
+        <div class="about-body" set:html={aboutBodyHtml}></div>
         <a href="#contact" class="btn">Start a project →</a>
       </div>
     </div>

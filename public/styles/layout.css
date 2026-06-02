@@ -880,6 +880,11 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 }
 .about-copy { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
 .about-copy p { margin: 0; }   /* gap controls spacing; kill default <p> margins that were doubling it */
+/* rich-text (markdown) About body: space its paragraphs and style inline formatting */
+.about-body p + p { margin-top: 18px; }
+.about-body strong { color: var(--ink); font-weight: 600; }
+.about-body a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.about-body a:hover { color: var(--accent); }
 .about-side {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
