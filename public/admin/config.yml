@@ -10,6 +10,7 @@ backend:
   name: github
   repo: nwinter03/iamnatewinter-site   # GitHub repo the live CMS commits to
   branch: main
+  base_url: https://sveltia-cms-auth.nwinter03.workers.dev   # auth helper for live /admin/ login
 
 # Enables editing local files during `npm run dev` (no GitHub needed to test)
 local_backend: true
