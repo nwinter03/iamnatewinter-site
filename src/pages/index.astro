@@ -4,7 +4,11 @@ import site from '../data/site.json';
 import { getCollection } from 'astro:content';
 import { createMarkdownProcessor } from '@astrojs/markdown-remark';
 
-const { hero, marquee, marqueeLabel, about, services, contact } = site;
+const { hero, sections, marquee, marqueeLabel, about, services, contact } = site;
+
+// Section headings: wrap the italic phrase in *asterisks* in the CMS → rendered as the two-tone style.
+const escapeHtml = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const sectionTitle = (s) => escapeHtml(s || '').replace(/\*([^*]+)\*/g, '<span class="italic">$1</span>');
 
 // About body is rich text (markdown) from the CMS — render it to HTML
 const mdProcessor = await createMarkdownProcessor({ smartypants: false });
@@ -105,8 +109,8 @@ const processSteps = site.process || [];
   <!-- WORK GRID -->
   <section class="section work" id="work" aria-label="Selected work">
     <header class="section-head">
-      <span class="section-num">Work</span>
-      <h2 class="section-title">Made for clients,<br /><span class="italic">and for the craft.</span></h2>
+      <span class="section-num">{sections.work.eyebrow}</span>
+      <h2 class="section-title" set:html={sectionTitle(sections.work.title)}></h2>
     </header>
     <div class="filters" role="tablist" aria-label="Filter work">
       <button class="filter is-active" data-filter="all" role="tab" aria-selected="true">All</button>
@@ -144,8 +148,8 @@ const processSteps = site.process || [];
   <!-- PROCESS -->
   <section class="section process" id="process" aria-label="Process">
     <header class="section-head">
-      <span class="section-num">Process</span>
-      <h2 class="section-title">How I work, <span class="italic">end to end.</span></h2>
+      <span class="section-num">{sections.process.eyebrow}</span>
+      <h2 class="section-title" set:html={sectionTitle(sections.process.title)}></h2>
     </header>
     <div class="process-steps">
       {processSteps.map((s, i) => (
@@ -160,8 +164,8 @@ const processSteps = site.process || [];
   <!-- ABOUT -->
   <section class="section about" id="about" aria-label="About">
     <header class="section-head">
-      <span class="section-num">{about.eyebrow}</span>
-      <h2 class="section-title">Strong creative direction, <span class="italic">rendered honestly.</span></h2>
+      <span class="section-num">{sections.about.eyebrow}</span>
+      <h2 class="section-title" set:html={sectionTitle(sections.about.title)}></h2>
     </header>
     <div class="about-grid">
       <div class="about-portrait">
@@ -185,8 +189,8 @@ const processSteps = site.process || [];
   <!-- SERVICES -->
   <section class="section services" id="services" aria-label="Services">
     <header class="section-head">
-      <span class="section-num">Services</span>
-      <h2 class="section-title">What I make.</h2>
+      <span class="section-num">{sections.services.eyebrow}</span>
+      <h2 class="section-title" set:html={sectionTitle(sections.services.title)}></h2>
     </header>
     {Object.entries(serviceGroups).map(([group, items]) => (
       <div class="services-group">
@@ -210,8 +214,8 @@ const processSteps = site.process || [];
   <!-- CONTACT -->
   <section class="section contact" id="contact" aria-label="Contact">
     <header class="section-head">
-      <span class="section-num">{contact.eyebrow}</span>
-      <h2 class="section-title">Have a product that needs a stronger visual world? <span class="italic">Let's talk.</span></h2>
+      <span class="section-num">{sections.contact.eyebrow}</span>
+      <h2 class="section-title" set:html={sectionTitle(sections.contact.title)}></h2>
     </header>
     <div class="contact-grid">
       <div class="contact-copy">

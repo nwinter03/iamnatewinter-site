@@ -3,8 +3,8 @@ import site from '../data/site.json';
 const { hero, contact } = site;
 
 const siteUrl = (Astro.site?.href || 'https://iamnatewinter.com/').replace(/\/$/, '');
-const pageTitle = 'Nate Winter · Designer & Art Director · 3D Product Visualization & Motion';
-const pageDesc = 'Nate Winter is a Milwaukee designer and art director specializing in 3D product visualization, motion, packaging, and brand work for product-led brands across CPG, supplements, beverage, beauty, and wellness.';
+const pageTitle = site.seo?.title || 'Nate Winter · Designer & Art Director · 3D Product Visualization & Motion';
+const pageDesc = site.seo?.description || 'Nate Winter is a Milwaukee designer and art director specializing in 3D product visualization, motion, packaging, and brand work for product-led brands.';
 const ogImage = `${siteUrl}/uploads/2024/02/hero.jpg`;
 const canonical = `${siteUrl}/`;
 const ogImageAlt = 'Nate Winter, 3D product visualization still';

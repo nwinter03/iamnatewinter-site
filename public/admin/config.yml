@@ -41,7 +41,48 @@ collections:
               - { label: "Subtext", name: "subtext", widget: "markdown", minimal: true, hint: "Body copy under the headline. Blank line = new paragraph; toolbar for bold/italic." }
               - { label: "Reel — Vimeo ID", name: "reelVimeoId", widget: "string", hint: "Just the numeric ID from the Vimeo URL, e.g. 817702560." }
               - { label: "Reel — duration label", name: "reelDuration", widget: "string", hint: "Shown on the reel button, e.g. 0:47." }
-              - { label: "Reel poster URL", name: "reelPoster", widget: "string", required: false }
+          - label: "SEO (browser tab + Google result)"
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Page title", name: "title", widget: "string", hint: "Shows in the browser tab and as the Google result title." }
+              - { label: "Meta description", name: "description", widget: "text", hint: "The grey summary under your title in Google (~150-160 characters)." }
+          - label: "Section headers (eyebrow + headline per section)"
+            name: "sections"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Work"
+                name: "work"
+                widget: "object"
+                fields:
+                  - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+                  - { label: "Headline", name: "title", widget: "string", hint: "Wrap the italic phrase in *asterisks*, e.g. Made for clients, *and for the craft.*" }
+              - label: "Process"
+                name: "process"
+                widget: "object"
+                fields:
+                  - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+                  - { label: "Headline", name: "title", widget: "string", hint: "Wrap the italic phrase in *asterisks*." }
+              - label: "About"
+                name: "about"
+                widget: "object"
+                fields:
+                  - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+                  - { label: "Headline", name: "title", widget: "string", hint: "Wrap the italic phrase in *asterisks*." }
+              - label: "Services"
+                name: "services"
+                widget: "object"
+                fields:
+                  - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+                  - { label: "Headline", name: "title", widget: "string", hint: "Wrap the italic phrase in *asterisks*." }
+              - label: "Contact"
+                name: "contact"
+                widget: "object"
+                fields:
+                  - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+                  - { label: "Headline", name: "title", widget: "string", hint: "Wrap the italic phrase in *asterisks*." }
           - label: "Marquee terms"
             name: "marquee"
             widget: "list"
@@ -60,10 +101,8 @@ collections:
             name: "about"
             widget: "object"
             fields:
-              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
               - { label: "Portrait photo", name: "portrait", widget: "image", required: false, hint: "Still shown before the video loads (and for reduced-motion visitors). Drag/drop to upload." }
               - { label: "Portrait video (optional, silent loop)", name: "portraitVideo", widget: "file", required: false, hint: "An MP4 that autoplays muted and loops in the About portrait. Leave empty to show just the photo." }
-              - { label: "Title", name: "title", widget: "string" }
               - { label: "Lead line", name: "lead", widget: "text", hint: "The brighter opening line, e.g. 'Hi, I'm Nate Winter.'" }
               - { label: "Body", name: "body", widget: "markdown", minimal: true, hint: "The main About story. Use the toolbar for bold, italic, links, etc. Blank line = new paragraph." }
           - label: "Services"
@@ -79,8 +118,6 @@ collections:
             name: "contact"
             widget: "object"
             fields:
-              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-              - { label: "Title", name: "title", widget: "string" }
               - { label: "Lead paragraph", name: "lead", widget: "markdown", minimal: true }
               - { label: "What to expect", name: "expect", widget: "list", field: { label: "Step", name: "step", widget: "string" } }
               - { label: "Project types (contact form dropdown)", name: "projectTypes", widget: "list", field: { label: "Option", name: "option", widget: "string" } }

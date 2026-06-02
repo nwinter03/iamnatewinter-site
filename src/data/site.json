@@ -1,4 +1,15 @@
 {
+  "seo": {
+    "title": "Nate Winter · Designer & Art Director · 3D Product Visualization & Motion",
+    "description": "Nate Winter is a Milwaukee designer and art director specializing in 3D product visualization, motion, packaging, and brand work for product-led brands across CPG, supplements, beverage, beauty, and wellness."
+  },
+  "sections": {
+    "work": { "eyebrow": "Work", "title": "Made for clients, *and for the craft.*" },
+    "process": { "eyebrow": "Process", "title": "How I work, *end to end.*" },
+    "about": { "eyebrow": "About", "title": "Strong creative direction, *rendered honestly.*" },
+    "services": { "eyebrow": "Services", "title": "What I make." },
+    "contact": { "eyebrow": "Contact", "title": "Let’s shape how your product is seen. *Let’s talk.*" }
+  },
   "hero": {
     "line1": "3D product",
     "line2": "visualization",
@@ -6,8 +17,7 @@
     "line4": "to look ordinary.",
     "subtext": "Helping brands build the visual world around their products, shaping everything from identity and packaging to the visuals that bring them into motion.\n\nWhether a brand is launching something new or refining what it already has, the work is built to make the product impossible to overlook.",
     "reelVimeoId": "817702560",
-    "reelDuration": "0:47",
-    "reelPoster": "/uploads/2024/02/hero.jpg"
+    "reelDuration": "0:47"
   },
   "marquee": [
     "CPG",
@@ -36,10 +46,8 @@
     }
   ],
   "about": {
-    "eyebrow": "About",
     "portrait": "/uploads/2024/09/nw-sketch.jpg",
     "portraitVideo": "/uploads/2024/09/sketch-loop.mp4",
-    "title": "Strong creative direction, rendered honestly.",
     "lead": "Hi, I'm Nate Winter.",
     "body": "I'm a Milwaukee-based designer and art director. I help brands bring their products, ideas, and stories to life through 3D product visualization and motion design, guided by strong creative direction and brand thinking.\n\nMy journey started young. I was rarely seen without a sketchbook in hand. Movies, music, video games, skateboarding… everything I loved became fuel for the art I created. My obsession with creating something out of nothing is what still drives me today.\n\nWhen I pursued graphic design professionally, a lightbulb went off. I realized my creativity could serve a purpose beyond expression, which pushed me to explore every tool available.\n\nThe discovery of 3D design and animation became the turning point. It opened up limitless ways to translate ideas into photoreal product visuals and motion. Through this process, I combine storytelling, design, and precision into a single craft, transforming brand identity and packaging into fully realized 3D product visuals with clarity and intent.\n\nToday, I channel that experience into helping brands stand out through 3D product visualization, creative direction, and motion design that feels intentional, elevated, and built to connect with their audience."
   },
@@ -74,8 +82,6 @@
     }
   ],
   "contact": {
-    "eyebrow": "Contact",
-    "title": "Let’s shape how your product is seen. Let’s talk.",
     "lead": "I work with brands, studios, and teams looking to create stronger product visuals, sharper campaigns, and more considered brand moments. Projects can range from a single deliverable to a larger creative engagement. Send a short note with what you’re building, launching, or looking to improve, and I’ll take it from there.",
     "expect": [
       "Send over the basics.",
