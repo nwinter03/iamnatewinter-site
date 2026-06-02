@@ -38,7 +38,7 @@ collections:
               - { label: "Title — line 2", name: "line2", widget: "string" }
               - { label: "Title — line 3 (italic)", name: "line3", widget: "string" }
               - { label: "Title — line 4 (italic)", name: "line4", widget: "string" }
-              - { label: "Subtext", name: "subtext", widget: "text" }
+              - { label: "Subtext", name: "subtext", widget: "markdown", minimal: true, hint: "Body copy under the headline. Blank line = new paragraph; toolbar for bold/italic." }
               - { label: "Reel — Vimeo ID", name: "reelVimeoId", widget: "string", hint: "Just the numeric ID from the Vimeo URL, e.g. 817702560." }
               - { label: "Reel — duration label", name: "reelDuration", widget: "string", hint: "Shown on the reel button, e.g. 0:47." }
               - { label: "Reel poster URL", name: "reelPoster", widget: "string", required: false }
@@ -72,7 +72,7 @@ collections:
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string" }
               - { label: "Title", name: "title", widget: "string" }
-              - { label: "Lead paragraph", name: "lead", widget: "text" }
+              - { label: "Lead paragraph", name: "lead", widget: "markdown", minimal: true }
               - { label: "What to expect", name: "expect", widget: "list", field: { label: "Step", name: "step", widget: "string" } }
               - { label: "Email", name: "email", widget: "string" }
               - { label: "Instagram URL", name: "instagram", widget: "string" }

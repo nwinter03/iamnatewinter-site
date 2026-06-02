@@ -236,6 +236,8 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
   max-width: 46ch;
 }
 .hero-sub strong { color: var(--ink); font-weight: 500; }
+.hero-sub p { margin: 0; }
+.hero-sub p + p { margin-top: 1.3em; }
 .scroll-cue {
   display: inline-flex;
   align-items: center;

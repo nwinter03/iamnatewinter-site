@@ -9,6 +9,8 @@ const { hero, marquee, marqueeLabel, about, services, contact } = site;
 // About body is rich text (markdown) from the CMS — render it to HTML
 const mdProcessor = await createMarkdownProcessor({ smartypants: false });
 const aboutBodyHtml = (await mdProcessor.render(about.body || '')).code;
+const heroSubHtml = (await mdProcessor.render(hero.subtext || '')).code;
+const contactLeadHtml = (await mdProcessor.render(contact.lead || '')).code;
 
 // Load category galleries and flatten their items into cards.
 const galleries = await getCollection('galleries');
@@ -68,7 +70,7 @@ const processSteps = [
       <span class="line italic"><span class="reveal">{hero.line4}</span></span>
     </h1>
     <div class="hero-foot">
-      <p class="hero-sub" set:html={hero.subtext}></p>
+      <div class="hero-sub" set:html={heroSubHtml}></div>
       <div class="hero-cta">
         <a href="#work" class="btn">View the work</a>
         <a href="#contact" class="hero-cta-link">Start a project →</a>
@@ -216,7 +218,7 @@ const processSteps = [
     </header>
     <div class="contact-grid">
       <div class="contact-copy">
-        <p class="lead">{contact.lead}</p>
+        <div class="lead" set:html={contactLeadHtml}></div>
         <ul class="contact-expect">
           {contact.expect.map((e, i) => (<li><span>{i + 1}.</span> {e}</li>))}
         </ul>
