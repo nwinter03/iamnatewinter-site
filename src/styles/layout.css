@@ -882,6 +882,16 @@ main { padding: 0 var(--pad); max-width: var(--max); margin: 0 auto; }
 }
 .about-copy { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
 .about-copy p { margin: 0; }   /* gap controls spacing; kill default <p> margins that were doubling it */
+
+/* About lead ("Hi, I'm Nate Winter.") — warm display-serif intro: bigger than
+   the body, clearly stylized, but well under the section headline. */
+.about-copy .lead {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2vw, 28px);   /* clearly above body (17px), well under the headline */
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
 /* rich-text (markdown) About body: space its paragraphs and style inline formatting */
 .about-body p + p { margin-top: 18px; }
 .about-body strong { color: var(--ink); font-weight: 600; }
