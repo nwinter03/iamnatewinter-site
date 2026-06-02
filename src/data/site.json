@@ -1,15 +1,4 @@
 {
-  "seo": {
-    "title": "Nate Winter · Designer & Art Director · 3D Product Visualization & Motion",
-    "description": "Nate Winter is a Milwaukee designer and art director specializing in 3D product visualization, motion, packaging, and brand work for product-led brands across CPG, supplements, beverage, beauty, and wellness."
-  },
-  "sections": {
-    "work": { "eyebrow": "Work", "title": "Made for clients, *and for the craft.*" },
-    "process": { "eyebrow": "Process", "title": "How I work, *end to end.*" },
-    "about": { "eyebrow": "About", "title": "Strong creative direction, *rendered honestly.*" },
-    "services": { "eyebrow": "Services", "title": "What I make." },
-    "contact": { "eyebrow": "Contact", "title": "Let’s shape how your product is seen. *Let’s talk.*" }
-  },
   "hero": {
     "line1": "3D product",
     "line2": "visualization",
@@ -18,6 +7,32 @@
     "subtext": "Helping brands build the visual world around their products, shaping everything from identity and packaging to the visuals that bring them into motion.\n\nWhether a brand is launching something new or refining what it already has, the work is built to make the product impossible to overlook.",
     "reelVimeoId": "817702560",
     "reelDuration": "0:47"
+  },
+  "seo": {
+    "title": "Nate Winter · Designer & Art Director · 3D Product Visualization & Motion",
+    "description": "Nate Winter is a Milwaukee designer and art director specializing in 3D product visualization, motion, packaging, and brand work for product-led brands across CPG, supplements, beverage, beauty, and wellness."
+  },
+  "sections": {
+    "work": {
+      "eyebrow": "Work",
+      "title": "Made for clients, *and for the craft.*"
+    },
+    "process": {
+      "eyebrow": "Process",
+      "title": "How I work, *end to end.*"
+    },
+    "about": {
+      "eyebrow": "About",
+      "title": "Strong creative direction, *rendered honestly.*"
+    },
+    "services": {
+      "eyebrow": "Services",
+      "title": "What I make."
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "title": "Let’s shape how your product is seen. *Let’s talk.*"
+    }
   },
   "marquee": [
     "CPG",
@@ -86,7 +101,7 @@
     "expect": [
       "Send over the basics.",
       "We’ll talk through fit, scope, and timing.",
-      "I’ll follow up with a clear next step."
+      "I’ll follow up with a clear next steps."
     ],
     "projectTypes": [
       "Product Animation",
