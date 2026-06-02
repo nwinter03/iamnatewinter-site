@@ -1,4 +1,9 @@
 ---
+// Global stylesheets imported (not <link>ed) so Astro hashes them.
+// Hashed URLs change on every edit, so CSS changes are never served stale.
+import '../styles/base.css';
+import '../styles/layout.css';
+import '../styles/motion.css';
 import site from '../data/site.json';
 const { hero, contact } = site;
 
@@ -73,9 +78,7 @@ const ld = {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Syne:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/styles/base.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
-  <link rel="stylesheet" href="/styles/motion.css" />
+  <!-- Global CSS is imported in the frontmatter so Astro emits hashed, cache-busted bundles. -->
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
 </head>
