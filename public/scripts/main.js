@@ -381,6 +381,30 @@
       .filter((c) => !c.classList.contains("is-hidden"));
 
     let activeSpinner = null;
+    let activeVimeo = null;
+
+    // Lazy-load the Vimeo Player API once (drives the custom reel controls so
+    // we can hide Vimeo's native chrome/logo entirely via controls=0).
+    let vimeoApiPromise = null;
+    const ensureVimeoApi = () => {
+      if (window.Vimeo && window.Vimeo.Player) return Promise.resolve();
+      if (vimeoApiPromise) return vimeoApiPromise;
+      vimeoApiPromise = new Promise((resolve, reject) => {
+        const s = document.createElement("script");
+        s.src = "https://player.vimeo.com/api/player.js";
+        s.onload = resolve;
+        s.onerror = reject;
+        document.head.appendChild(s);
+      });
+      return vimeoApiPromise;
+    };
+    const VP_ICONS = {
+      play:  '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>',
+      pause: '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="6.5" y="5" width="3.4" height="14" rx="1" fill="currentColor"/><rect x="14.1" y="5" width="3.4" height="14" rx="1" fill="currentColor"/></svg>',
+      vol:   '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18V6L7.5 9.5H4Z"/><path d="M15.5 9.2a3.8 3.8 0 0 1 0 5.6"/><path d="M18 7a7 7 0 0 1 0 10"/></svg>',
+      mute:  '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18V6L7.5 9.5H4Z"/><path d="m16 9.5 4.5 5M20.5 9.5l-4.5 5"/></svg>',
+      fs:    '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V5.5A1.5 1.5 0 0 1 5.5 4H9M15 4h3.5A1.5 1.5 0 0 1 20 5.5V9M20 15v3.5a1.5 1.5 0 0 1-1.5 1.5H15M9 20H5.5A1.5 1.5 0 0 1 4 18.5V15"/></svg>',
+    };
     const renderCard = (card) => {
       if (!card) return;
       // Tear down any previous spinner
@@ -429,6 +453,7 @@
       currentIndex = cards.indexOf(card);
       if (currentIndex < 0) return;
       renderCard(card);
+      lightbox.classList.remove("is-reel"); // gallery item → restore prev/next
       lightbox.classList.add("is-open");
       lightbox.setAttribute("aria-hidden", "false");
       document.body.classList.add("lightbox-open");
@@ -441,6 +466,7 @@
       // pause video / stop iframe / tear down spinner before clearing
       const v = stage.querySelector("video");
       if (v) v.pause();
+      if (activeVimeo) { try { activeVimeo.destroy(); } catch (_) {} activeVimeo = null; }
       const f = stage.querySelector("iframe");
       if (f) f.src = "";  // stop Vimeo playback + sound immediately
       if (activeSpinner) { activeSpinner.destroy(); activeSpinner = null; }
@@ -450,17 +476,89 @@
     // Open the full demo reel (Vimeo) with sound — used by hero + PiP
     const openVimeo = (id) => {
       if (activeSpinner) { activeSpinner.destroy(); activeSpinner = null; }
+      if (activeVimeo) { try { activeVimeo.destroy(); } catch (_) {} activeVimeo = null; }
       stage.innerHTML = "";
       const wrap = document.createElement("div");
       wrap.className = "lightbox-vimeo";
-      wrap.innerHTML = `<iframe src="https://player.vimeo.com/video/${id}?autoplay=1&title=0&byline=0&portrait=0&dnt=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+      // controls=0 → no native Vimeo chrome or logo; our custom bar drives playback.
+      wrap.innerHTML =
+        `<iframe src="https://player.vimeo.com/video/${id}?autoplay=1&loop=1&muted=0&controls=0&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture"></iframe>` +
+        `<div class="rd-vp-bar" role="group" aria-label="Reel controls">` +
+          `<button class="rd-vp-btn rd-vp-play" type="button" aria-label="Pause">${VP_ICONS.pause}</button>` +
+          `<span class="rd-vp-time rd-vp-cur">0:00</span>` +
+          `<div class="rd-vp-track" role="slider" aria-label="Seek" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="rd-vp-fill"></div></div>` +
+          `<span class="rd-vp-time rd-vp-dur">0:00</span>` +
+          `<button class="rd-vp-btn rd-vp-mute" type="button" aria-label="Mute">${VP_ICONS.vol}</button>` +
+          `<button class="rd-vp-btn rd-vp-fs" type="button" aria-label="Fullscreen">${VP_ICONS.fs}</button>` +
+        `</div>`;
       stage.appendChild(wrap);
       titleEl.textContent = "Demo Reel";
       catEl.textContent = "Nate Winter — Selected Work";
       currentIndex = -1;
+      lightbox.classList.add("is-reel"); // single video → hide gallery prev/next
       lightbox.classList.add("is-open");
       lightbox.setAttribute("aria-hidden", "false");
       document.body.classList.add("lightbox-open");
+
+      ensureVimeoApi().then(() => {
+        if (!stage.contains(wrap)) return; // closed before the API finished loading
+        const iframe = wrap.querySelector("iframe");
+        const player = new window.Vimeo.Player(iframe);
+        activeVimeo = player;
+        const playBtn = wrap.querySelector(".rd-vp-play");
+        const muteBtn = wrap.querySelector(".rd-vp-mute");
+        const fsBtn   = wrap.querySelector(".rd-vp-fs");
+        const track   = wrap.querySelector(".rd-vp-track");
+        const fill    = wrap.querySelector(".rd-vp-fill");
+        const curEl   = wrap.querySelector(".rd-vp-cur");
+        const durEl   = wrap.querySelector(".rd-vp-dur");
+        let duration = 0;
+        const fmt = (s) => {
+          s = Math.max(0, Math.floor(s || 0));
+          return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
+        };
+
+        player.getDuration().then((d) => { duration = d; durEl.textContent = fmt(d); }).catch(() => {});
+        player.on("timeupdate", (data) => {
+          if (data.duration) duration = data.duration;
+          const pct = duration ? (data.seconds / duration) * 100 : 0;
+          fill.style.width = pct + "%";
+          curEl.textContent = fmt(data.seconds);
+          track.setAttribute("aria-valuenow", Math.round(pct));
+        });
+        player.on("play",  () => { playBtn.innerHTML = VP_ICONS.pause; playBtn.setAttribute("aria-label", "Pause"); });
+        player.on("pause", () => { playBtn.innerHTML = VP_ICONS.play;  playBtn.setAttribute("aria-label", "Play"); });
+        playBtn.addEventListener("click", () => {
+          player.getPaused().then((p) => (p ? player.play() : player.pause())).catch(() => {});
+        });
+
+        const setMuteIcon = (m) => {
+          muteBtn.innerHTML = m ? VP_ICONS.mute : VP_ICONS.vol;
+          muteBtn.setAttribute("aria-label", m ? "Unmute" : "Mute");
+        };
+        player.getMuted().then(setMuteIcon).catch(() => {});
+        muteBtn.addEventListener("click", () => {
+          player.getMuted().then((m) => { player.setMuted(!m); setMuteIcon(!m); }).catch(() => {});
+        });
+
+        const seekTo = (clientX) => {
+          const r = track.getBoundingClientRect();
+          const ratio = Math.min(1, Math.max(0, (clientX - r.left) / r.width));
+          fill.style.width = ratio * 100 + "%";
+          if (duration) player.setCurrentTime(ratio * duration).catch(() => {});
+        };
+        let scrubbing = false;
+        track.addEventListener("pointerdown", (e) => { scrubbing = true; try { track.setPointerCapture(e.pointerId); } catch (_) {} seekTo(e.clientX); });
+        track.addEventListener("pointermove", (e) => { if (scrubbing) seekTo(e.clientX); });
+        const endScrub = (e) => { scrubbing = false; try { track.releasePointerCapture(e.pointerId); } catch (_) {} };
+        track.addEventListener("pointerup", endScrub);
+        track.addEventListener("pointercancel", endScrub);
+
+        fsBtn.addEventListener("click", () => {
+          if (document.fullscreenElement) { document.exitFullscreen(); }
+          else if (wrap.requestFullscreen) { wrap.requestFullscreen().catch(() => {}); }
+        });
+      }).catch(() => { /* API failed to load — iframe still plays, just without the custom bar */ });
     };
     window.__openReel = openVimeo;
 

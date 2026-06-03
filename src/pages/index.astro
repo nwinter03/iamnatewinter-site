@@ -80,7 +80,7 @@ const icons = {
       </div>
     </div>
     <div class="rd-hero-media">
-      <a class="rd-reel" href={`https://vimeo.com/${hero.reelVimeoId}`} target="_blank" rel="noopener" aria-label="Watch the demo reel">
+      <button class="rd-reel reel-trigger" type="button" data-vimeo={hero.reelVimeoId} aria-label="Watch the demo reel">
         <div class="rd-reel-chrome rd-reel-chrome-top" aria-hidden="true"></div>
         <div class="rd-reel-screen">
           <iframe class="rd-reel-bg" tabindex="-1" aria-hidden="true" title="Nate Winter demo reel"
@@ -94,7 +94,7 @@ const icons = {
             {hero.reelCta}
           </span>
         </div>
-      </a>
+      </button>
     </div>
   </section>
 

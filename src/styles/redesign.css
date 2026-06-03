@@ -70,6 +70,8 @@
   position: relative; display: flex; flex-direction: column; width: 100%;
   border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
   background: var(--bg-elev); text-decoration: none;
+  /* button reset (it's a <button> that opens the reel in the lightbox) */
+  padding: 0; margin: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; appearance: none;
 }
 .rd-reel-screen { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #0a0a0c; overflow: hidden; }
 .rd-reel-bg { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
@@ -151,6 +153,19 @@
 .rd-caps { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(30px, 3vw, 48px) clamp(22px, 1.8vw, 30px); }
 .rd-cap-icon { display: block; color: var(--accent); width: var(--rd-icon); height: var(--rd-icon); margin-bottom: 16px; }
 .rd-cap-icon svg { width: 100%; height: 100%; display: block; }
+/* draw-on: each icon's stroke draws itself as the card scroll-reveals.
+   Gated on .reveal-target (added by motion.js only when motion is allowed) so
+   reduced-motion / no-JS visitors just get the finished icon. */
+.rd-cap.reveal-target .rd-cap-icon svg * { stroke-dasharray: 260; stroke-dashoffset: 260; }
+.rd-cap.reveal-target.is-in .rd-cap-icon svg * { animation: rd-icon-draw 0.9s var(--ease, ease) forwards; }
+/* The card fades up over ~1s. Delay the draw so it plays AFTER the icon is
+   actually visible — otherwise the opacity fade hides the stroke draw and it
+   looks like nothing animated. Staggered left→right to match the card reveal. */
+.rd-cap.reveal-target[data-delay="1"].is-in .rd-cap-icon svg * { animation-delay: 0.55s; }
+.rd-cap.reveal-target[data-delay="2"].is-in .rd-cap-icon svg * { animation-delay: 0.65s; }
+.rd-cap.reveal-target[data-delay="3"].is-in .rd-cap-icon svg * { animation-delay: 0.75s; }
+.rd-cap.reveal-target[data-delay="4"].is-in .rd-cap-icon svg * { animation-delay: 0.85s; }
+@keyframes rd-icon-draw { from { stroke-dashoffset: 260; } to { stroke-dashoffset: 0; } }
 .rd-cap-title { font-family: var(--font-display); font-weight: 400; color: var(--ink); margin: 0 0 6px; }   /* size from TYPE SYSTEM */
 .rd-cap-desc { list-style: none; margin: 0; padding: 0; font-size: var(--text-body-sm); color: var(--ink-dim); line-height: 1.4; }
 .rd-cap-desc li + li { margin-top: 4px; }
