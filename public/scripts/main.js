@@ -709,8 +709,13 @@
             video.src = card.dataset.video;
             card.dataset.videoLoaded = "1";
           }
+          video.muted = true;            // iOS only allows muted inline autoplay
           card.classList.add("is-playing");
-          video.play().catch(() => {});
+          const play = () => video.play().catch(() => {});
+          play();
+          // preload="none" means that first play() can fire before any data exists;
+          // retry once the clip can actually play (this is the key bit for iOS Safari).
+          video.addEventListener("canplay", play, { once: true });
         } else {
           card.classList.remove("is-playing");
           video.pause();
