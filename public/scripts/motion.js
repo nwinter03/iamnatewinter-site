@@ -24,7 +24,16 @@
     ".about-copy > *",
     ".service",
     ".contact-copy > *",
-    ".contact-form"
+    ".contact-form",
+    // redesign (/redesign) sections — reuse the same gentle fade-up reveal
+    ".rd-worksec-head",
+    ".rd-range-head",
+    ".rd-cap",
+    ".rd-about-head",
+    ".rd-about-photo",
+    ".rd-about-body-wrap",
+    ".rd-contact-text",
+    ".rd-form"
   ];
 
   targets.forEach((selector) => {

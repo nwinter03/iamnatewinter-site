@@ -1,30 +1,31 @@
 ---
+// Homepage. Hero (reel) → Marquee → Work (filterable) → Services → About → Contact.
+// All copy is editable in the CMS (src/data/site.json); the filterable work grid +
+// marquee reuse the live class names so main.js wires up filtering, hover-play,
+// 360° spin, pagination, and the lightbox automatically.
 import Base from '../layouts/Base.astro';
+import '../styles/redesign.css';
 import site from '../data/site.json';
 import { getCollection } from 'astro:content';
 import { createMarkdownProcessor } from '@astrojs/markdown-remark';
 
-const { hero, marquee, marqueeLabel, work, about, services, contact } = site;
+const { hero, work, services, about, contact, marquee, marqueeLabel } = site;
 
-// Section headings: wrap the italic phrase in *asterisks* in the CMS → rendered as the two-tone style.
+// Section headings: wrap the italic phrase in *asterisks* in the CMS → two-tone accent.
 const escapeHtml = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const sectionTitle = (s) => escapeHtml(s || '')
   .replace(/\r?\n/g, '<br>')
   .replace(/\*([^*]+)\*/g, '<span class="italic">$1</span>');
 
-// About body is rich text (markdown) from the CMS — render it to HTML
+// About body is rich text (markdown) from the CMS → render it to HTML.
 const mdProcessor = await createMarkdownProcessor({ smartypants: false });
 const aboutBodyHtml = (await mdProcessor.render(about.body || '')).code;
-const heroSubHtml = (await mdProcessor.render(hero.subtext || '')).code;
-const contactLeadHtml = (await mdProcessor.render(contact.lead || '')).code;
 
 // Load category galleries and flatten their items into cards.
 const galleries = await getCollection('galleries');
 const byCat = {};
 for (const g of galleries) {
   let items = g.data.items.map((it) => ({ ...it, category: g.data.category }));
-  // Per-category randomization, toggled in the CMS at the top of each filter.
-  // Shuffles only this category's items at build time; curated keeps the order.
   if (g.data.order === 'random') {
     for (let i = items.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -33,7 +34,6 @@ for (const g of galleries) {
   }
   byCat[g.data.category] = items;
 }
-// Round-robin interleave across categories so the "All" view reads as a mix.
 const catOrder = ['animation', 'stills', 'motion', 'packaging', 'branding', 'artwork'];
 const projects = [];
 let ri = 0, addedAny = true;
@@ -45,7 +45,6 @@ while (addedAny) {
   }
   ri++;
 }
-
 const catLabels = {
   animation: 'Product Animation',
   stills: 'Product Stills',
@@ -55,44 +54,47 @@ const catLabels = {
   artwork: 'Artwork',
 };
 
-// Group services by their "group" field
-const serviceGroups = services.items.reduce((acc, s) => {
-  (acc[s.group] ??= []).push(s);
-  return acc;
-}, {});
-
-const processSteps = site.process.steps || [];
+// Service-card icon family (24-grid, 1.5 stroke). The CMS picks one by key.
+const sw = 'fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"';
+const icons = {
+  target:  `<svg viewBox="0 0 24 24" ${sw}><circle cx="12" cy="12" r="8.25"/><circle cx="12" cy="12" r="3.75"/></svg>`,
+  box:     `<svg viewBox="0 0 24 24" ${sw}><path d="M12 3.5 4 7.75v8.5L12 20.5l8-4.25v-8.5Z"/><path d="M4.2 7.9 12 12l7.8-4.1"/><path d="M12 12v8.4"/></svg>`,
+  image:   `<svg viewBox="0 0 24 24" ${sw}><rect x="3.5" y="4.75" width="17" height="14.5" rx="2.5"/><circle cx="8.5" cy="9.75" r="1.5"/><path d="M19.5 15 15 10.5 7 18.5"/></svg>`,
+  play:    `<svg viewBox="0 0 24 24" ${sw}><circle cx="12" cy="12" r="8.25"/><path d="M10.25 8.5 15.5 12l-5.25 3.5Z"/></svg>`,
+  sparkle: `<svg viewBox="0 0 24 24" ${sw}><path d="M12 4C12.6 9.4 14.6 11.4 20 12 14.6 12.6 12.6 14.6 12 20 11.4 14.6 9.4 12.6 4 12 9.4 11.4 11.4 9.4 12 4Z"/></svg>`,
+  window:  `<svg viewBox="0 0 24 24" ${sw}><rect x="3.5" y="4.75" width="17" height="14.5" rx="2.5"/><path d="M3.5 9.25h17"/></svg>`,
+  cart:    `<svg viewBox="0 0 24 24" ${sw}><path d="M6 8.25h12l-1 11.25H7Z"/><path d="M9 8.25V6.5a3 3 0 0 1 6 0v1.75"/></svg>`,
+  chat:    `<svg viewBox="0 0 24 24" ${sw}><path d="M19.5 11.75a7.25 7.25 0 0 1-10.2 6.6L4.5 19.5l1.15-4.8A7.25 7.25 0 1 1 19.5 11.75Z"/></svg>`,
+  sphere:  `<svg viewBox="0 0 24 24" ${sw}><circle cx="12" cy="12" r="8.25"/><path d="M3.75 12h16.5M12 3.75c2.75 3.2 2.75 13.3 0 16.5M12 3.75c-2.75 3.2-2.75 13.3 0 16.5"/></svg>`,
+};
 ---
 <Base>
   <!-- HERO -->
-  <section class="hero" aria-label="Intro">
-    <h1 class="hero-title">
-      <span class="line"><span class="reveal">{hero.line1}</span></span>
-      <span class="line"><span class="reveal">{hero.line2}</span></span>
-      <span class="line italic"><span class="reveal">{hero.line3}</span></span>
-      <span class="line italic"><span class="reveal">{hero.line4}</span></span>
-    </h1>
-    <div class="hero-foot">
-      <div class="hero-sub" set:html={heroSubHtml}></div>
-      <div class="hero-cta">
-        <a href="#work" class="btn">View the work</a>
-        <a href="#contact" class="hero-cta-link">Start a project →</a>
+  <section class="rd-hero" aria-label="Intro">
+    <div class="rd-hero-text">
+      <p class="rd-eyebrow">{hero.eyebrow}</p>
+      <h1 class="rd-hero-title" set:html={sectionTitle(hero.headline)}></h1>
+      <p class="rd-hero-intro">{hero.intro}</p>
+      <div class="rd-hero-cta">
+        <a href="#work" class="rd-link-arrow">{hero.ctaLabel}<span class="rd-arrow">→</span></a>
       </div>
     </div>
-    <div class="hero-reel">
-      <button class="reel-frame reel-trigger" type="button" data-vimeo={hero.reelVimeoId}
-              aria-label="Watch the demo reel with sound">
-        <iframe class="reel-bg" tabindex="-1" aria-hidden="true" title="Nate Winter demo reel"
-          src={`https://player.vimeo.com/video/${hero.reelVimeoId}?background=1&autoplay=1&loop=1&muted=1&dnt=1`}
-          frameborder="0" allow="autoplay; fullscreen" loading="lazy"></iframe>
-        <div class="reel-overlay">
-          <span class="reel-label">Demo Reel · {hero.reelDuration}</span>
-          <span class="reel-watch">
+    <div class="rd-hero-media">
+      <a class="rd-reel" href={`https://vimeo.com/${hero.reelVimeoId}`} target="_blank" rel="noopener" aria-label="Watch the demo reel">
+        <div class="rd-reel-chrome rd-reel-chrome-top" aria-hidden="true"></div>
+        <div class="rd-reel-screen">
+          <iframe class="rd-reel-bg" tabindex="-1" aria-hidden="true" title="Nate Winter demo reel"
+            src={`https://player.vimeo.com/video/${hero.reelVimeoId}?background=1&autoplay=1&loop=1&muted=1&dnt=1`}
+            frameborder="0" allow="autoplay; fullscreen" loading="lazy"></iframe>
+        </div>
+        <div class="rd-reel-chrome rd-reel-chrome-bottom">
+          <span class="rd-reel-label">{hero.reelLabel} · {hero.reelDuration}</span>
+          <span class="rd-reel-watch">
             <svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
-            Watch with sound
+            {hero.reelCta}
           </span>
         </div>
-      </button>
+      </a>
     </div>
   </section>
 
@@ -108,12 +110,12 @@ const processSteps = site.process.steps || [];
     </div>
   </section>
 
-  <!-- WORK GRID -->
-  <section class="section work" id="work" aria-label="Selected work">
-    <header class="section-head">
-      <span class="section-num">{work.eyebrow}</span>
-      <h2 class="section-title" set:html={sectionTitle(work.title)}></h2>
-    </header>
+  <!-- WORK -->
+  <section class="rd-worksec" id="work" aria-label="Selected work">
+    <div class="rd-worksec-head">
+      <span class="rd-sec-eyebrow">{work.eyebrow}</span>
+      <h2 class="rd-worksec-title" set:html={sectionTitle(work.title)}></h2>
+    </div>
     <div class="filters" role="tablist" aria-label="Filter work">
       <button class="filter is-active" data-filter="all" role="tab" aria-selected="true">All</button>
       <button class="filter" data-filter="animation" role="tab">Product Animation</button>
@@ -147,30 +149,33 @@ const processSteps = site.process.steps || [];
     <nav class="work-pagination" aria-label="Work pages"></nav>
   </section>
 
-  <!-- PROCESS -->
-  <section class="section process" id="process" aria-label="Process">
-    <header class="section-head">
-      <span class="section-num">{site.process.eyebrow}</span>
-      <h2 class="section-title" set:html={sectionTitle(site.process.title)}></h2>
-    </header>
-    <div class="process-steps">
-      {processSteps.map((s, i) => (
-        <article class="process-step">
-          <span class="process-num">{`0${i + 1} · ${s.label}`}</span>
-          <p>{s.body}</p>
-        </article>
-      ))}
+  <!-- SERVICES -->
+  <section class="rd-range" id="services" aria-label="Services">
+    <div class="rd-range-row">
+      <div class="rd-range-head">
+        <span class="rd-sec-eyebrow">{services.eyebrow}</span>
+        <h2 class="rd-range-title" set:html={sectionTitle(services.title)}></h2>
+      </div>
+      <div class="rd-caps">
+        {services.items.map((c, i) => (
+          <div class="rd-cap" data-delay={(i % 4) + 1}>
+            <span class="rd-cap-icon" set:html={icons[c.icon] || icons.sparkle}></span>
+            <h3 class="rd-cap-title">{c.title}</h3>
+            <p class="rd-cap-desc">{c.desc}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
   <!-- ABOUT -->
-  <section class="section about" id="about" aria-label="About">
-    <header class="section-head">
-      <span class="section-num">{about.eyebrow}</span>
-      <h2 class="section-title" set:html={sectionTitle(about.title)}></h2>
-    </header>
-    <div class="about-grid">
-      <div class="about-portrait">
+  <section class="rd-about" id="about" aria-label="About">
+    <div class="rd-about-grid">
+      <div class="rd-about-head">
+        <span class="rd-sec-eyebrow">{about.eyebrow}</span>
+        <h2 class="rd-about-title" set:html={sectionTitle(about.title)}></h2>
+      </div>
+      <div class="rd-about-photo about-portrait" data-delay="1">
         {about.portraitVideo
           ? <Fragment>
               <video class="about-src" src={about.portraitVideo} poster={about.portrait || undefined}
@@ -178,73 +183,33 @@ const processSteps = site.process.steps || [];
               <canvas class="about-stopmo" aria-hidden="true"></canvas>
               <span class="about-grain" aria-hidden="true"></span>
             </Fragment>
-          : (about.portrait && <img src={about.portrait} alt="Nate Winter, Milwaukee designer and art director" loading="lazy" onerror="this.style.display='none'" />)}
+          : (about.portrait && <img src={about.portrait} alt="Nate Winter, designer and art director" loading="lazy" onerror="this.style.display='none'" />)}
       </div>
-      <div class="about-copy">
-        <p class="lead">{about.lead}</p>
-        <div class="about-body" set:html={aboutBodyHtml}></div>
-        <a href="#contact" class="btn">Start a project →</a>
+      <div class="rd-about-body-wrap" data-delay="1">
+        <div class="rd-about-body" set:html={aboutBodyHtml}></div>
+        <a href="#contact" class="rd-link-arrow rd-about-link">{about.ctaLabel}<span class="rd-arrow">→</span></a>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="section services" id="services" aria-label="Services">
-    <header class="section-head">
-      <span class="section-num">{services.eyebrow}</span>
-      <h2 class="section-title" set:html={sectionTitle(services.title)}></h2>
-    </header>
-    {Object.entries(serviceGroups).map(([group, items]) => (
-      <div class="services-group">
-        <h3 class="group-title">{group}</h3>
-        <ul class="services-list">
-          {items.map((s) => (
-            <li class="service">
-              <span class="svc-num">{s.num}</span>
-              <div>
-                <h3>{s.title}</h3>
-                <p>{s.desc}</p>
-              </div>
-              <span class="svc-tag">{s.tag}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    ))}
-  </section>
-
   <!-- CONTACT -->
-  <section class="section contact" id="contact" aria-label="Contact">
-    <header class="section-head">
-      <span class="section-num">{contact.eyebrow}</span>
-      <h2 class="section-title" set:html={sectionTitle(contact.title)}></h2>
-    </header>
-    <div class="contact-grid">
-      <div class="contact-copy">
-        <div class="lead" set:html={contactLeadHtml}></div>
-        <ul class="contact-expect">
-          {contact.expect.map((e, i) => (<li><span>{i + 1}.</span> {e}</li>))}
-        </ul>
-        <div class="contact-direct">
-          <a href={`mailto:${contact.email}`}>{contact.email}</a>
-          <div class="socials">
-            <a href={contact.instagram} target="_blank" rel="noopener">Instagram</a>
-            <a href={contact.linkedin} target="_blank" rel="noopener">LinkedIn</a>
-          </div>
-        </div>
+  <section class="rd-contact" id="contact" aria-label="Contact">
+    <div class="rd-contact-grid">
+      <div class="rd-contact-text">
+        <span class="rd-sec-eyebrow">{contact.eyebrow}</span>
+        <h2 class="rd-contact-title" set:html={sectionTitle(contact.title)}></h2>
+        <p class="rd-contact-body">{contact.body}</p>
       </div>
-      <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('.form-success').hidden = false;">
-        <label><span>Your name</span><input type="text" name="name" required /></label>
-        <label><span>Email</span><input type="email" name="email" required /></label>
-        <label><span>Brand / company</span><input type="text" name="brand" /></label>
-        <label><span>Project type</span>
-          <select name="type">
-            {(contact.projectTypes || []).map((t) => <option>{t}</option>)}
-          </select>
-        </label>
-        <label class="full"><span>Tell me about the project</span><textarea name="message" rows="4" required></textarea></label>
-        <button type="submit" class="btn btn-primary">Send →</button>
-        <p class="form-success" hidden>Thanks, I'll be in touch shortly.</p>
+      <form class="rd-form" data-delay="1" onsubmit="event.preventDefault();">
+        <input type="text" placeholder="Your name" />
+        <input type="email" placeholder="Email" />
+        <input type="text" class="full" placeholder="Company (optional)" />
+        <select class="full" required>
+          <option value="" disabled selected hidden>Project type</option>
+          {contact.projectTypes.map((t) => <option>{t}</option>)}
+        </select>
+        <textarea class="full" placeholder="Tell me about your project"></textarea>
+        <button type="submit" class="rd-form-btn">Send message <span class="rd-arrow">→</span></button>
       </form>
     </div>
   </section>

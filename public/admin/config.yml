@@ -48,13 +48,14 @@ collections:
             name: "hero"
             widget: "object"
             fields:
-              - { label: "Title — line 1", name: "line1", widget: "string" }
-              - { label: "Title — line 2", name: "line2", widget: "string" }
-              - { label: "Title — line 3 (italic)", name: "line3", widget: "string" }
-              - { label: "Title — line 4 (italic)", name: "line4", widget: "string" }
-              - { label: "Subtext", name: "subtext", widget: "markdown", minimal: true, hint: "Body copy under the headline. Blank line = new paragraph; toolbar for bold/italic." }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string", hint: "Small label above the headline, e.g. Designer. Art director. 3D visualist." }
+              - { label: "Headline", name: "headline", widget: "text", hint: "Wrap the lime italic part in *asterisks* (e.g. ...for things *worth noticing.*). Press Enter for a line break." }
+              - { label: "Intro paragraph", name: "intro", widget: "text", hint: "The line under the headline." }
+              - { label: "Button label", name: "ctaLabel", widget: "string", hint: "The text link under the intro, e.g. See selected work." }
               - { label: "Reel — Vimeo ID", name: "reelVimeoId", widget: "string", hint: "Just the numeric ID from the Vimeo URL, e.g. 817702560." }
-              - { label: "Reel — duration label", name: "reelDuration", widget: "string", hint: "Shown on the reel button, e.g. 0:47." }
+              - { label: "Reel — duration label", name: "reelDuration", widget: "string", hint: "Shown on the reel bar, e.g. 0:47." }
+              - { label: "Reel — label", name: "reelLabel", widget: "string", hint: "Left side of the reel bar, e.g. Demo Reel." }
+              - { label: "Reel — watch link", name: "reelCta", widget: "string", hint: "Right side of the reel bar, e.g. Watch full reel." }
 
           # ---- MARQUEE (scrolling sectors, just under the hero) ----
           - label: "Marquee terms"
@@ -71,23 +72,6 @@ collections:
               - { label: "Eyebrow", name: "eyebrow", widget: "string" }
               - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line. (Portfolio images are edited under “Work” in the left sidebar.)" }
 
-          # ---- PROCESS ----
-          - label: "Process"
-            name: "process"
-            widget: "object"
-            fields:
-              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-              - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
-              - label: "Steps"
-                name: "steps"
-                widget: "list"
-                label_singular: "Step"
-                collapsed: true
-                summary: "{{fields.label}}"
-                fields:
-                  - { label: "Label", name: "label", widget: "string", hint: "e.g. Direction — the '01 ·' number is added automatically." }
-                  - { label: "Body", name: "body", widget: "text" }
-
           # ---- ABOUT ----
           - label: "About"
             name: "about"
@@ -97,8 +81,8 @@ collections:
               - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
               - { label: "Portrait photo", name: "portrait", widget: "image", required: false, hint: "Still shown before the video loads (and for reduced-motion visitors). Drag/drop to upload." }
               - { label: "Portrait video (optional, silent loop)", name: "portraitVideo", widget: "file", required: false, hint: "An MP4 that autoplays muted and loops in the About portrait. Leave empty to show just the photo." }
-              - { label: "Lead line", name: "lead", widget: "text", hint: "The brighter opening line, e.g. 'Hi, I'm Nate Winter.'" }
-              - { label: "Body", name: "body", widget: "markdown", minimal: true, hint: "The main About story. Use the toolbar for bold, italic, links, etc. Blank line = new paragraph." }
+              - { label: "Body", name: "body", widget: "markdown", minimal: true, hint: "The main About story. Blank line = new paragraph. Toolbar for bold, italic, links. Start it with 'Hi, I'm Nate Winter.'" }
+              - { label: "Button label", name: "ctaLabel", widget: "string", hint: "The link under the body, e.g. Contact me." }
 
           # ---- SERVICES ----
           - label: "Services"
@@ -107,18 +91,16 @@ collections:
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string" }
               - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
-              - label: "Items"
+              - label: "Capability cards"
                 name: "items"
                 widget: "list"
-                label_singular: "Service"
+                label_singular: "Card"
                 collapsed: true
                 summary: "{{fields.title}}"
                 fields:
-                  - { label: "Group", name: "group", widget: "select", options: ["Visualization & Motion", "Brand & Direction"] }
-                  - { label: "Number", name: "num", widget: "string" }
+                  - { label: "Icon", name: "icon", widget: "select", options: ["target","box","image","play","sparkle","window","cart","chat","sphere"], default: "sparkle", hint: "The line icon shown above the title." }
                   - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Description", name: "desc", widget: "text" }
-                  - { label: "Tag", name: "tag", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "string" }
 
           # ---- CONTACT ----
           - label: "Contact"
@@ -127,8 +109,7 @@ collections:
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string" }
               - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
-              - { label: "Lead paragraph", name: "lead", widget: "markdown", minimal: true }
-              - { label: "What to expect", name: "expect", widget: "list", field: { label: "Step", name: "step", widget: "string" } }
+              - { label: "Body paragraph", name: "body", widget: "text" }
               - { label: "Project types (contact form dropdown)", name: "projectTypes", widget: "list", field: { label: "Option", name: "option", widget: "string" } }
               - { label: "Email", name: "email", widget: "string" }
               - { label: "Instagram URL", name: "instagram", widget: "string" }

@@ -161,7 +161,9 @@
     matching.forEach((card, i) => {
       if (i >= start && i < end) {
         card.classList.remove("is-hidden");
-        card.classList.add("is-in");        // defeat scroll-reveal opacity:0
+        // Let the scroll-reveal bring cards in on first load; only force-show on
+        // filter/pagination changes (otherwise the newly-shown cards stay hidden).
+        if (animate) card.classList.add("is-in");  // defeat scroll-reveal opacity:0
         if (animate) {
           card.classList.remove("filter-in");
           void card.offsetWidth;

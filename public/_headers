@@ -19,6 +19,10 @@
 /assets/*
   Cache-Control: public, max-age=604800
 
+# JS loaded from fixed /scripts/ paths (not hashed) — revalidate so script updates aren't served stale
+/scripts/*
+  Cache-Control: no-cache
+
 # Security headers site-wide
 /*
   X-Content-Type-Options: nosniff

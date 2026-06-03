@@ -4,13 +4,14 @@
     "description": "Nate Winter is a Milwaukee designer and art director specializing in 3D product visualization, motion, packaging, and brand work for product-led brands across CPG, supplements, beverage, beauty, and wellness."
   },
   "hero": {
-    "line1": "Product visuals",
-    "line2": "& motion",
-    "line3": "for brands built",
-    "line4": "to stand apart.",
-    "subtext": "Helping brands build the visual world around their products, shaping everything from identity and packaging to the visuals that bring them into motion.\n\nWhether a brand is launching something new or refining what it already has, the work is built to make the product impossible to overlook.",
+    "eyebrow": "Designer. Art director. 3D visualist.",
+    "headline": "Product visuals, motion, and brand worlds for things *worth noticing.*",
+    "intro": "I help product brands feel polished, sharp, and ready for market, from the first render to the full launch campaign.",
+    "ctaLabel": "See selected work",
     "reelVimeoId": "817702560",
-    "reelDuration": "0:47"
+    "reelDuration": "0:47",
+    "reelLabel": "Demo Reel",
+    "reelCta": "Watch full reel"
   },
   "marquee": [
     "CPG",
@@ -26,77 +27,34 @@
   "marqueeLabel": "",
   "work": {
     "eyebrow": "Work",
-    "title": "Made for clients,\n*and for the craft.*"
+    "title": "Made for clients, *and for the craft.*"
   },
-  "process": {
-    "eyebrow": "Process",
-    "title": "How I work, *end to end.*",
-    "steps": [
-      {
-        "label": "Direction",
-        "body": "We define the purpose, audience, tone, and visual direction before anything gets made. This creates a clear foundation for the work and makes sure every decision has a reason behind it."
-      },
-      {
-        "label": "Development",
-        "body": "I turn that direction into visual work with a clear point of view, shaping the details across whatever the project needs. The process stays flexible, but the goal is always the same: make the work feel cohesive, intentional, and complete."
-      },
-      {
-        "label": "Delivery",
-        "body": "The final work is refined, organized, and prepared for real use. Whether it lives online, in motion, in print, or across a launch, the handoff is built to be clear, useful, and ready to move."
-      }
+  "services": {
+    "eyebrow": "Services",
+    "title": "One creative direction, *brought to life in every form.*",
+    "items": [
+      { "icon": "target",  "title": "Brand direction",    "desc": "Identity, visual systems, brand worlds" },
+      { "icon": "box",     "title": "Packaging",           "desc": "Label design, systems, mockups, dielines" },
+      { "icon": "image",   "title": "3D product visuals",  "desc": "Photoreal renders, product stills" },
+      { "icon": "play",    "title": "Motion design",       "desc": "Launch films, product animations, reels" },
+      { "icon": "sparkle", "title": "Campaign visuals",    "desc": "Hero content, key art, social, OOH" },
+      { "icon": "window",  "title": "Launch content",      "desc": "Web, eCommerce, digital assets" },
+      { "icon": "cart",    "title": "Retail & eCommerce",  "desc": "Marketplace, PDP, lifestyle content" },
+      { "icon": "chat",    "title": "Creative consulting", "desc": "Visual strategy, art direction, workshops" }
     ]
   },
   "about": {
     "eyebrow": "About",
-    "title": "Strong creative direction, *rendered honestly.*",
+    "title": "A background in design with\n*a future in motion.*",
     "portrait": "/uploads/2024/09/nw-sketch.jpg",
     "portraitVideo": "/uploads/2024/09/sketch-loop.mp4",
-    "lead": "Hi, I'm Nate Winter.",
-    "body": "I'm a Milwaukee-based designer and art director. I help brands bring their products, ideas, and stories to life through 3D product visualization and motion design, guided by strong creative direction and brand thinking.\n\nMy journey started young. I was rarely seen without a sketchbook in hand. Movies, music, video games, skateboarding… everything I loved became fuel for the art I created. My obsession with creating something out of nothing is what still drives me today.\n\nWhen I pursued graphic design professionally, a lightbulb went off. I realized my creativity could serve a purpose beyond expression, which pushed me to explore every tool available.\n\nThe discovery of 3D design and animation became the turning point. It opened up limitless ways to translate ideas into photoreal product visuals and motion. Through this process, I combine storytelling, design, and precision into a single craft, transforming brand identity and packaging into fully realized 3D product visuals with clarity and intent.\n\nToday, I channel that experience into helping brands stand out through 3D product visualization, creative direction, and motion design that feels intentional, elevated, and built to connect with their audience."
-  },
-  "services": {
-    "eyebrow": "Services",
-    "title": "What I make.",
-    "items": [
-      {
-        "group": "Visualization & Motion",
-        "num": "01",
-        "title": "Product Animation",
-        "desc": "Hero renders, campaign visuals, launch films, product motion, and photoreal CGI for brands that need their products to feel polished and premium.",
-        "tag": "Per project"
-      },
-      {
-        "group": "Visualization & Motion",
-        "num": "02",
-        "title": "Product Stills",
-        "desc": "High-quality still imagery for websites, ads, packaging, social, retail pages, and launch campaigns.",
-        "tag": "Per project"
-      },
-      {
-        "group": "Brand & Direction",
-        "num": "03",
-        "title": "Brand & Packaging Design",
-        "desc": "Visual identity, packaging direction, label systems, mockups, and brand assets that help products feel more complete and refined.",
-        "tag": "Per project"
-      },
-      {
-        "group": "Brand & Direction",
-        "num": "04",
-        "title": "Creative Direction & Consulting",
-        "desc": "Early-stage direction, visual strategy, art direction, and creative support for brands that need help shaping how something should look and feel.",
-        "tag": "Per day"
-      }
-    ]
+    "body": "Hi, I'm Nate Winter. I'm a Milwaukee-based designer and art director. I help brands bring their products, ideas, and stories to life through 3D product visualization and motion design, guided by strong creative direction and brand thinking.\n\nMy journey started young. I was rarely seen without a sketchbook in hand. Movies, music, video games, skateboarding… everything I loved became fuel for the art I created. My obsession with creating something out of nothing is what still drives me today.\n\nWhen I pursued graphic design professionally, a lightbulb went off. I realized my creativity could serve a purpose beyond expression, which pushed me to explore every tool available.\n\nThe discovery of 3D design and animation became the turning point. It opened up limitless ways to translate ideas into photoreal product visuals and motion. Through this process, I combine storytelling, design, and precision into a single craft, transforming brand identity and packaging into fully realized 3D product visuals with clarity and intent.\n\nToday, I channel that experience into helping brands stand out through 3D product visualization, creative direction, and motion design that feels intentional, elevated, and built to connect with their audience.",
+    "ctaLabel": "Contact me"
   },
   "contact": {
     "eyebrow": "Contact",
-    "title": "Have a product, launch, or idea that needs shape?\n*Let's talk.*",
-    "lead": "I work with brands, studios, and teams on imagery, motion, packaging, brand direction, and campaign assets. Projects can be focused and fast-moving or part of a larger creative engagement. Send a short note with what you're building, launching, or trying to improve.",
-    "expect": [
-      "Send over the basics.",
-      "We'll talk through fit, scope, and timing.",
-      "I'll follow up with a clear next step."
-    ],
+    "title": "Have a product, launch, or idea that needs shape? *Let's talk.*",
+    "body": "I work with brands, studios, and teams, on focused one-off projects or larger creative engagements. Send a short note about what you're building, launching, or trying to improve, and I'll get back to you.",
     "projectTypes": [
       "Product Visualization & Animation",
       "Product Stills",

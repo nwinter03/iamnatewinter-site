@@ -1,0 +1,278 @@
+/* ============================================================
+   REDESIGN homepage stylesheet.
+   Page order: Hero · Marquee · Work · Range · About · Contact.
+
+   Marquee + the filterable Work GRID are ported from the live site and keep
+   their original class names (.marquee*, .filter, .work-*) so they inherit
+   layout.css styling and main.js behavior. Only their SECTION HEADER is styled
+   here (.rd-worksec-*), in the redesign system, so the page reads as one UI.
+
+   ── LOCKED TYPE SYSTEM — one role → one style, reused in every section ──────
+   ROLE                CLASS                 FONT / SIZE / WEIGHT / COLOR
+   Hero headline       .rd-hero-title        Fraunces 300 · --rd-hero (40–84)
+   Section headline    .rd-*-title (h2)      Fraunces 300 · --rd-h2  (30–48)   ← work/range/about/contact, IDENTICAL
+   Capability title    .rd-cap-title         Fraunces 400 · --rd-h4  (16–19)
+   Eyebrow / label     .rd-sec-eyebrow       mono UPPER · --text-mono-sm · 0.18em · ink-faint
+   Lead / intro        .rd-hero-intro …      Inter · --text-lead · 1.55 · ink-dim
+   Body / description  .rd-cap-desc …        Inter · --text-body-sm · 1.5 · ink-dim
+   Accent phrase       .rd-accent / .italic  Fraunces italic · var(--accent)   ← the one two-tone phrase per headline
+   Link arrow          .rd-link-arrow        mono · --text-body-sm · var(--accent)
+   ──────────────────────────────────────────────────────────────────────────
+   COPY CONVENTIONS (kept in sync with the markup):
+   • Section eyebrow  = one short label: Work · Range · About · Contact
+     (the hero eyebrow is the only positioning statement, by design.)
+   • Section headline = plain lead + ONE *italic accent phrase* at the end.
+   • The full discipline list lives ONCE, in RANGE. Other sections reference,
+     never re-list it.
+   ============================================================ */
+
+:root {
+  --rd-hero: clamp(40px, 5.2vw, 84px);   /* hero headline only (largest) */
+  --rd-h2:   clamp(30px, 3vw, 48px);     /* EVERY section headline */
+  --rd-h4:   clamp(16px, 1.1vw, 19px);   /* capability-card titles */
+  --rd-section-y: clamp(72px, 8vw, 120px);  /* vertical rhythm for every section */
+  --rd-icon: 26px;
+}
+
+/* ---------- HERO: text left, reel player right (contained) ---------- */
+.rd-hero {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: clamp(36px, 4vw, 72px);
+  align-items: center;
+  min-height: min(86vh, 880px);
+  padding: clamp(104px, 13vh, 150px) 0 clamp(48px, 6vh, 84px);
+}
+.rd-hero-text { max-width: 600px; }
+.rd-eyebrow {
+  font-family: var(--font-mono); font-size: var(--text-mono-sm);
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 24px;
+}
+.rd-hero-title { margin: 0; color: var(--ink); text-wrap: balance; }   /* size from TYPE SYSTEM */
+.rd-hero-title .rd-accent { font-style: italic; color: var(--accent); }
+.rd-hero-intro { margin: 30px 0 0; max-width: 46ch; color: var(--ink-dim); font-size: var(--text-lead); }
+.rd-hero-cta { margin-top: 36px; }
+.rd-link-arrow {
+  font-family: var(--font-mono); font-size: var(--text-body-sm); letter-spacing: 0.05em;
+  color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 9px;
+}
+/* arrow nudges right on hover — every arrow button/link shares this */
+.rd-arrow { display: inline-block; transition: transform .2s var(--ease, ease); }
+.rd-link-arrow:hover .rd-arrow,
+.rd-form-btn:hover .rd-arrow { transform: translateX(4px); }
+
+/* reel player */
+.rd-hero-media { align-self: center; }
+/* framed like a media player: thin top chrome bar, 16:9 screen, and a bottom
+   control bar that HOLDS the label + watch button. On mobile (≤760px) the bars
+   drop away and the controls overlay the video instead. */
+.rd-reel {
+  position: relative; display: flex; flex-direction: column; width: 100%;
+  border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
+  background: var(--bg-elev); text-decoration: none;
+}
+.rd-reel-screen { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #0a0a0c; overflow: hidden; }
+.rd-reel-bg { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
+.rd-reel-chrome { flex: none; background: var(--bg-elev); }
+.rd-reel-chrome-top { height: 52px; border-bottom: 1px solid var(--line); }   /* same height as the bottom bar */
+.rd-reel-chrome-bottom {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  height: 52px; padding: 0 clamp(14px, 1.5vw, 22px); border-top: 1px solid var(--line);
+}
+.rd-reel-label {
+  font-family: var(--font-mono); font-size: var(--text-mono-sm);
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim);
+}
+.rd-reel-watch {
+  display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px;
+  background: var(--accent); color: #0a0a0c; border-radius: 999px;
+  font-family: var(--font-mono); font-size: var(--text-mono-sm);
+  letter-spacing: 0.12em; text-transform: uppercase; transition: transform .25s var(--ease, ease);
+}
+.rd-reel:hover .rd-reel-watch { transform: scale(1.05); }
+/* mobile: drop the chrome bars, overlay the controls on the video */
+@media (max-width: 760px) {
+  .rd-reel-chrome-top { display: none; }
+  .rd-reel-screen::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 42%);
+  }
+  .rd-reel-chrome-bottom {
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; gap: 8px;
+    border-top: 0; background: transparent; height: auto; padding: clamp(12px, 3.5vw, 16px);
+  }
+  .rd-reel-label, .rd-reel-watch { white-space: nowrap; font-size: 11px; letter-spacing: 0.06em; }
+  .rd-reel-label {
+    color: rgba(244, 241, 234, 0.92);
+    background: rgba(11, 11, 12, 0.45); border-radius: 999px; padding: 6px 10px; backdrop-filter: blur(8px);
+  }
+}
+
+@media (max-width: 900px) {
+  .rd-hero { grid-template-columns: 1fr; gap: 30px; min-height: auto; padding: 92px 0 52px; }
+  .rd-hero-text { max-width: none; }
+}
+
+/* ---------- SHARED: eyebrow + two-tone accent phrase ---------- */
+.rd-sec-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-sm);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+/* eyebrow stacked above a headline (block, with breathing room) */
+.rd-worksec-head .rd-sec-eyebrow,
+.rd-range-head .rd-sec-eyebrow,
+.rd-about-head .rd-sec-eyebrow,
+.rd-contact-text .rd-sec-eyebrow { display: block; margin-bottom: 16px; }
+/* the single italic accent phrase inside any headline:
+   Fraunces italic + lime, SAME weight as its headline (300). */
+.rd-accent { font-style: italic; font-weight: inherit; color: var(--accent); }
+.rd-hero-title .italic,
+.rd-worksec-title .italic,
+.rd-range-title .italic,
+.rd-about-title .italic,
+.rd-contact-title .italic { font-weight: 300; color: var(--accent); }   /* .italic global forces 400 → realign to 300 */
+
+/* ---------- WORK (ported filterable grid; header in the redesign system) ---------- */
+.rd-worksec-head { margin-bottom: clamp(30px, 3.5vw, 52px); }
+
+/* ---------- RANGE (headline left, 4-col capability grid right, bracketed by rules) ---------- */
+.rd-range-row {
+  display: grid;
+  grid-template-columns: 0.8fr 1.75fr;
+  gap: clamp(36px, 4vw, 72px);
+  align-items: start;
+  /* bracket rules removed — the section divider (.rd-range border-top) is the
+     single stroke now, consistent with every other section */
+}
+.rd-range-title { max-width: 11ch; }
+.rd-caps { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(30px, 3vw, 48px) clamp(22px, 1.8vw, 30px); }
+.rd-cap-icon { display: block; color: var(--accent); width: var(--rd-icon); height: var(--rd-icon); margin-bottom: 16px; }
+.rd-cap-icon svg { width: 100%; height: 100%; display: block; }
+.rd-cap-title { font-family: var(--font-display); font-weight: 400; color: var(--ink); margin: 0 0 6px; }   /* size from TYPE SYSTEM */
+.rd-cap-desc { font-size: var(--text-body-sm); color: var(--ink-dim); line-height: 1.5; margin: 0; }
+
+/* ---------- ABOUT ---------- */
+.rd-about-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  grid-template-areas: "photo head" "photo body";
+  column-gap: clamp(40px, 5vw, 80px);
+  row-gap: clamp(22px, 2.4vw, 30px);
+  align-items: start;
+}
+.rd-about-head { grid-area: head; }
+.rd-about-photo { grid-area: photo; align-self: stretch; overflow: hidden; }   /* stop-motion video portrait, stretches to text height */
+.rd-about-body-wrap { grid-area: body; }
+.rd-about-title { line-height: 1.08; }   /* family/size/weight from TYPE SYSTEM */
+.rd-about-body { color: var(--ink-dim); font-size: var(--text-lead); line-height: 1.55; margin: 0; max-width: 54ch; }
+.rd-about-body p { margin: 0 0 1em; }
+.rd-about-link { margin-top: 8px; }
+
+/* ---------- CONTACT ---------- */
+.rd-contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 5vw, 80px); align-items: start; }
+.rd-contact-title { max-width: 16ch; }   /* family/size/weight from TYPE SYSTEM */
+.rd-contact-body { color: var(--ink-dim); font-size: var(--text-lead); line-height: 1.55; margin: 24px 0 0; max-width: 48ch; }
+.rd-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; background: var(--bg-elev); border: 1px solid var(--line); border-radius: 10px; padding: clamp(22px, 2.5vw, 32px); }
+.rd-form .full { grid-column: 1 / -1; }
+.rd-form input, .rd-form select, .rd-form textarea {
+  width: 100%; box-sizing: border-box; background: rgba(255,255,255,0.03);
+  border: 1px solid var(--line); border-radius: 7px; padding: 13px 14px;
+  color: var(--ink); font: inherit; font-size: var(--text-body-sm); }
+.rd-form input::placeholder, .rd-form textarea::placeholder { color: var(--ink-faint); }
+.rd-form select { color: var(--ink); }
+.rd-form select:invalid { color: var(--ink-faint); }   /* greyed while the placeholder is showing */
+.rd-form textarea { resize: vertical; min-height: 96px; }
+.rd-form-btn {
+  grid-column: 1 / -1; justify-self: start; background: var(--accent); color: #0a0a0c;
+  border: none; border-radius: 999px; padding: 13px 28px; font-family: var(--font-mono);
+  font-size: var(--text-body-sm); font-weight: 600; cursor: pointer; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  .rd-about-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: "head" "photo" "body";   /* eyebrow + headline → photo → body */
+    gap: 32px;
+  }
+  .rd-contact-grid { grid-template-columns: 1fr; gap: 36px; }
+  .rd-range-row { grid-template-columns: 1fr; gap: 30px; }
+  .rd-caps { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .rd-caps { grid-template-columns: repeat(2, 1fr); gap: 30px 18px; }   /* stay 2-up on phones */
+  .rd-form { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   TYPE SYSTEM — authoritative sizing (the lock).
+   hero  >  section headline (h2)  >  capability title (h4)
+   ============================================================ */
+
+/* hero headline — SAME display font as the section headlines, just larger.
+   (Must set family + weight explicitly: as an <h1> it otherwise inherits the
+   Inter body font and the browser's default bold — the bug caught in audit 2.) */
+.rd-hero-title {
+  font-family: var(--font-display); font-weight: 300;
+  font-size: var(--rd-hero); line-height: 1.0; letter-spacing: -0.03em;
+}
+
+/* every section headline — IDENTICAL size/weight/leading in all four sections */
+.rd-worksec-title,
+.rd-range-title,
+.rd-about-title,
+.rd-contact-title {
+  font-family: var(--font-display); font-weight: 300; font-size: var(--rd-h2);
+  line-height: 1.04; letter-spacing: -0.02em; color: var(--ink); margin: 0;
+}
+
+/* capability-card titles (the dense Range grid) */
+.rd-cap-title { font-size: var(--rd-h4); }
+
+/* ---------- FOOTER (redesign: no wordmark, social pill buttons).
+   Desktop: copy LEFT + buttons RIGHT (inherits .footer-base space-between).
+   Mobile (≤600px): stacked + centered. ---------- */
+.rd-foot-copy { color: var(--ink-faint); font-size: var(--text-fine); }
+.rd-foot-social { display: flex; gap: 12px; }
+.rd-foot-social a {
+  font-family: var(--font-mono); font-size: var(--text-mono-sm);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-dim); text-decoration: none;
+  padding: 10px 20px; border: 1px solid var(--line); border-radius: 999px;
+  transition: color .2s var(--ease, ease), border-color .2s var(--ease, ease);
+}
+.rd-foot-social a:hover { color: var(--ink); border-color: var(--line-strong); }
+@media (max-width: 600px) {
+  .footer-base.rd-foot-base { flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+}
+
+/* ---------- CONSISTENCY — one value for section rhythm + leading ---------- */
+.rd-worksec, .rd-range, .rd-about, .rd-contact { padding-block: var(--rd-section-y); }
+.rd-hero-intro, .rd-about-body, .rd-contact-body { line-height: 1.55; }   /* all leads */
+
+/* section dividers — ONE hairline per seam. Hero→Marquee and Marquee→Work are
+   covered by the marquee's own top/bottom borders, so Work skips it to avoid a
+   double line; Range/About/Contact each carry the divider above them. */
+.rd-range, .rd-about, .rd-contact { border-top: 1px solid var(--line); }
+
+/* ============================================================
+   ENTRANCE MOTION — gentle and restrained.
+   Below-the-fold sections fade up on scroll via the shared .reveal-target
+   system (motion.js). The HERO gets its own staggered rise that plays as the
+   page loader lifts (body loses .is-loading) — a scroll reveal there would just
+   be hidden behind the loader. All gated to no-preference; reduced-motion users
+   get everything instantly and the .is-loading fallback keeps content visible.
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  .rd-eyebrow, .rd-hero-title, .rd-hero-intro, .rd-hero-cta, .rd-hero-media {
+    opacity: 0; transform: translateY(26px);
+    transition: opacity .85s var(--ease), transform .85s var(--ease);
+  }
+  body:not(.is-loading) .rd-eyebrow    { opacity: 1; transform: none; transition-delay: .05s; }
+  body:not(.is-loading) .rd-hero-title { opacity: 1; transform: none; transition-delay: .14s; }
+  body:not(.is-loading) .rd-hero-media { opacity: 1; transform: none; transition-delay: .20s; }
+  body:not(.is-loading) .rd-hero-intro { opacity: 1; transform: none; transition-delay: .32s; }
+  body:not(.is-loading) .rd-hero-cta   { opacity: 1; transform: none; transition-delay: .44s; }
+}
