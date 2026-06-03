@@ -161,7 +161,9 @@ const icons = {
           <div class="rd-cap" data-delay={(i % 4) + 1}>
             <span class="rd-cap-icon" set:html={icons[c.icon] || icons.sparkle}></span>
             <h3 class="rd-cap-title">{c.title}</h3>
-            <p class="rd-cap-desc">{c.desc}</p>
+            <ul class="rd-cap-desc">
+              {c.desc.split(',').map((d) => <li>{d.trim()}</li>)}
+            </ul>
           </div>
         ))}
       </div>

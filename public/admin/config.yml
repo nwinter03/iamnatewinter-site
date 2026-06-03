@@ -72,18 +72,6 @@ collections:
               - { label: "Eyebrow", name: "eyebrow", widget: "string" }
               - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line. (Portfolio images are edited under “Work” in the left sidebar.)" }
 
-          # ---- ABOUT ----
-          - label: "About"
-            name: "about"
-            widget: "object"
-            fields:
-              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-              - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
-              - { label: "Portrait photo", name: "portrait", widget: "image", required: false, hint: "Still shown before the video loads (and for reduced-motion visitors). Drag/drop to upload." }
-              - { label: "Portrait video (optional, silent loop)", name: "portraitVideo", widget: "file", required: false, hint: "An MP4 that autoplays muted and loops in the About portrait. Leave empty to show just the photo." }
-              - { label: "Body", name: "body", widget: "markdown", minimal: true, hint: "The main About story. Blank line = new paragraph. Toolbar for bold, italic, links. Start it with 'Hi, I'm Nate Winter.'" }
-              - { label: "Button label", name: "ctaLabel", widget: "string", hint: "The link under the body, e.g. Contact me." }
-
           # ---- SERVICES ----
           - label: "Services"
             name: "services"
@@ -101,6 +89,18 @@ collections:
                   - { label: "Icon", name: "icon", widget: "select", options: ["target","box","image","play","sparkle","window","cart","chat","sphere"], default: "sparkle", hint: "The line icon shown above the title." }
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Description", name: "desc", widget: "string" }
+
+          # ---- ABOUT ----
+          - label: "About"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
+              - { label: "Portrait photo", name: "portrait", widget: "image", required: false, hint: "Still shown before the video loads (and for reduced-motion visitors). Drag/drop to upload." }
+              - { label: "Portrait video (optional, silent loop)", name: "portraitVideo", widget: "file", required: false, hint: "An MP4 that autoplays muted and loops in the About portrait. Leave empty to show just the photo." }
+              - { label: "Body", name: "body", widget: "markdown", minimal: true, hint: "The main About story. Blank line = new paragraph. Toolbar for bold, italic, links. Start it with 'Hi, I'm Nate Winter.'" }
+              - { label: "Button label", name: "ctaLabel", widget: "string", hint: "The link under the body, e.g. Contact me." }
 
           # ---- CONTACT ----
           - label: "Contact"
