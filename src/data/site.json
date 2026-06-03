@@ -43,32 +43,32 @@
     "items": [
       {
         "icon": "target",
-        "title": "Brand direction",
+        "title": "Brand Direction",
         "desc": "Identity, visual systems, brand worlds"
       },
       {
         "icon": "box",
-        "title": "Packaging",
+        "title": "Packaging Design",
         "desc": "Label design, systems, mockups, dielines"
       },
       {
         "icon": "image",
-        "title": "3D product visuals",
+        "title": "3D Product Visuals",
         "desc": "Photoreal renders, product stills"
       },
       {
         "icon": "play",
-        "title": "Motion design",
+        "title": "Motion Design",
         "desc": "Launch films, product animations, reels"
       },
       {
         "icon": "sparkle",
-        "title": "Campaign visuals",
+        "title": "Campaign Visuals",
         "desc": "Hero content, key art, social, OOH"
       },
       {
         "icon": "window",
-        "title": "Launch content",
+        "title": "Launch Content",
         "desc": "Web, eCommerce, digital assets"
       },
       {
@@ -78,7 +78,7 @@
       },
       {
         "icon": "chat",
-        "title": "Creative consulting",
+        "title": "Creative Consulting",
         "desc": "Visual strategy, art direction, workshops"
       }
     ]
