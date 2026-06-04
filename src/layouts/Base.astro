@@ -12,8 +12,8 @@ const primaryLinks = [['#work', 'Work'], ['#services', 'Services'], ['#about', '
 const footerLinks = [['#work', 'Work'], ['#services', 'Services'], ['#about', 'About'], ['#contact', 'Contact']];
 
 const siteUrl = (Astro.site?.href || 'https://iamnatewinter.com/').replace(/\/$/, '');
-const pageTitle = site.seo?.title || 'Nate Winter · Designer & Art Director · 3D Product Visualization & Motion';
-const pageDesc = site.seo?.description || 'Nate Winter is a Milwaukee designer and art director specializing in 3D product visualization, motion, packaging, and brand work for product-led brands.';
+const pageTitle = site.seo?.title || 'Nate Winter · Designer · 3D Product Visualization & Motion';
+const pageDesc = site.seo?.description || 'Milwaukee designer and creative director specializing in 3D product visualization, motion, and packaging for CPG, supplement, beauty, and wellness brands.';
 const ogImage = `${siteUrl}/uploads/2024/02/hero.jpg`;
 const canonical = `${siteUrl}/`;
 const ogImageAlt = 'Nate Winter, 3D product visualization still';
@@ -24,7 +24,7 @@ const ld = {
       '@type': 'Person',
       '@id': `${siteUrl}/#nate`,
       name: 'Nate Winter',
-      jobTitle: 'Designer & Art Director',
+      jobTitle: 'Designer & Creative Director',
       url: `${siteUrl}/`,
       image: ogImage,
       description: pageDesc,
@@ -55,6 +55,8 @@ const ld = {
   <link rel="canonical" href={canonical} />
   <meta name="theme-color" content="#0b0b0c" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   <!-- Open Graph (link previews: iMessage, LinkedIn, Slack, Facebook) -->

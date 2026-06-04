@@ -48,7 +48,7 @@ collections:
             name: "hero"
             widget: "object"
             fields:
-              - { label: "Eyebrow", name: "eyebrow", widget: "string", hint: "Small label above the headline, e.g. Designer. Art director. 3D visualist." }
+              - { label: "Eyebrow", name: "eyebrow", widget: "string", hint: "Small label above the headline, e.g. Designer, Creative Director, 3D Artist."}
               - { label: "Headline", name: "headline", widget: "text", hint: "Wrap the lime italic part in *asterisks* (e.g. ...for things *worth noticing.*). Press Enter for a line break." }
               - { label: "Intro paragraph", name: "intro", widget: "text", hint: "The line under the headline." }
               - { label: "Button label", name: "ctaLabel", widget: "string", hint: "The text link under the intro, e.g. See selected work." }
