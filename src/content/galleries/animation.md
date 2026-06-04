@@ -3,11 +3,11 @@ category: animation
 label: Product Animation
 order: random
 items:
-  - title: Controller
+  - title: Take Control
     image: /uploads/2023/12/controller_poster.jpg
     video: https://media.iamnatewinter.com/Controller.mp4
     swatch: lime
-  - title: Gibson
+  - title: Gibson Grow
     image: /uploads/2023/12/gibsongrow-port_poster.jpg
     video: https://media.iamnatewinter.com/GibsonGrow-port.mp4
     swatch: navy
