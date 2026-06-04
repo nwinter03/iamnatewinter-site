@@ -15,15 +15,15 @@ items:
     image: /uploads/2023/12/macbookpro-m2-max_poster.jpg
     video: https://media.iamnatewinter.com/MacbookPro-M2-MAX.mp4
     swatch: bone
-  - title: Air
+  - title: Air Bubbles
     image: /uploads/2023/12/air-bubble-2_poster.jpg
     video: https://media.iamnatewinter.com/air-bubble-2.mp4
     swatch: bone
-  - title: Apple Watch Ultra
+  - title: Ultra Drive
     image: /uploads/2023/12/ultra-water_poster.jpg
     video: https://media.iamnatewinter.com/ultra-water.mp4
     swatch: navy
-  - title: Flamin Hot
+  - title: Hot Dew
     image: /uploads/2023/12/hot-dew-2_poster.jpg
     video: https://media.iamnatewinter.com/hot-dew-2.mp4
     swatch: ember
@@ -47,7 +47,7 @@ items:
     image: /uploads/2023/03/wg-lemon-twist_poster.jpg
     video: https://media.iamnatewinter.com/WG-lemon-twist.mp4
     swatch: cream
-  - title: The Beach
+  - title: Which way to the beach?
     image: /uploads/2023/03/wg_beach-loop_poster.jpg
     video: https://media.iamnatewinter.com/WG_beach-loop.mp4
     swatch: navy
