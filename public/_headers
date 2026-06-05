@@ -3,8 +3,12 @@
 # HTML pages: always revalidate, so CMS edits show the moment the rebuild finishes (no stale cache)
 /
   Cache-Control: no-cache
+  Link: </llms.txt>; rel="describedby"; type="text/plain"
+  Link: </sitemap.xml>; rel="sitemap"
 /index.html
   Cache-Control: no-cache
+  Link: </llms.txt>; rel="describedby"; type="text/plain"
+  Link: </sitemap.xml>; rel="sitemap"
 /admin/
   Cache-Control: no-cache
 
