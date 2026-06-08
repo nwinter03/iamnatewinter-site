@@ -134,7 +134,7 @@
 .rd-worksec-title .italic,
 .rd-range-title .italic,
 .rd-about-title .italic,
-.rd-contact-title .italic { font-weight: 300; color: var(--accent); }   /* .italic global forces 400 → realign to 300 */
+.rd-contact-title .italic { font-weight: 500; color: var(--accent); }   /* match the headline weight */
 
 /* ---------- WORK (ported filterable grid; header in the redesign system) ---------- */
 .rd-worksec-head { margin-bottom: clamp(30px, 3.5vw, 52px); }
@@ -258,7 +258,7 @@
    (Must set family + weight explicitly: as an <h1> it otherwise inherits the
    Inter body font and the browser's default bold — the bug caught in audit 2.) */
 .rd-hero-title {
-  font-family: var(--font-display); font-weight: 300;
+  font-family: var(--font-display); font-weight: 500;
   font-size: var(--rd-hero); line-height: 1.0; letter-spacing: -0.03em;
 }
 
@@ -267,7 +267,7 @@
 .rd-range-title,
 .rd-about-title,
 .rd-contact-title {
-  font-family: var(--font-display); font-weight: 300; font-size: var(--rd-h2);
+  font-family: var(--font-display); font-weight: 500; font-size: var(--rd-h2);
   line-height: 1.04; letter-spacing: -0.02em; color: var(--ink); margin: 0;
 }
 
