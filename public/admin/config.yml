@@ -57,13 +57,6 @@ collections:
               - { label: "Reel — label", name: "reelLabel", widget: "string", hint: "Left side of the reel bar, e.g. Demo Reel." }
               - { label: "Reel — watch link", name: "reelCta", widget: "string", hint: "Right side of the reel bar, e.g. Watch full reel." }
 
-          # ---- MARQUEE (scrolling sectors, just under the hero) ----
-          - label: "Marquee terms"
-            name: "marquee"
-            widget: "list"
-            field: { label: "Term", name: "term", widget: "string" }
-          - { label: "Marquee lead-in (optional)", name: "marqueeLabel", widget: "string", required: false, hint: "Optional text before the looping sectors, e.g. 'Built for'. Leave empty for none." }
-
           # ---- WORK (section header; portfolio images are edited under “Work” in the sidebar) ----
           - label: "Work"
             name: "work"
@@ -72,23 +65,23 @@ collections:
               - { label: "Eyebrow", name: "eyebrow", widget: "string" }
               - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line. (Portfolio images are edited under “Work” in the left sidebar.)" }
 
-          # ---- SERVICES ----
-          - label: "Services"
+          # ---- WHAT I DO ----
+          - label: "What I do"
             name: "services"
             widget: "object"
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string" }
               - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*. Press Enter to put the next part on its own line." }
-              - label: "Capability cards"
+              - label: "Disciplines"
                 name: "items"
                 widget: "list"
-                label_singular: "Card"
+                label_singular: "Discipline"
                 collapsed: true
                 summary: "{{fields.title}}"
                 fields:
-                  - { label: "Icon", name: "icon", widget: "select", options: ["target","box","image","play","sparkle","window","cart","chat","sphere"], default: "sparkle", hint: "The line icon shown above the title." }
+                  - { label: "Icon", name: "icon", widget: "select", options: ["target","box","image","play","sparkle","window","cart","chat","sphere"], default: "image", hint: "The line icon shown above the title." }
                   - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Description", name: "desc", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "string", hint: "One short, plain line (no bullet lists)." }
 
           # ---- ABOUT ----
           - label: "About"

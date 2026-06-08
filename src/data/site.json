@@ -6,72 +6,45 @@
   "hero": {
     "eyebrow": "Designer. Creative Director. 3D Artist.",
     "headline": "Product visuals, motion, and brand worlds for things *worth noticing.*",
-    "intro": "I help product brands feel polished, sharp, and ready for market, from the first render to the full launch campaign.",
+    "intro": "I make 3D product visuals, motion design, and brand work for product companies.",
     "ctaLabel": "See my work",
     "reelVimeoId": "817702560",
     "reelDuration": "0:47",
     "reelLabel": "Demo Reel",
     "reelCta": "Watch full reel"
   },
-  "marquee": [
-    "CPG",
-    "Supplement",
-    "Beverage",
-    "Beauty & Fragrance",
-    "Wearables",
-    "Footwear",
-    "Skincare",
-    "Wellness",
-    "E-commerce"
-  ],
-  "marqueeLabel": "",
   "work": {
     "eyebrow": "Work",
     "title": "Made for clients, *and for the craft.*"
   },
   "services": {
-    "eyebrow": "Services",
-    "title": "One creative direction, *brought to life in every form.*",
+    "eyebrow": "What I do",
+    "title": "The whole visual *world.*",
     "items": [
       {
-        "icon": "target",
-        "title": "Brand Direction",
-        "desc": "Identity, Visual Systems, Brand Worlds"
-      },
-      {
-        "icon": "box",
-        "title": "Packaging Design",
-        "desc": "Label Design, Mockups, Dielines"
-      },
-      {
         "icon": "image",
-        "title": "3D Product Visuals",
-        "desc": "Photoreal Renders, Product Stills, Detail Shots"
+        "title": "Product Visualization",
+        "desc": "Photoreal renders, often before the product exists."
       },
       {
         "icon": "play",
-        "title": "Motion Design",
-        "desc": "Launch Films, Product Animations, Reels"
+        "title": "Motion & Animation",
+        "desc": "Short films, loops, and product animation."
+      },
+      {
+        "icon": "box",
+        "title": "Packaging",
+        "desc": "Labels, mockups, and dielines."
+      },
+      {
+        "icon": "target",
+        "title": "Logo & Identity",
+        "desc": "Logos, marks, and brand systems."
       },
       {
         "icon": "sparkle",
-        "title": "Campaign Visuals",
-        "desc": "Hero Content, Key Art, Social"
-      },
-      {
-        "icon": "window",
-        "title": "Launch Content",
-        "desc": "Web, eCommerce, Digital Assets"
-      },
-      {
-        "icon": "cart",
-        "title": "Retail & eCommerce",
-        "desc": "Marketplace, Product Pages, Lifestyle Content"
-      },
-      {
-        "icon": "chat",
-        "title": "Creative Consulting",
-        "desc": "Visual Strategy, Art Direction, Workshops"
+        "title": "Creative Direction",
+        "desc": "The look, the system, the overall feel."
       }
     ]
   },

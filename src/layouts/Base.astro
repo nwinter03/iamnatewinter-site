@@ -4,12 +4,13 @@
 import '../styles/base.css';
 import '../styles/layout.css';
 import '../styles/motion.css';
+import LiquidBackdrop from '../components/LiquidBackdrop.astro';
 import site from '../data/site.json';
 const { hero, contact } = site;
 
 // Nav menu (Work · Services · About + the "Start a project" CTA).
-const primaryLinks = [['#work', 'Work'], ['#services', 'Services'], ['#about', 'About']];
-const footerLinks = [['#work', 'Work'], ['#services', 'Services'], ['#about', 'About'], ['#contact', 'Contact']];
+const primaryLinks = [['#work', 'Work'], ['#services', 'What I do'], ['#about', 'About']];
+const footerLinks = [['#work', 'Work'], ['#services', 'What I do'], ['#about', 'About'], ['#contact', 'Contact']];
 
 const siteUrl = (Astro.site?.href || 'https://iamnatewinter.com/').replace(/\/$/, '');
 const pageTitle = site.seo?.title || 'Nate Winter · Designer · 3D Product Visualization & Motion';
@@ -89,6 +90,8 @@ const ld = {
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
 </head>
 <body>
+  <LiquidBackdrop />
+
   <div class="page-loader" aria-hidden="true">
     <video class="loader-video" autoplay muted playsinline preload="auto">
       <source src="/assets/intro.mp4" type="video/mp4" />

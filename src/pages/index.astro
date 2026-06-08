@@ -9,7 +9,7 @@ import site from '../data/site.json';
 import { getCollection } from 'astro:content';
 import { createMarkdownProcessor } from '@astrojs/markdown-remark';
 
-const { hero, work, services, about, contact, marquee, marqueeLabel } = site;
+const { hero, work, services, about, contact } = site;
 
 // Section headings: wrap the italic phrase in *asterisks* in the CMS → two-tone accent.
 const escapeHtml = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -98,18 +98,6 @@ const icons = {
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <section class="marquee-wrap" aria-label="Sectors">
-    <div class="marquee">
-      <div class="marquee-track">
-        {marqueeLabel && <><span>{marqueeLabel}</span><span class="dot">●</span></>}
-        {marquee.map((m) => (<><span>{m}</span><span class="dot">●</span></>))}
-        {marqueeLabel && <><span>{marqueeLabel}</span><span class="dot">●</span></>}
-        {marquee.map((m) => (<><span>{m}</span><span class="dot">●</span></>))}
-      </div>
-    </div>
-  </section>
-
   <!-- WORK -->
   <section class="rd-worksec" id="work" aria-label="Selected work">
     <div class="rd-worksec-head">
@@ -149,25 +137,21 @@ const icons = {
     <nav class="work-pagination" aria-label="Work pages"></nav>
   </section>
 
-  <!-- SERVICES -->
-  <section class="rd-range" id="services" aria-label="Services">
-    <div class="rd-range-row">
-      <div class="rd-range-head">
-        <span class="rd-sec-eyebrow">{services.eyebrow}</span>
-        <h2 class="rd-range-title" set:html={sectionTitle(services.title)}></h2>
-      </div>
-      <div class="rd-caps">
-        {services.items.map((c, i) => (
-          <div class="rd-cap" data-delay={(i % 4) + 1}>
-            <span class="rd-cap-icon" set:html={icons[c.icon] || icons.sparkle}></span>
-            <h3 class="rd-cap-title">{c.title}</h3>
-            <ul class="rd-cap-desc">
-              {c.desc.split(',').map((d) => <li>{d.trim()}</li>)}
-            </ul>
-          </div>
-        ))}
-      </div>
+  <!-- WHAT I DO -->
+  <section class="rd-range" id="services" aria-label="What I do">
+    <div class="rd-range-head rd-disc-head">
+      <span class="rd-sec-eyebrow">{services.eyebrow}</span>
+      <h2 class="rd-range-title" set:html={sectionTitle(services.title)}></h2>
     </div>
+    <ul class="rd-disc">
+      {services.items.map((c, i) => (
+        <li class="rd-disc-row rd-cap" data-delay={(i % 5) + 1}>
+          <span class="rd-cap-icon" set:html={icons[c.icon] || icons.sparkle}></span>
+          <h3 class="rd-disc-name">{c.title}</h3>
+          {c.desc && <p class="rd-disc-desc">{c.desc}</p>}
+        </li>
+      ))}
+    </ul>
   </section>
 
   <!-- ABOUT -->
