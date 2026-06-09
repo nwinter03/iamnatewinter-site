@@ -186,16 +186,23 @@ const icons = {
         <h2 class="rd-contact-title" set:html={sectionTitle(contact.title)}></h2>
         <p class="rd-contact-body">{contact.body}</p>
       </div>
-      <form class="rd-form" data-delay="1" onsubmit="event.preventDefault();">
-        <input type="text" placeholder="Your name" />
-        <input type="email" placeholder="Email" />
-        <input type="text" class="full" placeholder="Company (optional)" />
-        <select class="full" required>
+      <form class="rd-form" data-delay="1">
+        {/* Web3Forms delivery. access_key is a PUBLIC form ID (safe to commit) — it only lets this form email Nate, it is not a secret. */}
+        <input type="hidden" name="access_key" value="d485fb34-de85-4826-a1fa-f9ebad4a8b39" />
+        <input type="hidden" name="subject" value="New project inquiry — iamnatewinter.com" />
+        <input type="hidden" name="from_name" value="iamnatewinter.com" />
+        <input type="text" name="name" placeholder="Your name" autocomplete="name" />
+        <input type="email" name="email" placeholder="Email" autocomplete="email" />
+        <input type="text" name="company" class="full" placeholder="Company (optional)" autocomplete="organization" />
+        <select name="project_type" class="full" required>
           <option value="" disabled selected hidden>Project type</option>
           {contact.projectTypes.map((t) => <option>{t}</option>)}
         </select>
-        <textarea class="full" placeholder="Tell me about your project"></textarea>
+        <textarea name="message" class="full" placeholder="Tell me about your project"></textarea>
+        {/* Honeypot: invisible to people; bots that tick it get rejected by Web3Forms. */}
+        <input type="checkbox" name="botcheck" class="rd-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <button type="submit" class="rd-form-btn">Send message <span class="rd-arrow">→</span></button>
+        <p class="rd-form-status full" role="status" aria-live="polite"></p>
       </form>
     </div>
   </section>

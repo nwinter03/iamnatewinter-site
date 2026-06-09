@@ -888,4 +888,39 @@
     }, { threshold: [0, 0.6] });
     spinGridCards.forEach((c) => spinObs.observe(c));
   }
+
+  /* ---------- Contact form -> Web3Forms (static-site email delivery) ---------- */
+  const contactForm = document.querySelector(".rd-form");
+  if (contactForm) {
+    const statusEl = contactForm.querySelector(".rd-form-status");
+    const btn = contactForm.querySelector(".rd-form-btn");
+    const setStatus = (msg, kind) => {
+      if (!statusEl) return;
+      statusEl.textContent = msg;
+      statusEl.className = "rd-form-status full" + (kind ? " is-" + kind : "");
+    };
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (btn) btn.disabled = true;
+      setStatus("Sending…", "sending");
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(contactForm),
+        });
+        const json = await res.json().catch(() => ({}));
+        if (res.ok && json.success) {
+          contactForm.reset();
+          setStatus("Thanks — your message is on its way. I'll be in touch soon.", "ok");
+        } else {
+          throw new Error(json.message || "Submission failed");
+        }
+      } catch (err) {
+        setStatus("Something went wrong. Please email me directly at me@iamnatewinter.com.", "err");
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    });
+  }
 })();

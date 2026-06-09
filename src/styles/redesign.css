@@ -232,6 +232,14 @@
   grid-column: 1 / -1; justify-self: start; background: var(--accent); color: #0a0a0c;
   border: none; border-radius: 999px; padding: 13px 28px; font-family: var(--font-mono);
   font-size: var(--text-body-sm); font-weight: 600; cursor: pointer; }
+.rd-form-btn[disabled] { opacity: 0.55; cursor: progress; }
+.rd-hp { display: none; }   /* spam honeypot — hidden from humans */
+.rd-form-status { margin: 2px 0 0; font-family: var(--font-mono); font-size: var(--text-mono-sm);
+  letter-spacing: 0.04em; line-height: 1.5; }
+.rd-form-status:empty { display: none; }
+.rd-form-status.is-sending { color: var(--ink-faint); }
+.rd-form-status.is-ok { color: var(--accent); }
+.rd-form-status.is-err { color: #e8775c; }
 
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
