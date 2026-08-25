@@ -1,0 +1,23 @@
+---
+// Quiet privacy page (trust anchor). Copy is CMS-editable: site.json → privacy.
+import Base from '../layouts/Base.astro';
+import '../styles/redesign.css';
+import site from '../data/site.json';
+import { createMarkdownProcessor } from '@astrojs/markdown-remark';
+
+const pv = (site as any).privacy || {};
+const escapeHtml = (s: unknown) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const accent = (s: unknown) => escapeHtml(s).replace(/\*([^*]+)\*/g, '<span class="italic">$1</span>');
+const mdProcessor = await createMarkdownProcessor({ smartypants: false });
+const bodyHtml = (await mdProcessor.render(pv.body || '')).code;
+---
+<Base>
+  <section class="rd-page" aria-label="Privacy">
+    <p class="rd-eyebrow">{pv.eyebrow || 'Privacy'}</p>
+    <h1 class="rd-hero-title rd-page-title" set:html={accent(pv.title || 'Privacy, kept *simple.*')}></h1>
+    <div class="rd-about-body rd-page-body" set:html={bodyHtml}></div>
+    <div class="rd-hero-cta">
+      <a href="/" class="rd-link-arrow">Back to home<span class="rd-arrow">→</span></a>
+    </div>
+  </section>
+</Base>

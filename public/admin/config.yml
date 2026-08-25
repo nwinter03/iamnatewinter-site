@@ -108,6 +108,27 @@ collections:
               - { label: "Instagram URL", name: "instagram", widget: "string" }
               - { label: "LinkedIn URL", name: "linkedin", widget: "string" }
 
+          # ---- 404 PAGE ----
+          - label: "404 page (page-not-found)"
+            name: "notFound"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*." }
+              - { label: "Body", name: "body", widget: "text" }
+              - { label: "Button label", name: "ctaLabel", widget: "string" }
+
+          # ---- PRIVACY PAGE ----
+          - label: "Privacy page"
+            name: "privacy"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Headline", name: "title", widget: "text", hint: "Wrap the italic phrase in *asterisks*." }
+              - { label: "Body", name: "body", widget: "markdown", minimal: true, hint: "Blank line = new paragraph. Keep it honest and plain; this is linked from the footer." }
+
   # ---------- WORK (one bulk gallery per category) ----------
   - name: "work"
     label: "Work"

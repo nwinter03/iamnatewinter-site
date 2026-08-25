@@ -1,0 +1,23 @@
+---
+// Branded 404 (replaces Astro's default framework page) with clear recovery
+// paths for both people and agents. Copy is CMS-editable: site.json → notFound.
+import Base from '../layouts/Base.astro';
+import '../styles/redesign.css';
+import site from '../data/site.json';
+
+const nf = (site as any).notFound || {};
+const escapeHtml = (s: unknown) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const accent = (s: unknown) => escapeHtml(s).replace(/\*([^*]+)\*/g, '<span class="italic">$1</span>');
+---
+<Base>
+  <section class="rd-404" aria-label="Page not found">
+    <p class="rd-eyebrow">{nf.eyebrow || 'Error 404'}</p>
+    <h1 class="rd-hero-title rd-404-title" set:html={accent(nf.title || 'Nothing to render *here.*')}></h1>
+    <p class="rd-hero-intro">{nf.body || "This page doesn't exist or moved."}</p>
+    <div class="rd-hero-cta rd-404-links">
+      <a href="/" class="rd-link-arrow">{nf.ctaLabel || 'Back to home'}<span class="rd-arrow">→</span></a>
+      <a href="/#work" class="rd-link-arrow">See the work<span class="rd-arrow">→</span></a>
+      <a href="/#contact" class="rd-link-arrow">Contact<span class="rd-arrow">→</span></a>
+    </div>
+  </section>
+</Base>

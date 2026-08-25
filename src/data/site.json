@@ -70,5 +70,16 @@
     "email": "me@iamnatewinter.com",
     "instagram": "https://www.instagram.com/iamnatewinter/",
     "linkedin": "https://www.linkedin.com/in/natewinterdesign/"
+  },
+  "notFound": {
+    "eyebrow": "Error 404",
+    "title": "Nothing to render *here.*",
+    "body": "This page doesn't exist or moved. The work, the story, and the contact form all live on the homepage.",
+    "ctaLabel": "Back to home"
+  },
+  "privacy": {
+    "eyebrow": "Privacy",
+    "title": "Privacy, kept *simple.*",
+    "body": "This site keeps things simple. There are no advertising trackers and no tracking cookies.\n\nHosting and delivery run on Cloudflare, which processes standard technical logs (like IP address and browser type) to serve and protect the site.\n\nThe contact form is delivered by Web3Forms. What you submit (your name, email, company, and message) goes straight to my inbox and is used only to reply to you. It is never sold or shared.\n\nThe demo reel plays through Vimeo with Do Not Track enabled.\n\nQuestions about any of this: me@iamnatewinter.com."
   }
 }

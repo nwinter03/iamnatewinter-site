@@ -3,14 +3,35 @@
 # HTML pages: always revalidate, so CMS edits show the moment the rebuild finishes (no stale cache)
 /
   Cache-Control: no-cache
+  Vary: Accept
   Link: </llms.txt>; rel="describedby"; type="text/plain"
   Link: </sitemap.xml>; rel="sitemap"
+  Link: </agents.txt>; rel="help"; type="text/plain"
 /index.html
   Cache-Control: no-cache
+  Vary: Accept
   Link: </llms.txt>; rel="describedby"; type="text/plain"
   Link: </sitemap.xml>; rel="sitemap"
+  Link: </agents.txt>; rel="help"; type="text/plain"
 /admin/
   Cache-Control: no-cache
+
+# Agent-discovery files: cacheable + CORS so any agent can fetch them cross-origin
+/llms.txt
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+/llms-full.txt
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+/agents.txt
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+/agents.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+/.well-known/agents.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
 
 # Hashed Astro bundles never change → cache hard
 /_astro/*

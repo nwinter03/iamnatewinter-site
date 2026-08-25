@@ -328,3 +328,26 @@
   body:not(.is-loading) .rd-hero-intro { opacity: 1; transform: none; transition-delay: .32s; }
   body:not(.is-loading) .rd-hero-cta   { opacity: 1; transform: none; transition-delay: .44s; }
 }
+
+/* ---------- UTILITY PAGES (404 + privacy) — reuse the hero type roles ---------- */
+.rd-404, .rd-page {
+  min-height: 58vh; display: flex; flex-direction: column;
+  align-items: flex-start; justify-content: center;
+  padding-block: clamp(110px, 16vh, 180px);
+}
+.rd-404 { max-width: 34ch; }
+.rd-page { max-width: 62ch; }
+.rd-404-title, .rd-page-title { margin-top: 8px; font-size: var(--rd-h2); }
+.rd-404 .rd-hero-intro, .rd-page-body { margin-top: 22px; }
+.rd-page-body p { margin: 0 0 1em; }
+.rd-404-links { display: flex; gap: 26px; flex-wrap: wrap; }
+/* these pages skip the loader-gated hero entrance — show content immediately */
+.rd-404 .rd-eyebrow, .rd-404 .rd-hero-title, .rd-404 .rd-hero-intro, .rd-404 .rd-hero-cta,
+.rd-page .rd-eyebrow, .rd-page .rd-hero-title, .rd-page .rd-hero-cta { opacity: 1; transform: none; transition: none; }
+
+/* quiet footer privacy link, sits with the copyright line */
+.rd-foot-privacy {
+  color: var(--ink-faint); font-size: var(--text-fine); text-decoration: none;
+  border-bottom: 1px solid transparent; transition: color .2s var(--ease, ease);
+}
+.rd-foot-privacy:hover { color: var(--ink-dim); border-bottom-color: var(--line-strong); }

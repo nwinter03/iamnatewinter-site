@@ -1,4 +1,44 @@
+# Crawlers welcome, including AI assistants and their agents.
+# (Note: edge-level bot filtering is controlled in Cloudflare, not in this file.)
+
 User-agent: *
+Allow: /
+Disallow: /admin/
+
+# Explicit welcome for AI crawlers and agent user-agents
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /admin/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /admin/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+
+User-agent: meta-externalagent
 Allow: /
 Disallow: /admin/
 
