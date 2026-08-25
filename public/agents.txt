@@ -26,3 +26,8 @@
 #
 # This site offers no MCP endpoints, agent-to-agent protocols, or payments.
 # It is a read-and-contact portfolio. Email is the reliable channel.
+#
+# AI training policy: NOT permitted. The artwork here is Nate Winter's
+# copyrighted work and may not be used to train generative models.
+# Search indexing and assistant retrieval are welcome (see robots.txt).
+# Licensing inquiries: me@iamnatewinter.com
