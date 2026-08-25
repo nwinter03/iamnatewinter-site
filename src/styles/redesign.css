@@ -341,6 +341,10 @@
 .rd-404 .rd-hero-intro, .rd-page-body { margin-top: 22px; }
 .rd-page-body p { margin: 0 0 1em; }
 .rd-404-links { display: flex; gap: 26px; flex-wrap: wrap; }
+/* machine-recovery pointers under the 404 links: quiet, mono, small */
+.rd-404-meta { margin: 34px 0 0; font-family: var(--font-mono); font-size: var(--text-mono-sm); letter-spacing: 0.05em; color: var(--ink-faint); }
+.rd-404-meta a { color: var(--ink-dim); text-decoration: underline; text-underline-offset: 3px; }
+.rd-404-meta a:hover { color: var(--ink); }
 /* these pages skip the loader-gated hero entrance — show content immediately */
 .rd-404 .rd-eyebrow, .rd-404 .rd-hero-title, .rd-404 .rd-hero-intro, .rd-404 .rd-hero-cta,
 .rd-page .rd-eyebrow, .rd-page .rd-hero-title, .rd-page .rd-hero-cta { opacity: 1; transform: none; transition: none; }

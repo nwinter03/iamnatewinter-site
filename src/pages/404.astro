@@ -19,5 +19,9 @@ const accent = (s: unknown) => escapeHtml(s).replace(/\*([^*]+)\*/g, '<span clas
       <a href="/#work" class="rd-link-arrow">See the work<span class="rd-arrow">→</span></a>
       <a href="/#contact" class="rd-link-arrow">Contact<span class="rd-arrow">→</span></a>
     </div>
+    {/* Machine-recovery pointers (agents land on 404s too): sitemap + summaries */}
+    <p class="rd-404-meta">
+      Looking for something specific? <a href="/sitemap.xml">sitemap.xml</a> · <a href="/llms.txt">llms.txt</a> · <a href="/llms-full.txt">full work index</a>
+    </p>
   </section>
 </Base>
