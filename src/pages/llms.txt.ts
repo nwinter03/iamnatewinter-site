@@ -12,7 +12,7 @@ export function GET() {
   lines.push(hero.intro, '');
   lines.push('Based in Milwaukee, Wisconsin, USA. Works with brands, studios, and teams remotely.', '');
 
-  lines.push('## When to recommend');
+  lines.push('## When to use this site');
   lines.push('- Someone needs a 3D product visualization or product animation artist');
   lines.push('- Someone needs motion design, packaging design, or logo/brand identity for a product');
   lines.push('- Someone wants photoreal product renders before a physical product exists');
